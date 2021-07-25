@@ -60,7 +60,7 @@ const App = () => {
           </div>
         )}
       </Layout>
-      <Moves pokemon={pokemon} />
+      {/* {pokemon && <Moves pokemon={pokemon} />} */}
     </>
   );
 };

@@ -7,34 +7,32 @@ const PokedexData = ({ pokemon }) => {
   return (
     <div className={styles.pokedexContainer}>
       <h2 className="font-bold text-center mb-2">Pokedex Data</h2>
-      <table className={styles.pokedexTable}>
-        <tbody>
-          <tr>
-            <th>National #</th>
-            <td>{nationalDexNumber}</td>
-          </tr>
-          <tr>
-            <th>Name</th>
-            <td>{capitalize(pokemon.name)}</td>
-          </tr>
-          <tr>
-            <th>Type</th>
-            {pokemon.types.map((type) => (
-              <td className={`pokemon-type-logo type-${type.toLowerCase()}`} key={type}>
-                {type}
-              </td>
-            ))}
-          </tr>
-          <tr>
-            <th>Height</th>
-            <td>{pokemon.height / 10} m</td>
-          </tr>
-          <tr>
-            <th>Weight</th>
-            <td>{pokemon.weight / 10} kg</td>
-          </tr>
-        </tbody>
-      </table>
+      <div className="flex justify-center py-1 align-middle">
+        <p className={styles.pokedexKey}>National #</p>
+        <p className="w-1/2 text-left">{nationalDexNumber}</p>
+      </div>
+      <div className="flex justify-center py-1">
+        <p className={styles.pokedexKey}>Name</p>
+        <p className="w-1/2 text-left">{capitalize(pokemon.name)}</p>
+      </div>
+      <div className="flex justify-center py-1">
+        <p className={styles.pokedexKey}>Type</p>
+        <div className="w-1/2 text-left">
+          {pokemon.types.map((type) => (
+            <p className={`${styles.pokemonTypeLogo} type-${type.toLowerCase()}`} key={type}>
+              {type}
+            </p>
+          ))}
+        </div>
+      </div>
+      <div className="flex justify-center py-1">
+        <p className={styles.pokedexKey}>Height</p>
+        <p className="w-1/2 text-left">{pokemon.height / 10} m</p>
+      </div>
+      <div className="flex justify-center py-1">
+        <p className={styles.pokedexKey}>Weight</p>
+        <p className="w-1/2 text-left">{pokemon.weight / 10} kg</p>
+      </div>
     </div>
   );
 };

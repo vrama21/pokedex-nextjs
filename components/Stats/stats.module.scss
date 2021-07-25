@@ -1,27 +1,70 @@
-.bar {
-  align-self: center;
-  animation-duration: 1s;
-  animation-name: slidein;
-  background-color: green;
-  border-radius: 4px;
-  height: 0.75rem;
-  width: auto;
-}
+.statBarContainer {
+  display: flex;
 
-.statName {
-  color: #d1d1d1;
-  font-size: 0.875rem;
-  font-weight: normal;
-  text-align: right;
-  padding: 4px 10px;
-  width: 30%;
+  p {
+    color: #d1d1d1;
+    font-size: 0.875rem;
+    font-weight: normal;
+  }
+
+  .statBar {
+    align-self: center;
+    animation-duration: 1s;
+    animation-name: slidein;
+    animation-iteration-count: 2;
+    border-radius: 4px;
+    border: 1px solid #d1d1d1;
+    height: 0.75rem;
+    width: 65%;
+  }
+
+  .statName {
+    text-align: right;
+    padding: 4px 10px;
+    width: 25%;
+  }
+
+  .baseStat {
+    padding: 4px;
+    width: 5%;
+    margin-right: 0.75rem;
+    text-align: right;
+  }
+
+  .maxStat {
+    align-self: center;
+    text-align: center;
+    margin-left: 0.75rem;
+    width: 5%;
+  }
 }
 
 @keyframes slidein {
   from {
     width: 0%;
   }
+}
 
-  to {
-  }
+.statBar1 {
+  background-color: #f34444;
+}
+
+.statBar2 {
+  background-color: #ff7f0f;
+}
+
+.statBar3 {
+  background-color: #ffdd57;
+}
+
+.statBar4 {
+  background-color: #a0e515;
+}
+
+.statBar5 {
+  background-color: #23cd5e;
+}
+
+.statBar6 {
+  background-color: #00c2b8;
 }
