@@ -1,38 +1,26 @@
 import { useState } from 'react';
 import { getPokemon } from '../api/getPokemon';
-import { capitalize } from 'lodash';
+import Layout from '../components/Layout/layout';
+import PokedexData from '../components/PokedexData/pokedexData';
+import Moves from '../components/Moves/moves';
+import Stats from '../components/Stats/stats';
+import { GetStaticProps } from 'next';
 
 const App = () => {
   const [errorMessage, setErrorMessage] = useState(undefined);
-  const [pokemonData, setPokemonData] = useState(undefined);
-  const [pokemonImage, setPokemonImage] = useState(undefined);
-  const [pokemonName, setPokemonName] = useState('');
-  const [pokemonStats, setPokemonStats] = useState({});
-  const pokemonTypes = pokemonData && pokemonData.types.map((type) => capitalize(type.type.name));
+  const [pokemon, setPokemon] = useState(undefined);
+  const [searchBarValue, setSearchBarValue] = useState('');
 
   const pokemonNameSubmit = (event) => {
     event.preventDefault();
 
     const getPokemonData = async () => {
       try {
-        const pokemonDataResponse = await getPokemon(pokemonName);
+        const pokemonDataResponse = await getPokemon(searchBarValue);
 
         setErrorMessage(undefined);
 
-        const stats = {
-          hp: pokemonDataResponse.stats[0].base_stat,
-          attack: pokemonDataResponse.stats[1].base_stat,
-          defense: pokemonDataResponse.stats[2].base_stat,
-          specialAttack: pokemonDataResponse.stats[3].base_stat,
-          specialDefense: pokemonDataResponse.stats[4].base_stat,
-          speed: pokemonDataResponse.stats[5].base_stat,
-        };
-
-        const imgPath = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonDataResponse.id}.png`;
-
-        setPokemonData(pokemonDataResponse);
-        setPokemonImage(imgPath);
-        setPokemonStats(stats);
+        setPokemon(pokemonDataResponse);
       } catch (err) {
         console.error('getPokemonData failed:', err);
 
@@ -43,27 +31,17 @@ const App = () => {
     getPokemonData();
   };
 
-  const displayTypes =
-    pokemonTypes &&
-    pokemonTypes.map((type) => {
-      return (
-        <span className={`pokemon-type-logo type-${type.toLowerCase()}`} key={type}>
-          {type}
-        </span>
-      );
-    });
-
   return (
-    <div className="App">
-      <header className="App-header">
+    <>
+      <Layout>
         <div className="flex justify-center mb-4 my-4">
           <input
             className="search-bar"
             name="pokemonName"
-            onChange={(event) => setPokemonName(event.target.value)}
+            onChange={(event) => setSearchBarValue(event.target.value)}
             placeholder="Enter Pokemon Name"
             type="text"
-            value={pokemonName}
+            value={searchBarValue}
           />
           <input className="search-button" onClick={pokemonNameSubmit} type="submit" value="Search" />
         </div>
@@ -72,19 +50,18 @@ const App = () => {
             <span className="mx-auto error">{errorMessage}</span>
           </div>
         )}
-        {pokemonData && (
-          <div>
-            <div className="flex justify-center">
-              <p>#{pokemonData.id}</p>
-              <p className="ml-4">{capitalize(pokemonData.name)}</p>
+        {pokemon && (
+          <div className="flex">
+            <img className="w-1/2" src={pokemon.image} alt="logo" />
+            <div className="w-1/2 px-4 py-2 border-gray-400">
+              <PokedexData pokemon={pokemon} />
+              <Stats stats={pokemon.stats} />
             </div>
-            <img src={pokemonImage} className="App-logo" alt="logo" />
-            <p>Types:</p>
-            {displayTypes}
           </div>
         )}
-      </header>
-    </div>
+      </Layout>
+      <Moves pokemon={pokemon} />
+    </>
   );
 };
 

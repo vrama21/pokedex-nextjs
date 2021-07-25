@@ -1,0 +1,21 @@
+.pokedexContainer {
+  border: 5px solid;
+  border-radius: 1rem;
+}
+
+.pokedexTable {
+  width: 100%;
+
+  tr {
+    border-width: 1px 0;
+    border-color: #f0f0f0;
+  }
+
+  th {
+    color: #d1d1d1;
+    font-size: 0.875rem;
+    font-weight: normal;
+    text-align: right;
+    padding: 4px 10px;
+  }
+}

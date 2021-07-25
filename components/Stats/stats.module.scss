@@ -1,0 +1,27 @@
+.bar {
+  align-self: center;
+  animation-duration: 1s;
+  animation-name: slidein;
+  background-color: green;
+  border-radius: 4px;
+  height: 0.75rem;
+  width: auto;
+}
+
+.statName {
+  color: #d1d1d1;
+  font-size: 0.875rem;
+  font-weight: normal;
+  text-align: right;
+  padding: 4px 10px;
+  width: 30%;
+}
+
+@keyframes slidein {
+  from {
+    width: 0%;
+  }
+
+  to {
+  }
+}
