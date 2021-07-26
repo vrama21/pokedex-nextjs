@@ -1,3 +1,4 @@
+import Container from '../Container/container';
 import styles from './stats.module.scss';
 
 const Stats = ({ stats }) => {
@@ -28,7 +29,7 @@ const Stats = ({ stats }) => {
   };
 
   return (
-    <div>
+    <Container>
       <h2 className="font-bold text-center">Stats</h2>
       <div className={styles.statBarContainer}>
         <p className={styles.statName}>HP</p>
@@ -84,7 +85,7 @@ const Stats = ({ stats }) => {
         </div>
         <p className={styles.maxStat}>{maxSpeed}</p>
       </div>
-    </div>
+    </Container>
   );
 };
 

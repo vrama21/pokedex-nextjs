@@ -1,3 +1,4 @@
+import Container from '../Container/container';
 import { capitalize } from 'lodash';
 import styles from './pokedexData.module.scss';
 
@@ -5,7 +6,7 @@ const PokedexData = ({ pokemon }) => {
   const nationalDexNumber = `00${pokemon.id}`.slice(-3);
 
   return (
-    <div className={styles.pokedexContainer}>
+    <Container>
       <h2 className="font-bold text-center mb-2">Pokedex Data</h2>
       <div className="flex justify-center py-1 align-middle">
         <p className={styles.pokedexKey}>National #</p>
@@ -33,7 +34,7 @@ const PokedexData = ({ pokemon }) => {
         <p className={styles.pokedexKey}>Weight</p>
         <p className="w-1/2 text-left">{pokemon.weight / 10} kg</p>
       </div>
-    </div>
+    </Container>
   );
 };
 
