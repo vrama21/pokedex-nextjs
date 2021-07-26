@@ -1,22 +1,23 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { capitalize } from 'lodash';
 import { getPokemon } from '../api/getPokemon';
 import Layout from '../components/Layout/layout';
 import PokedexData from '../components/PokedexData/pokedexData';
 import Moves from '../components/Moves/moves';
 import Stats from '../components/Stats/stats';
-import { GetStaticProps } from 'next';
 
-const App = () => {
+export default function App({ pokemonList }) {
   const [errorMessage, setErrorMessage] = useState(undefined);
   const [pokemon, setPokemon] = useState(undefined);
+  const [pokemonSearchSuggestions, setPokemonSearchSuggestions] = useState(undefined);
   const [searchBarValue, setSearchBarValue] = useState('');
 
-  const pokemonNameSubmit = (event) => {
+  const onPokemonNameSubmit = (event, pokemonName) => {
     event.preventDefault();
 
     const getPokemonData = async () => {
       try {
-        const pokemonDataResponse = await getPokemon(searchBarValue);
+        const pokemonDataResponse = await getPokemon(pokemonName || searchBarValue);
 
         setErrorMessage(undefined);
 
@@ -31,20 +32,53 @@ const App = () => {
     getPokemonData();
   };
 
+  const onPokemonNameChange = (event) => {
+    const value = event.target.value;
+
+    setPokemonSearchSuggestions(undefined);
+
+    if (value.length >= 3) {
+      const filteredList = pokemonList.filter((pokemon) => pokemon.substring(0, value.length) === value.toLowerCase());
+      const suggestionList = filteredList.length > 0 ? filteredList : undefined;
+
+      setPokemonSearchSuggestions(suggestionList);
+    }
+
+    setSearchBarValue(value);
+  };
+
+  const onSuggestionClick = (event) => {
+    const value = event.target.innerText;
+
+    setPokemonSearchSuggestions(undefined);
+    setSearchBarValue(value);
+
+    onPokemonNameSubmit(event, value);
+  };
+
   return (
     <>
       <Layout>
-        <div className="flex justify-center mb-4 my-4">
+        <div className="flex justify-center mt-4">
           <input
             className="search-bar"
             name="pokemonName"
-            onChange={(event) => setSearchBarValue(event.target.value)}
+            onChange={onPokemonNameChange}
             placeholder="Enter Pokemon Name"
             type="text"
             value={searchBarValue}
           />
-          <input className="search-button" onClick={pokemonNameSubmit} type="submit" value="Search" />
+          <input className="search-button" onClick={onPokemonNameSubmit} type="submit" value="Search" />
         </div>
+        {pokemonSearchSuggestions && (
+          <ul className="autocomplete-dropdown">
+            {pokemonSearchSuggestions.map((suggestion) => (
+              <li className="suggestion" key={suggestion} onClick={onSuggestionClick}>
+                <p>{capitalize(suggestion)}</p>
+              </li>
+            ))}
+          </ul>
+        )}
         {errorMessage && (
           <div className="text-center">
             <span className="mx-auto error">{errorMessage}</span>
@@ -63,6 +97,14 @@ const App = () => {
       {/* {pokemon && <Moves pokemon={pokemon} />} */}
     </>
   );
-};
+}
 
-export default App;
+export async function getStaticProps() {
+  const pokemonList = require('../data/pokemonList.json');
+
+  return {
+    props: {
+      pokemonList,
+    },
+  };
+}

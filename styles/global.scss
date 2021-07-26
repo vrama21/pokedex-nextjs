@@ -71,4 +71,32 @@ h2 {
   }
 }
 
+.search-suggestion-container {
+  background-color: white;
+  color: black;
+  position: absolute;
+  width: 400px;
+}
+
+.autocomplete-dropdown {
+  border: 0.06rem solid #c8ccd4;
+  background-color: white;
+  border-radius: 4px;
+  color: black;
+  position: relative;
+  text-align: center;
+  width: 380px;
+  margin: 0 auto;
+  left: -65px;
+  top: 1px;
+
+  .suggestion {
+    padding: 0.25rem 0.75rem;
+
+    &:hover {
+      background-color: #0070f3;
+      cursor: pointer;
+    }
+  }
+}
 
