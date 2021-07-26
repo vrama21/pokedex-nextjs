@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useState } from 'react';
 import { capitalize } from 'lodash';
 import { getPokemon } from '../api/getPokemon';
 import Layout from '../components/Layout/layout';
@@ -35,9 +35,10 @@ export default function App({ pokemonList }) {
   const onPokemonNameChange = (event) => {
     const value = event.target.value;
 
+    setErrorMessage(undefined);
     setPokemonSearchSuggestions(undefined);
 
-    if (value.length >= 3) {
+    if (value.length >= 2) {
       const filteredList = pokemonList.filter((pokemon) => pokemon.substring(0, value.length) === value.toLowerCase());
       const suggestionList = filteredList.length > 0 ? filteredList : undefined;
 
@@ -64,23 +65,23 @@ export default function App({ pokemonList }) {
             className="search-bar"
             name="pokemonName"
             onChange={onPokemonNameChange}
-            placeholder="Enter Pokemon Name"
+            placeholder="Enter Pokemon Name or Id"
             type="text"
             value={searchBarValue}
           />
+          {pokemonSearchSuggestions && (
+            <ul className="autocomplete-dropdown">
+              {pokemonSearchSuggestions.map((suggestion) => (
+                <li className="suggestion" key={suggestion} onClick={onSuggestionClick}>
+                  <p>{capitalize(suggestion)}</p>
+                </li>
+              ))}
+            </ul>
+          )}
           <input className="search-button" onClick={onPokemonNameSubmit} type="submit" value="Search" />
         </div>
-        {pokemonSearchSuggestions && (
-          <ul className="autocomplete-dropdown">
-            {pokemonSearchSuggestions.map((suggestion) => (
-              <li className="suggestion" key={suggestion} onClick={onSuggestionClick}>
-                <p>{capitalize(suggestion)}</p>
-              </li>
-            ))}
-          </ul>
-        )}
         {errorMessage && (
-          <div className="text-center">
+          <div className="text-center error-message">
             <span className="mx-auto error">{errorMessage}</span>
           </div>
         )}

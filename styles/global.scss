@@ -31,13 +31,21 @@ h2 {
   font-size: 2rem;
 }
 
-.error {
-  background-color: lightcoral;
-  border-radius: 0.25rem;
-  color: white;
-  display: inline-block;
-  font-weight: 600;
-  padding: 0.75rem;
+.error-message {
+  position: absolute;
+  left: 50%;
+  width: 388px;
+  transform: translate(-67%, 2%);
+
+  span {
+    background-color: lightcoral;
+    border-radius: 0.25rem;
+    color: white;
+    display: inline-block;
+    font-weight: 600;
+    padding: 0.75rem;
+    width: 100%;
+  }
 }
 
 .search-bar {
@@ -83,20 +91,20 @@ h2 {
   background-color: white;
   border-radius: 4px;
   color: black;
-  position: relative;
+  position: absolute;
   text-align: center;
-  width: 380px;
+  width: 388px;
   margin: 0 auto;
-  left: -65px;
-  top: 1px;
+  left: 50%;
+  transform: translate(-67%, 0);
+  top: 142px;
 
   .suggestion {
     padding: 0.25rem 0.75rem;
 
     &:hover {
-      background-color: #0070f3;
+      background-color: rgb(247, 191, 88);
       cursor: pointer;
     }
   }
 }
-
