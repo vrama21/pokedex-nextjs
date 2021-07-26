@@ -20,10 +20,10 @@ const Stats = ({ stats }) => {
 
   const getStatPercentageColor = (statPercentage) => {
     if (statPercentage > 90) return styles.statBar6;
-    if (statPercentage < 90 && statPercentage > 70) return styles.statBar5;
-    if (statPercentage < 70 && statPercentage > 50) return styles.statBar4;
-    if (statPercentage < 50 && statPercentage > 30) return styles.statBar3;
-    if (statPercentage < 30 && statPercentage > 10) return styles.statBar2;
+    if (statPercentage <= 90 && statPercentage >= 70) return styles.statBar5;
+    if (statPercentage <= 70 && statPercentage >= 50) return styles.statBar4;
+    if (statPercentage <= 50 && statPercentage >= 30) return styles.statBar3;
+    if (statPercentage <= 30 && statPercentage >= 10) return styles.statBar2;
     else return styles.statBar1;
   };
 
