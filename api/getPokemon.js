@@ -7,9 +7,7 @@ const getPokemon = async (pokemonName) => {
   const species = await pokedex.getPokemonSpeciesByName(pokemonName);
   const evolutions = await pokedex.resource(species.evolution_chain.url);
 
-  console.log(pokemon);
-  console.log(species);
-  console.log(evolutions);
+  console.log({ pokemon, species, evolutions });
 
   const levelUpMoves = pokemon.moves
     .filter((move) =>
@@ -25,6 +23,20 @@ const getPokemon = async (pokemonName) => {
       };
     })
     .sort((moveA, moveB) => moveA.learnedAt - moveB.learnedAt);
+
+  const getEvolutionsList = (evolutionChain, evolutions = []) => {
+    const evolutionName = evolutionChain.species.name;
+
+    evolutions.push(evolutionName);
+
+    if (evolutionChain.evolves_to.length === 0) {
+      return evolutions;
+    }
+
+    const nextChain = evolutionChain.evolves_to[0];
+
+    return getEvolutionsList(nextChain, evolutions);
+  };
 
   const data = {
     id: pokemon.id,
@@ -42,6 +54,7 @@ const getPokemon = async (pokemonName) => {
     height: pokemon.height,
     weight: pokemon.weight,
     moves: levelUpMoves,
+    evolutions: getEvolutionsList(evolutions.chain),
   };
 
   console.log(data);
