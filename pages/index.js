@@ -17,9 +17,12 @@ export default function App({ pokemonList }) {
 
     const getPokemonData = async () => {
       try {
-        const pokemonDataResponse = await getPokemon(pokemonName || searchBarValue);
+        const pokemonNameParameter = (pokemonName || searchBarValue).toLowerCase();
+
+        const pokemonDataResponse = await getPokemon(pokemonNameParameter);
 
         setErrorMessage(undefined);
+        setPokemonSearchSuggestions(undefined);
 
         setPokemon(pokemonDataResponse);
       } catch (err) {
@@ -78,7 +81,7 @@ export default function App({ pokemonList }) {
               ))}
             </ul>
           )}
-          <input className="search-button" onClick={onPokemonNameSubmit} type="submit" value="Search" />
+          <input className="search-button" onClick={onPokemonNameSubmit} type="Submit" value="Search" readOnly />
         </div>
         {errorMessage && (
           <div className="text-center error-message">
@@ -95,7 +98,7 @@ export default function App({ pokemonList }) {
           </div>
         )}
       </Layout>
-      {/* {pokemon && <Moves pokemon={pokemon} />} */}
+      {pokemon && <Moves moves={pokemon.moves} />}
     </>
   );
 }

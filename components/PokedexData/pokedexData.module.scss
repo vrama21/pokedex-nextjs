@@ -3,21 +3,22 @@
   color: #d1d1d1;
   font-size: 0.875rem;
   font-weight: normal;
+  line-height: 1.25rem;
   padding-right: 1rem;
-  width: 50%;
   text-align: right;
+  width: 50%;
 }
 
 .pokemonTypeLogo {
-  color: white;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 4px;
+  color: white;
   display: inline-block;
   font-size: 0.75rem;
   font-weight: normal;
   line-height: 1.5rem;
   margin-right: 0.5rem;
+  text-align: center;
   text-transform: uppercase;
   width: 66px;
-  text-align: center;
 }

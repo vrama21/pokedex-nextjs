@@ -1,32 +1,52 @@
 const Pokedex = require('pokedex-promise-v2');
-const P = new Pokedex();
 
-const getPokemon = async (pokemon) => {
-  const response = await P.getPokemonByName(pokemon.toLowerCase());
+const getPokemon = async (pokemonName) => {
+  const pokedex = new Pokedex();
 
-  console.log(response);
+  const pokemon = await pokedex.getPokemonByName(pokemonName);
+  const species = await pokedex.getPokemonSpeciesByName(pokemonName);
+  const evolutions = await pokedex.resource(species.evolution_chain.url);
 
-  const pokemonData = {
-    id: response.id,
-    name: response.name,
-    image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${response.id}.png`,
+  console.log(pokemon);
+  console.log(species);
+  console.log(evolutions);
+
+  const levelUpMoves = pokemon.moves
+    .filter((move) =>
+      move.version_group_details.some((version) => version.version_group.name === 'ultra-sun-ultra-moon' || version.version_group.name === 'sun-moon')
+    )
+    .map((move) => {
+      const [latestVersion] = move.version_group_details.slice(-1);
+
+      return {
+        learnedAt: latestVersion.level_learned_at,
+        method: latestVersion.move_learn_method.name,
+        name: move.move.name,
+      };
+    })
+    .sort((moveA, moveB) => moveA.learnedAt - moveB.learnedAt);
+
+  const data = {
+    id: pokemon.id,
+    name: pokemon.name,
+    image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`,
     stats: {
-      hp: response.stats[0].base_stat,
-      attack: response.stats[1].base_stat,
-      defense: response.stats[2].base_stat,
-      specialAttack: response.stats[3].base_stat,
-      specialDefense: response.stats[4].base_stat,
-      speed: response.stats[5].base_stat,
+      hp: pokemon.stats[0].base_stat,
+      attack: pokemon.stats[1].base_stat,
+      defense: pokemon.stats[2].base_stat,
+      specialAttack: pokemon.stats[3].base_stat,
+      specialDefense: pokemon.stats[4].base_stat,
+      speed: pokemon.stats[5].base_stat,
     },
-    types: response.types.map((type) => type.type.name),
-    height: response.height,
-    weight: response.weight,
-    moves: response.moves,
+    types: pokemon.types.map((type) => type.type.name),
+    height: pokemon.height,
+    weight: pokemon.weight,
+    moves: levelUpMoves,
   };
 
-  console.log(pokemonData);
+  console.log(data);
 
-  return pokemonData;
+  return data;
 };
 
 export { getPokemon };

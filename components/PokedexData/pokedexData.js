@@ -10,17 +10,17 @@ const PokedexData = ({ pokemon }) => {
       <h2 className="font-bold text-center mb-2">Pokedex Data</h2>
       <div className="flex justify-center py-1 align-middle">
         <p className={styles.pokedexKey}>National #</p>
-        <p className="w-1/2 text-left">{nationalDexNumber}</p>
+        <p className="w-1/2 text-left text-sm">{nationalDexNumber}</p>
       </div>
       <div className="flex justify-center py-1">
         <p className={styles.pokedexKey}>Name</p>
-        <p className="w-1/2 text-left">{capitalize(pokemon.name)}</p>
+        <p className="w-1/2 text-left text-sm">{capitalize(pokemon.name)}</p>
       </div>
       <div className="flex justify-center py-1">
         <p className={styles.pokedexKey}>Type</p>
         <div className="w-1/2 text-left">
           {pokemon.types.map((type) => (
-            <p className={`${styles.pokemonTypeLogo} type-${type.toLowerCase()}`} key={type}>
+            <p className={`${styles.pokemonTypeLogo} type-${type}`} key={type}>
               {type}
             </p>
           ))}
@@ -28,11 +28,11 @@ const PokedexData = ({ pokemon }) => {
       </div>
       <div className="flex justify-center py-1">
         <p className={styles.pokedexKey}>Height</p>
-        <p className="w-1/2 text-left">{pokemon.height / 10} m</p>
+        <p className="w-1/2 text-left text-sm">{pokemon.height / 10} m</p>
       </div>
       <div className="flex justify-center py-1">
         <p className={styles.pokedexKey}>Weight</p>
-        <p className="w-1/2 text-left">{pokemon.weight / 10} kg</p>
+        <p className="w-1/2 text-left text-sm">{pokemon.weight / 10} kg</p>
       </div>
     </Container>
   );

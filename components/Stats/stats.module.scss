@@ -18,22 +18,24 @@
   }
 
   .statName {
-    text-align: right;
     padding: 4px 10px;
+    text-align: right;
     width: 25%;
   }
 
   .baseStat {
-    padding: 4px;
-    width: 5%;
+    color: white;
     margin-right: 0.75rem;
+    padding: 4px;
     text-align: right;
+    width: 5%;
   }
 
   .maxStat {
     align-self: center;
-    text-align: center;
+    color: white;
     margin-left: 0.75rem;
+    text-align: center;
     width: 5%;
   }
 }
