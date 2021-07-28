@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { capitalize } from 'lodash';
-import { getPokemon } from '../api/getPokemon';
+import getPokemon from '../api/getPokemon';
 import Layout from '../components/Layout/layout';
 import PokedexData from '../components/PokedexData/pokedexData';
 import Moves from '../components/Moves/moves';
@@ -23,7 +23,6 @@ export default function App({ pokemonList }) {
 
         setErrorMessage(undefined);
         setPokemonSearchSuggestions(undefined);
-
         setPokemon(pokemonDataResponse);
       } catch (err) {
         console.error('getPokemonData failed:', err);
@@ -91,9 +90,13 @@ export default function App({ pokemonList }) {
         {pokemon && (
           <div className="flex">
             <img className="w-1/2" src={pokemon.image} alt="logo" />
-            <div className="w-1/2 px-4 py-2 border-gray-400">
-              <PokedexData pokemon={pokemon} />
-              <Stats stats={pokemon.stats} />
+            <div className="flex flex-wrap w-1/2 px-4 py-2 border-gray-400">
+              <div className="w-full">
+                <PokedexData pokemon={pokemon} />
+              </div>
+              <div className="w-full">
+                <Stats stats={pokemon.stats} />
+              </div>
             </div>
           </div>
         )}
