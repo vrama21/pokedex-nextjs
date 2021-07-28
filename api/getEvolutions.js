@@ -1,10 +1,9 @@
-const getEvolutionsList = async  (evolutionChain, evolutions = []) => {
+const getEvolutionsList = async (evolutionChain, prevChain, evolutions = [], evolutionStep = 0) => {
   const evolutionName = evolutionChain.species.name;
-  const evolutionDetails = evolutionChain.evolution_details.length > 0 ? evolutionChain.evolution_details : undefined;
-  const evolvesTo = evolutionChain.evolves_to.length > 0 ? evolutionChain.evolves_to : undefined;
 
   const hasEvolutionDetails = evolutionChain.evolution_details.length > 0;
   const hasEvolutions = evolutionChain.evolves_to.length > 0;
+  const hasMultipleEvolutions = prevChain.length > 1;
 
   let evolutionLevel;
   let evolutionTrigger;
@@ -19,23 +18,26 @@ const getEvolutionsList = async  (evolutionChain, evolutions = []) => {
 
   const evolution = {
     name: evolutionName,
-    evolvesTo: [{
-      name: evolutionName,
-      level: evolutionLevel,
-      trigger: evolutionTrigger,
-      item: evolutionItem
-    }],
+    level: evolutionLevel,
+    trigger: evolutionTrigger,
+    item: evolutionItem
   }
 
   evolutions.push(evolution);
+
+  if (hasMultipleEvolutions) {
+    evolutionStep += 1
+
+    return getEvolutionsList(prevChain[evolutionStep], evolutionChain, evolutions, evolutionStep);
+  }
 
   if (!hasEvolutions) {
     return evolutions;
   }
 
-  const nextChain = evolutionChain.evolves_to[0];
+  evolutionStep = 0;
 
-  return getEvolutionsList(nextChain, evolutions);
+  return getEvolutionsList(evolutionChain.evolves_to[0], evolutionChain.evolves_to, evolutions, evolutionStep);
 };
 
 export default getEvolutionsList;

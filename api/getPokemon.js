@@ -9,11 +9,11 @@ const getPokemon = async (pokemonName) => {
   const speciesResponse = await pokedex.getPokemonSpeciesByName(pokemonName);
   const evolutionsResponse = await pokedex.resource(speciesResponse.evolution_chain.url);
 
-  console.log({ pokemonResponse })
-  console.log({ speciesResponse })
-  console.log({ evolutionsResponse });
+  // console.log({ pokemonResponse })
+  // console.log({ speciesResponse })
+  // console.log({ evolutionsResponse });
 
-  const evolutions = await getEvolutionsList(evolutionsResponse.chain)
+  const evolutions = await getEvolutionsList(evolutionsResponse.chain, evolutionsResponse.chain.evolves_to)
   const moves = await getMoves(pokemonResponse.moves)
 
   const data = {
