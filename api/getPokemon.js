@@ -13,7 +13,7 @@ const getPokemon = async (pokemonName) => {
   // console.log({ speciesResponse })
   // console.log({ evolutionsResponse });
 
-  const evolutions = await getEvolutionsList(evolutionsResponse.chain, evolutionsResponse.chain.evolves_to)
+  const evolutions = await getEvolutionsList(evolutionsResponse.chain, evolutionsResponse.chain.evolves_to, pokedex)
   const moves = await getMoves(pokemonResponse.moves)
 
   const data = {

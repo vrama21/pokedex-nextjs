@@ -5,6 +5,7 @@ import Layout from '../components/Layout/layout';
 import PokedexData from '../components/PokedexData/pokedexData';
 import Moves from '../components/Moves/moves';
 import Stats from '../components/Stats/stats';
+import Evolutions from '../components/Evolutions/evolutions';
 
 export default function App({ pokemonList }) {
   const [errorMessage, setErrorMessage] = useState(undefined);
@@ -101,6 +102,7 @@ export default function App({ pokemonList }) {
           </div>
         )}
       </Layout>
+      {pokemon && <Evolutions evolutions={pokemon.evolutions} />}
       {pokemon && <Moves moves={pokemon.moves} />}
     </>
   );
