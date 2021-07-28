@@ -36,13 +36,13 @@ export default function App({ pokemonList }) {
   };
 
   const onPokemonNameChange = (event) => {
-    const value = event.target.value;
+    const { value } = event.target;
 
     setErrorMessage(undefined);
     setPokemonSearchSuggestions(undefined);
 
     if (value.length >= 2) {
-      const filteredList = pokemonList.filter((pokemon) => pokemon.substring(0, value.length) === value.toLowerCase());
+      const filteredList = pokemonList.filter((p) => p.substring(0, value.length) === value.toLowerCase());
       const suggestionList = filteredList.length > 0 ? filteredList : undefined;
 
       setPokemonSearchSuggestions(suggestionList);

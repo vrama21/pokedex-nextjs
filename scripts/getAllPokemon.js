@@ -1,6 +1,7 @@
-const fs = require('fs');
-const path = require('path');
-const Pokedex = require('pokedex-promise-v2');
+import fs from 'fs';
+import path from 'path';
+import Pokedex from 'pokedex-promise-v2';
+
 const P = new Pokedex();
 
 const getAllPokemon = async () => {
@@ -11,7 +12,7 @@ const getAllPokemon = async () => {
   const pokemonListJson = JSON.stringify(pokemonList);
 
   const parentPath = path.dirname(__dirname);
-  const pokemonListJsonPath = parentPath + '/data/pokemonList.json'
+  const pokemonListJsonPath = `${parentPath}/data/pokemonList.json`;
 
   fs.writeFileSync(pokemonListJsonPath, pokemonListJson);
 };

@@ -1,4 +1,4 @@
-import Pokedex from 'pokedex-promise-v2'
+import Pokedex from 'pokedex-promise-v2';
 import getEvolutionsList from './getEvolutions';
 import getMoves from './getMoves';
 
@@ -13,8 +13,8 @@ const getPokemon = async (pokemonName) => {
   // console.log({ speciesResponse })
   // console.log({ evolutionsResponse });
 
-  const evolutions = await getEvolutionsList(evolutionsResponse.chain, evolutionsResponse.chain.evolves_to, pokedex)
-  const moves = await getMoves(pokemonResponse.moves)
+  const evolutions = await getEvolutionsList(evolutionsResponse.chain, evolutionsResponse.chain.evolves_to, pokedex);
+  const moves = await getMoves(pokemonResponse.moves);
 
   const data = {
     id: pokemonResponse.id,
