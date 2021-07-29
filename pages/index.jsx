@@ -1,11 +1,14 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useState } from 'react';
 import { capitalize } from 'lodash';
 import getPokemon from '../api/getPokemon';
 import Layout from '../components/Layout/layout';
-import PokedexData from '../components/PokedexData/pokedexData';
-import Moves from '../components/Moves/moves';
-import Stats from '../components/Stats/stats';
-import Evolutions from '../components/Evolutions/evolutions';
+import PokedexData from '../components/PokedexData/PokedexData';
+import Moves from '../components/Moves/Moves';
+import Stats from '../components/Stats/Stats';
+import Evolutions from '../components/Evolutions/Evolutions';
+import PokemonList from '../data/pokemonList.json';
 
 export default function App({ pokemonList }) {
   const [errorMessage, setErrorMessage] = useState(undefined);
@@ -102,18 +105,16 @@ export default function App({ pokemonList }) {
           </div>
         )}
       </Layout>
-      {pokemon && <Evolutions evolutions={pokemon.evolutions} />}
+      {pokemon && <Evolutions evolutionChain={pokemon.evolutionChain} evolutions={pokemon.evolutionChain.evolvesTo} />}
       {pokemon && <Moves moves={pokemon.moves} />}
     </>
   );
 }
 
 export async function getStaticProps() {
-  const pokemonList = require('../data/pokemonList.json');
-
   return {
     props: {
-      pokemonList,
+      pokemonList: PokemonList,
     },
   };
 }

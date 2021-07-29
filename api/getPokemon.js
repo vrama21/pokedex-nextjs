@@ -31,7 +31,7 @@ const getPokemon = async (pokemonName) => {
     types: pokemonResponse.types.map((type) => type.type.name),
     height: pokemonResponse.height,
     weight: pokemonResponse.weight,
-    evolutions,
+    evolutionChain: evolutions,
     moves,
   };
 

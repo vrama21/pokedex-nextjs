@@ -1,5 +1,5 @@
-import Container from '../Container/container';
-import Statbar from '../Statbar/statbar';
+import Container from '../Container/Container';
+import Statbar from '../Statbar/Statbar';
 
 const Stats = ({ stats }) => {
   const calculateMaxHp = stats.hp * 2 + 204;

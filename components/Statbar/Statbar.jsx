@@ -7,7 +7,7 @@ const Statbar = ({ baseStat, baseStatMaxValue, statName, statPercentage }) => {
     if (statPercentage <= 70 && statPercentage >= 50) return styles.statBar4;
     if (statPercentage <= 50 && statPercentage >= 30) return styles.statBar3;
     if (statPercentage <= 30 && statPercentage >= 10) return styles.statBar2;
-    else return styles.statBar1;
+    return styles.statBar1;
   };
 
   return (

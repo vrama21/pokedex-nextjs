@@ -1,12 +1,7 @@
-const getEvolutionsList = async (nextEvolution, pokedex, evolutions = []) => {
-  const prevPokemonName = nextEvolution.species.name;
-  const hasEvolutions = nextEvolution.evolves_to.length > 0;
+const getEvolutionsList = async (chainObject, pokedex) => {
+  const prevPokemonName = chainObject.species.name;
 
-  if (!hasEvolutions) {
-    return evolutions;
-  }
-
-  const evolutionChainPromises = nextEvolution.evolves_to.map(async (evolution) => {
+  const evolutionChainPromises = chainObject.evolves_to.map(async (evolution) => {
     const pokemonName = evolution.species.name;
     const pokemonData = await pokedex.getPokemonByName(pokemonName);
 
@@ -25,8 +20,8 @@ const getEvolutionsList = async (nextEvolution, pokedex, evolutions = []) => {
     const evolutionModel = {
       name: pokemonName,
       sprite: pokemonData.sprites.front_default,
-      evolutionDetails: evolutionMethods,
-      evolvesFrom: prevPokemonName,
+      evolutionMethods,
+      evolvesTo: evolution.evolves_to,
     };
 
     return evolutionModel;
@@ -34,9 +29,16 @@ const getEvolutionsList = async (nextEvolution, pokedex, evolutions = []) => {
 
   const evolutionChain = await Promise.all(evolutionChainPromises);
 
-  evolutions.push(...evolutionChain);
+  const prevPokemonData = await pokedex.getPokemonByName(prevPokemonName);
 
-  return getEvolutionsList(nextEvolution.evolves_to[0], pokedex, evolutions);
+  const updatedChainObject = {
+    name: prevPokemonName,
+    sprite: prevPokemonData.sprites.front_default,
+    evolutionMethods: chainObject.evolution_details,
+    evolvesTo: evolutionChain,
+  };
+
+  return updatedChainObject;
 };
 
 export default getEvolutionsList;

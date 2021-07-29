@@ -1,4 +1,4 @@
-import Container from '../Container/container';
+import Container from '../Container/Container';
 import { capitalize } from 'lodash';
 import styles from './pokedexData.module.scss';
 
