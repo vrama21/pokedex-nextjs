@@ -19,10 +19,14 @@ export default function App({ pokemonList }) {
   const onPokemonNameSubmit = (event, pokemonName) => {
     event.preventDefault();
 
+    const pokemonNameParameter = (pokemonName || searchBarValue).toLowerCase();
+
+    if (!pokemonNameParameter) {
+      return;
+    }
+
     const getPokemonData = async () => {
       try {
-        const pokemonNameParameter = (pokemonName || searchBarValue).toLowerCase();
-
         if (!pokemonList.includes(pokemonNameParameter)) {
           setErrorMessage('Please enter a valid Pokemon name');
         }
