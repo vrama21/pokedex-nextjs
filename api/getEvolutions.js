@@ -1,44 +1,56 @@
-const getEvolutionsList = async (chainObject, pokedex) => {
-  const prevPokemonName = chainObject.species.name;
+const getEvolutionsList = async (chainObject, pokedex, evolutions = []) => {
+  console.log({ chainObject });
+  const currentPokemonName = chainObject.species.name;
+  const currentPokemonData = await pokedex.getPokemonByName(currentPokemonName);
 
-  const evolutionChainPromises = chainObject.evolves_to.map(async (evolution) => {
-    const pokemonName = evolution.species.name;
+  const nextEvolutions = chainObject.evolves_to;
+
+  const evolutionModel = {
+    name: currentPokemonName,
+    sprite: currentPokemonData.sprites.front_default,
+  };
+
+  if (nextEvolutions.length === 0) {
+    return evolutions;
+  }
+
+  if (evolutions.length === 0) {
+    evolutions.push(evolutionModel);
+  }
+  const evolutionChainPromises = nextEvolutions.map(async (nextEvolution) => {
+    const pokemonName = nextEvolution.species.name;
     const pokemonData = await pokedex.getPokemonByName(pokemonName);
 
-    const evolutionMethods = evolution.evolution_details.map((evolutionDetail) => {
-      const detailKeys = Object.keys(evolutionDetail).filter((detailKey) => evolutionDetail[detailKey] && detailKey !== 'trigger');
-      const requirements = detailKeys.map((key) => ({
-        [key]: evolutionDetail[key],
-      }));
+    // const evolutionDetails = evolution.evolution_details.map((evolutionDetail) => {
+    //   const detailKeys = Object.keys(evolutionDetail).filter((detailKey) => evolutionDetail[detailKey] && detailKey !== 'trigger');
+    //   const requirements = detailKeys.map((key) => ({
+    //     [key]: evolutionDetail[key],
+    //   }));
+    //
+    //   return {
+    //     trigger: evolutionDetail.trigger.name,
+    //     requirements,
+    //   };
+    // });
 
-      return {
-        trigger: evolutionDetail.trigger.name,
-        requirements,
-      };
-    });
+    // Object.assign(evolution);
+    // evolution.sprite = pokemonData.sprites.front_default;
+    // evolution.name = pokemonName;
+    // evolution.evolution_details = evolutionDetails;
 
-    const evolutionModel = {
+    return {
+      // evolution,
       name: pokemonName,
       sprite: pokemonData.sprites.front_default,
-      evolutionMethods,
-      evolvesTo: evolution.evolves_to,
+      // evolution_details: evolutionDetails,
     };
-
-    return evolutionModel;
   });
 
   const evolutionChain = await Promise.all(evolutionChainPromises);
 
-  const prevPokemonData = await pokedex.getPokemonByName(prevPokemonName);
+  evolutions.push(...evolutionChain);
 
-  const updatedChainObject = {
-    name: prevPokemonName,
-    sprite: prevPokemonData.sprites.front_default,
-    evolutionMethods: chainObject.evolution_details,
-    evolvesTo: evolutionChain,
-  };
-
-  return updatedChainObject;
+  return getEvolutionsList(chainObject.evolves_to[0], pokedex, evolutions);
 };
 
 export default getEvolutionsList;

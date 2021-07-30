@@ -1,8 +1,7 @@
 const getMoves = async (movesResponse) => {
-  const movesFromMostRecentVersion = movesResponse
-    .filter((move) => move.version_group_details.some((version) => (
-      version.version_group.name === 'ultra-sun-ultra-moon' || version.version_group.name === 'sun-moon'
-    )));
+  const movesFromMostRecentVersion = movesResponse.filter((move) =>
+    move.version_group_details.some((version) => version.version_group.name === 'ultra-sun-ultra-moon' || version.version_group.name === 'sun-moon')
+  );
 
   const moves = movesFromMostRecentVersion
     .map((move) => {

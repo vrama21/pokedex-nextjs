@@ -107,7 +107,7 @@ export default function App({ pokemonList }) {
           </div>
         )}
       </Layout>
-      {/* {pokemon && <Evolutions evolutionChain={pokemon.evolutionChain} />} */}
+      {pokemon && <Evolutions evolutions={pokemon.evolutions} evolutionChain />}
       {pokemon && <Moves moves={pokemon.moves} />}
     </>
   );

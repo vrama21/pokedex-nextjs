@@ -1,10 +1,11 @@
 import { startCase } from 'lodash';
 import Layout from '../Layout/layout';
+import Evolution from '../Evolution/Evolution';
 
-const Evolutions = ({ evolutionChain, evolutions = [] }) => {
-  // console.log(evolutionChain, evolutions);
-  const hasEvolutions = evolutionChain.evolvesTo.length > 0;
-  const pokemonName = startCase(evolutionChain.name);
+const Evolutions = ({ evolutions, evolutionChain }) => {
+  // console.log(evolutions, evolutions);
+  const hasEvolutions = evolutions.length > 0;
+  const pokemonName = startCase(evolutions.name);
 
   /* 
   const evolutionMethodsRenter = {
@@ -36,15 +37,15 @@ const Evolutions = ({ evolutionChain, evolutions = [] }) => {
 };
 */
 
-  const evolutionChainRender = evolutions.map((evolution, evolutionIndex) => {
+  const evolutionsRender = evolutions.map((evolution) => {
     const evolutionName = startCase(evolution.name);
-    console.log(evolution);
     // const evolutionMethods = evolution.evolutionMethods.length > 0;
 
     return (
       <div key={evolutionName}>
         <img className="mx-auto" src={evolution.sprite} alt={evolution.name} />
         <p className="text-center">{evolutionName}</p>
+        {/* {evolution.length > 0 && <Evolutions evolutions={evolution} />} */}
       </div>
     );
   });
@@ -52,17 +53,9 @@ const Evolutions = ({ evolutionChain, evolutions = [] }) => {
   return (
     <Layout>
       <h2 className="text-center font-bold">Evolutions</h2>
-      <div className="flex justify-evenly w-3/4 mx-auto">
-        {hasEvolutions && (
-          <div>
-            <img className="mx-auto" src={evolutionChain.sprite} alt={pokemonName} />
-            <p className="text-center">{pokemonName}</p>
-          </div>
-        )}
-        {hasEvolutions ? evolutionChainRender : 'This Pokemon does not evolve'}
-      </div>
+      <div className="flex justify-evenly w-3/4 mx-auto">{evolutions.length > 0 ? evolutionsRender : 'There are no evolutions for this Pokemon'}</div>
     </Layout>
   );
 };
 
-module.exports = Evolutions;
+export default Evolutions;
