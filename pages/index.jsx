@@ -124,5 +124,3 @@ export async function getStaticProps() {
     },
   };
 }
-
-export async function getServerProps() {}
