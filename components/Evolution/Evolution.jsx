@@ -1,10 +1,10 @@
-export default function Evolution({ evolutionChain }) {
-  const { name, sprite } = evolutionChain;
+import { startCase } from 'lodash';
 
+export default function Evolution({ evolutionName, evolutionSprite }) {
   return (
-    <div key={name}>
-      <img className="mx-auto" src={sprite} alt={name} />
-      <p className="text-center">{name}</p>
+    <div key={evolutionName}>
+      <img className="mx-auto" src={evolutionSprite} alt={evolutionName} />
+      <p className="text-center">{startCase(evolutionName)}</p>
     </div>
   );
 }
