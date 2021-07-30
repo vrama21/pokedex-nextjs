@@ -23,6 +23,10 @@ export default function App({ pokemonList }) {
       try {
         const pokemonNameParameter = (pokemonName || searchBarValue).toLowerCase();
 
+        if (!pokemonList.includes(pokemonNameParameter)) {
+          setErrorMessage('Please enter a valid Pokemon name');
+        }
+
         const pokemonDataResponse = await getPokemon(pokemonNameParameter);
 
         setErrorMessage(undefined);
@@ -30,8 +34,6 @@ export default function App({ pokemonList }) {
         setPokemon(pokemonDataResponse);
       } catch (err) {
         console.error('getPokemonData failed:', err);
-
-        setErrorMessage('Please enter a valid Pokemon name');
       }
     };
 
@@ -105,7 +107,7 @@ export default function App({ pokemonList }) {
           </div>
         )}
       </Layout>
-      {pokemon && <Evolutions evolutionChain={pokemon.evolutionChain} evolutions={pokemon.evolutionChain.evolvesTo} />}
+      {/* {pokemon && <Evolutions evolutionChain={pokemon.evolutionChain} />} */}
       {pokemon && <Moves moves={pokemon.moves} />}
     </>
   );
@@ -118,3 +120,5 @@ export async function getStaticProps() {
     },
   };
 }
+
+export async function getServerProps() {}

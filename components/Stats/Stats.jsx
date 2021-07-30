@@ -25,8 +25,18 @@ const Stats = ({ stats }) => {
       <Statbar baseStat={stats.hp} baseStatMaxValue={baseHpMax} statName="HP" statPercentage={hpPercentage} />
       <Statbar baseStat={stats.attack} baseStatMaxValue={baseAttackMax} statName="Attack" statPercentage={attackPercentage} />
       <Statbar baseStat={stats.defense} baseStatMaxValue={baseDefenseMax} statName="Defense" statPercentage={defensePercentage} />
-      <Statbar baseStat={stats.specialAttack} baseStatMaxValue={baseSpecialAttackMax} statName="Special Attack" statPercentage={specialAttackPercentage} />
-      <Statbar baseStat={stats.specialDefense} baseStatMaxValue={baseSpecialDefenseMax} statName="Special Defense" statPercentage={specialDefensePercentage} />
+      <Statbar
+        baseStat={stats.specialAttack}
+        baseStatMaxValue={baseSpecialAttackMax}
+        statName="Special Attack"
+        statPercentage={specialAttackPercentage}
+      />
+      <Statbar
+        baseStat={stats.specialDefense}
+        baseStatMaxValue={baseSpecialDefenseMax}
+        statName="Special Defense"
+        statPercentage={specialDefensePercentage}
+      />
       <Statbar baseStat={stats.speed} baseStatMaxValue={baseSpeedMax} statName="Speed" statPercentage={speedPercentage} />
     </Container>
   );
