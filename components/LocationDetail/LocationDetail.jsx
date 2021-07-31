@@ -1,7 +1,7 @@
 import { startCase } from 'lodash';
 
 const LocationDetail = ({ location }) => (
-  <div className="text-sm text-center">
+  <div className="text-xs text-center">
     <p>{`Lv at ${startCase(location.replace('-', ' '))}`}</p>
   </div>
 );

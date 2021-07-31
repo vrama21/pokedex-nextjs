@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@svgr/webpack": "^5.5.0",
     "@types/pokedex-promise-v2": "github:mudkipme/pokeapi-v2-typescript",
     "lodash": "^4.17.21",
     "next": "^11.0.0",

@@ -1,6 +1,7 @@
 import Layout from '../Layout/layout';
 import Evolution from '../Evolution/Evolution';
 import EvolutionDetail from '../EvolutionDetails/EvolutionDetails';
+import RightArrow from '../../assets/right-arrow.svg';
 
 const Evolutions = ({ evolutions }) => {
   const evolutionsRender = evolutions.map((evolution) => {
@@ -10,14 +11,13 @@ const Evolutions = ({ evolutions }) => {
       <>
         {evolutionDetails.length > 0 && (
           <div className="min-w-max my-auto">
+            <RightArrow className="h-12 mx-auto" />
             {evolutionDetails.map((evolutionDetail) => (
               <EvolutionDetail key={evolutionDetail} evolutionDetail={evolutionDetail} />
             ))}
           </div>
         )}
-        <div>
-          <Evolution evolutionName={evolution.name} evolutionSprite={evolution.sprite} />
-        </div>
+        <Evolution evolutionName={evolution.name} evolutionSprite={evolution.sprite} />
       </>
     );
   });
