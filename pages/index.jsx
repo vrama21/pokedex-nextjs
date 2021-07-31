@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { capitalize } from 'lodash';
 import getPokemon from '../api/getPokemon';
+import SearchBar from '../components/SearchBar/SearchBar';
 import Layout from '../components/Layout/layout';
 import PokedexData from '../components/PokedexData/PokedexData';
 import Moves from '../components/Moves/Moves';

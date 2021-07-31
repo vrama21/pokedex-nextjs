@@ -1,10 +1,13 @@
 import { startCase } from 'lodash';
+import Link from 'next/link';
 
 export default function Evolution({ evolutionName, evolutionSprite }) {
   return (
-    <div key={evolutionName}>
+    <div key={evolutionName} className="text-center">
       <img className="mx-auto" src={evolutionSprite} alt={evolutionName} />
-      <p className="text-center">{startCase(evolutionName)}</p>
+      <Link href={{ pathname: `/pokemon/${evolutionName}` }} className="text-center">
+        <a>{startCase(evolutionName)}</a>
+      </Link>
     </div>
   );
 }
