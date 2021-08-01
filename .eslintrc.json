@@ -20,7 +20,8 @@
         "react/prop-types": "off",
         "react/jsx-props-no-spreading": "off",
         "react/no-array-index-key": "off",
-        "arrow-body-style": "off"
+        "arrow-body-style": "off",
+        "jsx-a11y/anchor-is-valid": "off"
       }
     }
   ]
