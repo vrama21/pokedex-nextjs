@@ -75,9 +75,11 @@ export default function SearchBar() {
           {pokemonSearchSuggestions && (
             <ul className={styles.autoCompleteDropdown}>
               {pokemonSearchSuggestions.map((pokemon) => (
-                <a key={pokemon} onClick={(event) => onSuggestionClick(event, pokemon)} role="button">
-                  {capitalize(pokemon)}
-                </a>
+                <li key={pokemon}>
+                  <a onClick={(event) => onSuggestionClick(event, pokemon)} role="button">
+                    {capitalize(pokemon)}
+                  </a>
+                </li>
               ))}
             </ul>
           )}

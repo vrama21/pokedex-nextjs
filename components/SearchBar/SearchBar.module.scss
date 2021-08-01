@@ -30,6 +30,7 @@
 }
 
 .autoCompleteDropdown {
+  animation: dropDown 300ms ease-in-out forwards;
   border: 0.06rem solid #c8ccd4;
   background-color: white;
   border-radius: 4px;
@@ -38,19 +39,33 @@
   text-align: center;
   width: 388px;
   margin: 0 auto;
-  left: 50%;
-  transform: translate(-67%, 0);
+  left: 34%;
   top: 142px;
-  padding: 0.25rem 0.75rem;
+  transform-origin: top center;
+
+  li {
+    &:hover {
+      background-color: #52f8a5;
+      cursor: pointer;
+    }
+  }
 
   a {
+    padding: 0.25rem 0.75rem;
     color: black;
     display: block;
     text-decoration: none;
+  }
+}
 
-    &:hover {
-      background-color: #68ecb9;
-      cursor: pointer;
-    }
+@keyframes dropDown {
+  0% {
+    transform: scaleY(0);
+  }
+  80% {
+    transform: scaleY(1.1);
+  }
+  100% {
+    transform: scaleY(1);
   }
 }
