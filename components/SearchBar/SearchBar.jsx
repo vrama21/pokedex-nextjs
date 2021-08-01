@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { capitalize } from 'lodash';
 import PokemonList from '../../data/pokemonList.json';
@@ -9,6 +10,8 @@ export default function SearchBar() {
   const [errorMessage, setErrorMessage] = useState(undefined);
   const [pokemonSearchSuggestions, setPokemonSearchSuggestions] = useState(undefined);
   const [searchBarValue, setSearchBarValue] = useState('');
+  const router = useRouter();
+  const isHomePage = router.pathname === '/';
 
   const onPokemonNameSubmit = (event, pokemonName) => {
     event.preventDefault();
@@ -68,17 +71,21 @@ export default function SearchBar() {
         <div>
           {pokemonSearchSuggestions && (
             <ul className={styles.autoCompleteDropdown}>
-              {pokemonSearchSuggestions.map((suggestion) => (
-                <Link
-                  className={styles.autoCompleteDropdown}
-                  onClick={onSuggestionClick}
-                  href={{ href: `pokemon/${suggestion}`, pathname: `pokemon/${suggestion}` }}
-                  key={suggestion}
-                  replace
-                >
-                  <a>{capitalize(suggestion)}</a>
-                </Link>
-              ))}
+              {pokemonSearchSuggestions.map((suggestion) => {
+                const redirectPath = isHomePage ? `pokemon/${suggestion}` : suggestion;
+
+                return (
+                  <Link
+                    className={styles.autoCompleteDropdown}
+                    onClick={onSuggestionClick}
+                    href={{ pathname: redirectPath }}
+                    key={suggestion}
+                    replace
+                  >
+                    <a>{capitalize(suggestion)}</a>
+                  </Link>
+                );
+              })}
             </ul>
           )}
         </div>
