@@ -17,7 +17,6 @@ body {
 
 a {
   color: #a0ccfd;
-  text-decoration: underline;
 }
 
 a:hover {
@@ -54,63 +53,4 @@ h3 {
   }
 }
 
-.search-bar {
-  color: black;
-  padding: 0.5rem;
-  width: 400px;
-  height: 50px;
-  border-radius: 0.75rem;
-  outline: none;
-  border: 0.15rem solid orange;
-}
 
-.search-button {
-  background-color: white;
-  color: orange;
-  font-weight: 700;
-  font-size: large;
-  height: 50px;
-  border: 0.15rem solid orange;
-  border-radius: 0.75rem;
-  padding: 0 1.5rem;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  margin-left: 1rem;
-  cursor: pointer;
-
-  &:hover {
-    background-color: orange;
-    color: white;
-  }
-}
-
-.search-suggestion-container {
-  background-color: white;
-  color: black;
-  position: absolute;
-  width: 400px;
-}
-
-.autocomplete-dropdown {
-  border: 0.06rem solid #c8ccd4;
-  background-color: white;
-  border-radius: 4px;
-  color: black;
-  position: absolute;
-  text-align: center;
-  width: 388px;
-  margin: 0 auto;
-  left: 50%;
-  transform: translate(-67%, 0);
-  top: 142px;
-
-  .suggestion {
-    padding: 0.25rem 0.75rem;
-
-    &:hover {
-      background-color: rgb(247, 191, 88);
-      cursor: pointer;
-    }
-  }
-}

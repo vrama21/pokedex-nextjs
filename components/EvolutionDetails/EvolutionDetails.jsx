@@ -4,6 +4,7 @@ import LevelUpDetail from '../LevelUpDetail/LevelUpDetail';
 import LocationDetail from '../LocationDetail/LocationDetail';
 import TimeOfDayDetail from '../TimeOfDayDetail/TimeOfDayDetail';
 import UseItemDetail from '../UseItemDetail/UseItemDetail';
+import TradeDetail from '../TradeDetail/TradeDetail';
 
 const EvolutionDetail = ({ evolutionDetail }) => {
   const { trigger, requirements } = evolutionDetail;
@@ -14,6 +15,7 @@ const EvolutionDetail = ({ evolutionDetail }) => {
   const knownMoveTypeRequirement = trigger === 'level-up' && requirements.find((requirement) => requirement.known_move_type);
   const locationRequirement = trigger === 'level-up' && requirements.find((requirement) => requirement.location);
   const useItemRequirement = trigger === 'use-item' && requirements.find((requirement) => requirement.item);
+  const tradeRequirement = trigger === 'trade';
 
   return (
     <>
@@ -23,6 +25,7 @@ const EvolutionDetail = ({ evolutionDetail }) => {
       {knownMoveTypeRequirement && <KnownMoveTypeDetail knownMoveType={knownMoveTypeRequirement.known_move_type.name} />}
       {locationRequirement && <LocationDetail location={locationRequirement.location.name} />}
       {useItemRequirement && <UseItemDetail item={useItemRequirement.item.name} />}
+      {tradeRequirement && <TradeDetail />}
     </>
   );
 };

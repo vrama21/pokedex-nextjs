@@ -36,8 +36,6 @@ const getPokemon = async (pokemonName) => {
     moves,
   };
 
-  console.log(data);
-
   return data;
 };
 
