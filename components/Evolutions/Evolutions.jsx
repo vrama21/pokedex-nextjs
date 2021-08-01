@@ -1,4 +1,4 @@
-import Layout from '../Layout/layout';
+import Layout from '../Layout/Layout';
 import Evolution from '../Evolution/Evolution';
 import EvolutionDetail from '../EvolutionDetails/EvolutionDetails';
 import RightArrow from '../../assets/right-arrow.svg';

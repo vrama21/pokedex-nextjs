@@ -1,5 +1,5 @@
-import Container from '../Container/Container';
 import { capitalize } from 'lodash';
+import Container from '../Container/Container';
 import styles from './pokedexData.module.scss';
 
 const PokedexData = ({ pokemon }) => {

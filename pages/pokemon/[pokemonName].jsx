@@ -1,4 +1,4 @@
-import Layout from 'components/Layout/layout';
+import Layout from 'components/Layout/Layout';
 import PokedexData from 'components/PokedexData/PokedexData';
 import Moves from 'components/Moves/Moves';
 import Stats from 'components/Stats/Stats';
@@ -20,7 +20,6 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async (context) => {
-  console.log(context);
   const { pokemonName } = context.params;
   const pokemonDataResponse = await getPokemon(pokemonName);
 
@@ -31,7 +30,7 @@ export const getStaticProps = async (context) => {
   };
 };
 
-export default function Pokemon({ pokemon }) {
+const Pokemon = ({ pokemon }) => {
   return (
     <>
       <Layout>
@@ -53,4 +52,6 @@ export default function Pokemon({ pokemon }) {
       <Moves moves={pokemon.moves} />
     </>
   );
-}
+};
+
+export default Pokemon;

@@ -1,3 +1,5 @@
-export default function App() {
+const App = () => {
   return <div />;
-}
+};
+
+export default App;

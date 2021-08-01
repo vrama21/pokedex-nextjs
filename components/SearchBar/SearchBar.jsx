@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { capitalize } from 'lodash';
 import PokemonList from '../../data/pokemonList.json';
-import Layout from '../Layout/layout';
+import Layout from '../Layout/Layout';
 import styles from './SearchBar.module.scss';
 
 export default function SearchBar() {
@@ -72,10 +72,9 @@ export default function SearchBar() {
                 <Link
                   className={styles.autoCompleteDropdown}
                   onClick={onSuggestionClick}
-                  href={{ pathname: `pokemon/${suggestion}` }}
-                  replace
-                  shallow
+                  href={{ href: `pokemon/${suggestion}`, pathname: `pokemon/${suggestion}` }}
                   key={suggestion}
+                  replace
                 >
                   <a>{capitalize(suggestion)}</a>
                 </Link>

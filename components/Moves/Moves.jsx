@@ -1,5 +1,5 @@
 import { startCase } from 'lodash';
-import Layout from '../Layout/layout';
+import Layout from '../Layout/Layout';
 
 const Moves = ({ moves }) => {
   const renderMoves = (method) =>

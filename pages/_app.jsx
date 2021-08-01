@@ -3,11 +3,13 @@ import '../styles/global.scss';
 import '../styles/types.scss';
 import SearchBar from '../components/SearchBar/SearchBar';
 
-export default function App({ Component, pageProps }) {
+const App = ({ Component, pageProps }) => {
   return (
     <>
       <SearchBar />
       <Component {...pageProps} />
     </>
   );
-}
+};
+
+export default App;
