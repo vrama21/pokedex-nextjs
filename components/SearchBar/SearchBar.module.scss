@@ -1,0 +1,56 @@
+.searchBar {
+  color: black;
+  padding: 0.5rem;
+  width: 400px;
+  height: 50px;
+  border-radius: 0.75rem;
+  outline: none;
+  border: 0.15rem solid orange;
+}
+
+.searchButton {
+  background-color: white;
+  color: orange;
+  font-weight: 700;
+  font-size: large;
+  height: 50px;
+  border: 0.15rem solid orange;
+  border-radius: 0.75rem;
+  padding: 0 1.5rem;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  margin-left: 1rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: orange;
+    color: white;
+  }
+}
+
+.autoCompleteDropdown {
+  border: 0.06rem solid #c8ccd4;
+  background-color: white;
+  border-radius: 4px;
+  display: block;
+  position: absolute;
+  text-align: center;
+  width: 388px;
+  margin: 0 auto;
+  left: 50%;
+  transform: translate(-67%, 0);
+  top: 142px;
+  padding: 0.25rem 0.75rem;
+
+  a {
+    color: black;
+    display: block;
+    text-decoration: none;
+
+    &:hover {
+      background-color: #68ecb9;
+      cursor: pointer;
+    }
+  }
+}
