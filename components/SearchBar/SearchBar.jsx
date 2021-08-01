@@ -1,4 +1,5 @@
-import Link from 'next/link';
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/interactive-supports-focus */
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { capitalize } from 'lodash';
@@ -47,14 +48,16 @@ export default function SearchBar() {
     setSearchBarValue(value);
   };
 
-  const onSuggestionClick = (event) => {
+  const onSuggestionClick = (event, pokemon) => {
+    event.preventDefault();
+
     const value = event.target.innerText;
-    console.log('here');
 
     setPokemonSearchSuggestions(undefined);
     setSearchBarValue(value);
 
-    onPokemonNameSubmit(event, value);
+    const redirectPath = isHomePage ? `pokemon/${pokemon}` : pokemon;
+    router.push(redirectPath);
   };
 
   return (
@@ -71,21 +74,11 @@ export default function SearchBar() {
         <div>
           {pokemonSearchSuggestions && (
             <ul className={styles.autoCompleteDropdown}>
-              {pokemonSearchSuggestions.map((suggestion) => {
-                const redirectPath = isHomePage ? `pokemon/${suggestion}` : suggestion;
-
-                return (
-                  <Link
-                    className={styles.autoCompleteDropdown}
-                    onClick={onSuggestionClick}
-                    href={{ pathname: redirectPath }}
-                    key={suggestion}
-                    replace
-                  >
-                    <a>{capitalize(suggestion)}</a>
-                  </Link>
-                );
-              })}
+              {pokemonSearchSuggestions.map((pokemon) => (
+                <a key={pokemon} onClick={(event) => onSuggestionClick(event, pokemon)} role="button">
+                  {capitalize(pokemon)}
+                </a>
+              ))}
             </ul>
           )}
         </div>
