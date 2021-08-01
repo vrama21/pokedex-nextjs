@@ -28,13 +28,13 @@ const Stats = ({ stats }) => {
       <Statbar
         baseStat={stats.specialAttack}
         baseStatMaxValue={baseSpecialAttackMax}
-        statName="Special Attack"
+        statName="Sp. Attack"
         statPercentage={specialAttackPercentage}
       />
       <Statbar
         baseStat={stats.specialDefense}
         baseStatMaxValue={baseSpecialDefenseMax}
-        statName="Special Defense"
+        statName="Sp. Defense"
         statPercentage={specialDefensePercentage}
       />
       <Statbar baseStat={stats.speed} baseStatMaxValue={baseSpeedMax} statName="Speed" statPercentage={speedPercentage} />

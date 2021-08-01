@@ -10,9 +10,9 @@ export default function Pokemon({ pokemon }) {
     <>
       <Layout>
         <div>
-          <div className="flex">
-            <img className="w-1/2" src={pokemon.image} alt="logo" />
-            <div className="flex flex-wrap w-1/2 px-4 py-2 border-gray-400">
+          <div className="flex justify-evenly">
+            <img className="w-1/2 px-4 py-2" src={pokemon.image} alt="logo" />
+            <div className="flex flex-wrap">
               <div className="w-full">
                 <PokedexData pokemon={pokemon} />
               </div>
