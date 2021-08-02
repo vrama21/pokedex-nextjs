@@ -10,7 +10,7 @@ const getPokemon = async (pokemonName) => {
   const speciesResponse = await pokedex.getPokemonSpeciesByName(speciesName);
   const evolutionsResponse = await pokedex.resource(speciesResponse.evolution_chain.url);
 
-  const evolutions = evolutionsResponse.chain.evolves_to.length > 0 ? await getEvolutionsList(evolutionsResponse.chain, pokedex) : [];
+  // const evolutions = evolutionsResponse.chain.evolves_to.length > 0 ? await getEvolutionsList(evolutionsResponse.chain, pokedex) : [];
   const moves = await getMoves(pokemonResponse.moves);
 
   const data = {
@@ -28,7 +28,7 @@ const getPokemon = async (pokemonName) => {
     types: pokemonResponse.types.map((type) => type.type.name),
     height: pokemonResponse.height,
     weight: pokemonResponse.weight,
-    evolutions,
+    // evolutions,
     evolutionChain: evolutionsResponse.chain,
     moves,
   };
