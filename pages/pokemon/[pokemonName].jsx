@@ -55,7 +55,7 @@ const Pokemon = ({ pokemon }) => {
           </div>
         </div>
       </Layout>
-      <Evolutions evolutions={pokemon.evolutions} evolutionChain />
+      {/* <Evolutions evolutions={pokemon.evolutions} evolutionChain /> */}
       <Moves moves={pokemon.moves} />
     </>
   );
