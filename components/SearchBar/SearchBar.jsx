@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { capitalize, filter } from 'lodash';
+import { capitalize } from 'lodash';
 import PokemonList from '../../data/pokemonList.json';
 import Layout from '../Layout/Layout';
 import styles from './SearchBar.module.scss';
@@ -12,25 +12,6 @@ export default function SearchBar() {
   const [pokemonSearchSuggestions, setPokemonSearchSuggestions] = useState(undefined);
   const [searchBarValue, setSearchBarValue] = useState('');
   const router = useRouter();
-  const isHomePage = router.pathname === '/';
-
-  const onPokemonNameSubmit = (event, pokemonName) => {
-    event.preventDefault();
-
-    const pokemonNameParameter = (pokemonName || searchBarValue).toLowerCase();
-
-    if (!pokemonNameParameter) {
-      return;
-    }
-
-    if (!PokemonList.includes(pokemonNameParameter)) {
-      setErrorMessage('Please enter a valid Pokemon name');
-
-      return;
-    }
-
-    setPokemonSearchSuggestions(undefined);
-  };
 
   const onPokemonNameChange = (event) => {
     const { value } = event.target;
@@ -56,7 +37,7 @@ export default function SearchBar() {
     setPokemonSearchSuggestions(undefined);
     setSearchBarValue(value);
 
-    const redirectPath = isHomePage ? `pokemon/${pokemon}` : pokemon;
+    const redirectPath = router.pathname.includes('pokemon') ? pokemon : `pokemon/${pokemon}`;
     router.push(redirectPath);
   };
 
