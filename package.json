@@ -9,16 +9,15 @@
   },
   "dependencies": {
     "@svgr/webpack": "^5.5.0",
-    "@types/pokedex-promise-v2": "github:mudkipme/pokeapi-v2-typescript",
     "lodash": "^4.17.21",
     "next": "^11.0.0",
-    "node-fetch": "^2.6.1",
     "pokedex-promise-v2": "^3.3.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "sass": "^1.36.0"
   },
   "devDependencies": {
+    "@types/pokedex-promise-v2": "github:mudkipme/pokeapi-v2-typescript",
     "autoprefixer": "^9.8.6",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.31.0",
@@ -30,7 +29,7 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^1.7.0",
-    "postcss": "^7.0.36",
+    "postcss": "^8.3.6",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-preset-env": "^6.7.0",
     "prettier": "2.3.2",
