@@ -1,6 +1,6 @@
 {
-  "extends": ["airbnb", "prettier", "plugin:react/recommended", "plugin:import/typescript"],
-  "plugins": ["prettier", "react"],
+  "extends": ["airbnb", "prettier", "plugin:react/recommended", "plugin:import/typescript", "plugin:jest/recommended"],
+  "plugins": ["prettier", "react", "jest"],
   "rules": {
     "prettier/prettier": ["error"],
     "quotes": ["error", "single"],

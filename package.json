@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "jest --forceExit"
   },
   "dependencies": {
     "@svgr/webpack": "^5.5.0",
@@ -20,18 +21,22 @@
     "postcss-preset-env": "^6.7.0"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.14.9",
     "@types/pokedex-promise-v2": "github:mudkipme/pokeapi-v2-typescript",
     "autoprefixer": "^9.8.6",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.31.0",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-next": "^11.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jest": "^24.4.0",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "jest": "^27.0.6",
     "prettier": "2.3.2",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.7"
   }

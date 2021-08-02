@@ -1,6 +1,8 @@
+import Pokedex from 'pokedex-promise-v2';
 import mapEvolutionDetails from './mapEvolutionDetails';
 
-const getEvolutionsList = async (chainObject, pokedex, evolutions = []) => {
+const getEvolutionsList = async (chainObject, evolutions = []) => {
+  const pokedex = new Pokedex();
   const currentPokemonName = chainObject.species.name;
   const currentPokemonData = await pokedex.getPokemonByName(currentPokemonName);
 
@@ -36,7 +38,7 @@ const getEvolutionsList = async (chainObject, pokedex, evolutions = []) => {
 
   evolutions.push(...evolutionChain);
 
-  return getEvolutionsList(chainObject.evolves_to[0], pokedex, evolutions);
+  return getEvolutionsList(chainObject.evolves_to[0], evolutions);
 };
 
 export default getEvolutionsList;
