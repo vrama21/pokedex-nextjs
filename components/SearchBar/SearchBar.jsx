@@ -71,20 +71,17 @@ export default function SearchBar() {
           type="text"
           value={searchBarValue}
         />
-        <div>
-          {pokemonSearchSuggestions && (
-            <ul className={styles.autoCompleteDropdown}>
-              {pokemonSearchSuggestions.map((pokemon) => (
-                <li key={pokemon}>
-                  <a onClick={(event) => onSuggestionClick(event, pokemon)} role="button">
-                    {capitalize(pokemon)}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-        <input className={styles.searchButton} onClick={onPokemonNameSubmit} type="Submit" value="Search" readOnly />
+        {pokemonSearchSuggestions && (
+          <ul className={styles.autoCompleteDropdown}>
+            {pokemonSearchSuggestions.map((pokemon) => (
+              <li key={pokemon}>
+                <a onClick={(event) => onSuggestionClick(event, pokemon)} role="button">
+                  {capitalize(pokemon)}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
       {errorMessage && (
         <div className="text-center error-message">

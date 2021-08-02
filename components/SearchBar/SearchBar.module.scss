@@ -6,6 +6,7 @@
   border-radius: 0.75rem;
   outline: none;
   border: 0.15rem solid orange;
+  position: relative;
 }
 
 .searchButton {
@@ -37,10 +38,9 @@
   display: block;
   position: absolute;
   text-align: center;
-  width: 388px;
-  margin: 0 auto;
-  left: 32.5%;
-  top: 142px;
+  width: 385px;
+  top: 140px;
+  flex-grow: 1;
   transform-origin: top center;
 
   li {
