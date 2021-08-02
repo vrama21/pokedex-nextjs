@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import Layout from 'components/Layout/Layout';
 import PokedexData from 'components/PokedexData/PokedexData';
 import Moves from 'components/Moves/Moves';
@@ -15,7 +16,7 @@ export const getStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 };
 
@@ -31,6 +32,12 @@ export const getStaticProps = async (context) => {
 };
 
 const Pokemon = ({ pokemon }) => {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <Layout>
