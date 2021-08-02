@@ -7,9 +7,9 @@ import getPokemon from 'api/getPokemon';
 import PokemonList from 'data/pokemonList.json';
 
 export const getStaticPaths = async () => {
-  const paths = PokemonList.map((pokemon) => {
+  const paths = PokemonList.slice(0, 151).map((pokemon) => {
     return {
-      params: { pokemonName: pokemon.toString() },
+      params: { pokemonName: pokemon.name.toString() },
     };
   });
 

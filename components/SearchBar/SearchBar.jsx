@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { capitalize } from 'lodash';
+import { capitalize, filter } from 'lodash';
 import PokemonList from '../../data/pokemonList.json';
 import Layout from '../Layout/Layout';
 import styles from './SearchBar.module.scss';
@@ -39,7 +39,7 @@ export default function SearchBar() {
     setPokemonSearchSuggestions(undefined);
 
     if (value.length >= 2) {
-      const filteredList = PokemonList.filter((p) => p.substring(0, value.length) === value.toLowerCase());
+      const filteredList = PokemonList.map((p) => p.name).filter((pokemon) => pokemon.substring(0, value.length) === value.toLowerCase());
       const suggestionList = filteredList.length > 0 ? filteredList : undefined;
 
       setPokemonSearchSuggestions(suggestionList);
@@ -65,7 +65,7 @@ export default function SearchBar() {
       <div className="flex justify-center mt-4">
         <input
           className={styles.searchBar}
-          name="pokemonName"
+          name="pokemon"
           onChange={onPokemonNameChange}
           placeholder="Enter Pokemon Name or Id"
           type="text"
