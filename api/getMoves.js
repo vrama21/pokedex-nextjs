@@ -11,6 +11,7 @@ const getMoves = async (movesResponse) => {
         learnedAt: latestVersion.level_learned_at,
         method: latestVersion.move_learn_method.name,
         name: move.move.name,
+        url: move.move.url,
       };
     })
     .sort((moveA, moveB) => moveA.learnedAt - moveB.learnedAt);

@@ -1,6 +1,7 @@
 import Pokedex from 'pokedex-promise-v2';
 import getEvolutionsList from './getEvolutions';
 import getMoves from './getMoves';
+import getMachines from './getMachines';
 
 const getPokemon = async (pokemonName) => {
   const pokedex = new Pokedex();
@@ -12,6 +13,7 @@ const getPokemon = async (pokemonName) => {
 
   // const evolutions = evolutionsResponse.chain.evolves_to.length > 0 ? await getEvolutionsList(evolutionsResponse.chain) : [];
   const moves = await getMoves(pokemonResponse.moves);
+  const machines = await getMachines(moves);
 
   const data = {
     id: pokemonResponse.id,
@@ -31,6 +33,7 @@ const getPokemon = async (pokemonName) => {
     // evolutions,
     evolutionChain: evolutionsResponse.chain,
     moves,
+    machines,
   };
 
   return data;

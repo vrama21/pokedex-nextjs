@@ -1,34 +1,28 @@
-import { startCase } from 'lodash';
+import { startCase, upperCase } from 'lodash';
 import Layout from '../Layout/Layout';
 
-const Moves = ({ moves }) => {
-  const renderMovesByMethod = (methodMove) =>
-    methodMove.map((move) => {
-      return (
-        <div className="flex justify-between px-2" key={move.name}>
-          <p className="font-bold text-sm">{move.name}</p>
-          {move.method !== 'egg' && <p className="text-sm">{move.learnedAt}</p>}
-        </div>
-      );
-    });
-
+const Moves = ({ moves, machines }) => {
   const getMovesByMethod = (method) =>
     moves
       .filter((move) => move.method === method)
       .map((move) => {
-        const moveName = startCase(move.name).replace('-', ' ');
-        const learnedAt = move.learnedAt === 0 ? 1 : move.learnedAt;
-
-        return {
-          ...move,
-          name: moveName,
-          learnedAt,
-        };
+        return (
+          <div className="flex justify-between px-2" key={move.name}>
+            <p className="font-bold text-sm">{startCase(move.name).replace('-', ' ')}</p>
+            {(move.method === 'level-up' || move.method === 'tutor') && <p className="text-sm">{move.learnedAt === 0 ? 1 : move.learnedAt}</p>}
+          </div>
+        );
       });
+
+  const machineMoves = machines.map((machine) => (
+    <div className="flex justify-between px-2" key={machine.move.name}>
+      <p className="font-bold text-sm">{startCase(machine.move.name).replace('-', ' ')}</p>
+      <p className="text-sm">{upperCase(machine.item.name).replace('-', ' ')}</p>
+    </div>
+  ));
 
   const levelUpMoves = getMovesByMethod('level-up');
   const eggMoves = getMovesByMethod('egg');
-  const machineMoves = getMovesByMethod('machine');
   const tutorMoves = getMovesByMethod('tutor');
 
   return (
@@ -41,7 +35,7 @@ const Moves = ({ moves }) => {
               <p>Name</p>
               <p>Level</p>
             </div>
-            {renderMovesByMethod(levelUpMoves)}
+            {levelUpMoves}
           </div>
         )}
         {eggMoves.length > 0 && (
@@ -50,7 +44,7 @@ const Moves = ({ moves }) => {
             <div className="flex justify-between px-2 font-bold border-gray-300 border-b-2 my-2">
               <p>Name</p>
             </div>
-            {renderMovesByMethod(eggMoves)}
+            {eggMoves}
           </div>
         )}
         {machineMoves.length > 0 && (
@@ -60,7 +54,7 @@ const Moves = ({ moves }) => {
               <p>Name</p>
               <p>Level</p>
             </div>
-            {renderMovesByMethod(machineMoves)}
+            {machineMoves}
           </div>
         )}
         {tutorMoves.length > 0 && (
@@ -70,7 +64,7 @@ const Moves = ({ moves }) => {
               <p>Name</p>
               <p>Level</p>
             </div>
-            {renderMovesByMethod(tutorMoves)}
+            {tutorMoves}
           </div>
         )}
       </div>
