@@ -1,5 +1,6 @@
 import { capitalize } from 'lodash';
 import Container from '../Container/Container';
+import Type from '../Type/Type';
 import styles from './pokedexData.module.scss';
 
 const PokedexData = ({ pokemon }) => {
@@ -20,9 +21,7 @@ const PokedexData = ({ pokemon }) => {
         <p className={styles.pokedexKey}>Type</p>
         <div className="w-1/2 text-left">
           {pokemon.types.map((type) => (
-            <p className={`${styles.pokemonTypeLogo} type-${type}`} key={type}>
-              {type}
-            </p>
+            <Type type={type} key={type} />
           ))}
         </div>
       </div>
