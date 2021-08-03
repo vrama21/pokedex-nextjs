@@ -1,5 +1,6 @@
 import { startCase, upperCase } from 'lodash';
 import Layout from '../Layout/Layout';
+import Type from '../Type/Type';
 
 const Moves = ({ moves, machines }) => {
   const getMovesByMethod = (method) =>
@@ -7,9 +8,12 @@ const Moves = ({ moves, machines }) => {
       .filter((move) => move.method === method)
       .map((move) => {
         return (
-          <div className="flex justify-between px-2" key={move.name}>
-            <p className="font-bold text-sm">{startCase(move.name).replace('-', ' ')}</p>
-            {(move.method === 'level-up' || move.method === 'tutor') && <p className="text-sm">{move.learnedAt === 0 ? 1 : move.learnedAt}</p>}
+          <div className="flex justify-between px-2 py-1" key={move.name}>
+            <p className="font-bold text-sm w-full my-auto">{startCase(move.name).replace('-', ' ')}</p>
+            <Type type={move.type} />
+            {(move.method === 'level-up' || move.method === 'tutor') && (
+              <p className="text-sm text-right w-1/12 my-auto">{move.learnedAt === 0 ? 1 : move.learnedAt}</p>
+            )}
           </div>
         );
       });
