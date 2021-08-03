@@ -1,5 +1,5 @@
 import sut from './getEvolutions';
-import { eevee, lugia, squirtle } from './tests/data/evolutionChains';
+import { eevee, lugia, squirtle } from './data/evolutionChains';
 
 describe('getEvolutionsList test', () => {
   test('testing a straight branch evolution chain', async () => {
