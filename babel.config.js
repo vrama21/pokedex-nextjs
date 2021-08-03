@@ -8,7 +8,15 @@ module.exports = {
           browsers: ['last 2 Chrome versions'],
         },
       },
-      '@babel/preset-react ',
+    ],
+    ['@babel/preset-env', { targets: { node: 'current' } }],
+  ],
+  plugins: [
+    [
+      '@babel/plugin-transform-react-jsx',
+      {
+        runtime: 'automatic',
+      },
     ],
   ],
 };

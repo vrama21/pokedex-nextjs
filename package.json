@@ -21,6 +21,7 @@
     "postcss-preset-env": "^6.7.0"
   },
   "devDependencies": {
+    "@babel/plugin-transform-react-jsx": "^7.14.9",
     "@babel/preset-env": "^7.14.9",
     "@types/pokedex-promise-v2": "github:mudkipme/pokeapi-v2-typescript",
     "autoprefixer": "^9.8.6",
