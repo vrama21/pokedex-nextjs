@@ -1,4 +1,4 @@
-import styles from './container.module.scss';
+import styles from './Container.module.scss';
 
 const Container = ({ children }) => <div className={styles.container}>{children}</div>;
 

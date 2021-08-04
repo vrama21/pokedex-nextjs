@@ -3,8 +3,6 @@ import Pokedex from 'pokedex-promise-v2';
 const getMoves = async (moves) => {
   const pokedex = new Pokedex();
 
-  console.log(moves);
-
   const movesFromMostRecentVersion = moves.filter((move) =>
     move.version_group_details.some((version) => version.version_group.name === 'ultra-sun-ultra-moon')
   );
