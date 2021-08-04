@@ -20,6 +20,10 @@ const EggMoves = ({ moves }) => {
         Header: 'Category',
         accessor: 'category',
       },
+      {
+        Header: 'Lv',
+        accessor: 'learnedAt',
+      },
     ],
     []
   );
@@ -29,6 +33,7 @@ const EggMoves = ({ moves }) => {
       moves.map((move) => {
         return {
           category: move.category,
+          learnedAt: move.learnedAt,
           name: move.name,
           type: move.type,
         };
@@ -63,6 +68,7 @@ const EggMoves = ({ moves }) => {
             {cell.column.Header === 'Category' && (
               <img className={styles.moveCategory} src={`https://img.pokemondb.net/images/icons/move-${cell.value}.png`} alt={cell.value} />
             )}
+            {cell.column.Header === 'Lv' && <span>{cell.value === 0 ? 1 : cell.value}</span>}
           </td>
         ))}
       </tr>
