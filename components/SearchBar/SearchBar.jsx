@@ -48,7 +48,7 @@ export default function SearchBar() {
           className={styles.searchBar}
           name="pokemon"
           onChange={onPokemonNameChange}
-          placeholder="Enter Pokemon Name or Id"
+          placeholder="Enter Pokemon Name"
           type="text"
           value={searchBarValue}
         />

@@ -6,6 +6,7 @@ import Stats from 'components/Stats/Stats';
 import Evolutions from 'components/Evolutions/Evolutions';
 import getPokemon from 'api/getPokemon';
 import PokemonList from 'data/pokemonList.json';
+import Container from 'components/Container/Container';
 
 export const getStaticPaths = async () => {
   const paths = PokemonList.map((pokemon) => {
@@ -43,8 +44,10 @@ const Pokemon = ({ pokemon }) => {
       <Layout>
         <div>
           <div className="flex justify-evenly">
-            <img className="w-1/2 px-4 py-2" src={pokemon.image} alt="logo" />
-            <div className="flex flex-wrap w-1/2">
+            <Container className="w-1/2 mr-2 px-4 py-2 m-auto">
+              <img className="w-full" src={pokemon.image} alt="logo" />
+            </Container>
+            <div className="flex flex-col justify-between w-1/2">
               <div className="w-full">
                 <PokedexData pokemon={pokemon} />
               </div>
