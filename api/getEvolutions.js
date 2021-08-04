@@ -44,5 +44,3 @@ const getEvolutionsList = async (chainObject, evolutions = []) => {
 
   return getEvolutionsList(chainObject.evolves_to[0], evolutions);
 };
-
-export default getEvolutionsList;

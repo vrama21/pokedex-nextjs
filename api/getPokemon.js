@@ -1,5 +1,5 @@
 import Pokedex from 'pokedex-promise-v2';
-import getEvolutionsList from './getEvolutions';
+// import getEvolutionsList from './getEvolutions';
 import getMoves from './getMoves';
 import getMachines from './getMachines';
 
