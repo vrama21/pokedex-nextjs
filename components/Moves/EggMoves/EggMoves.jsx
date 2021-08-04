@@ -62,7 +62,7 @@ const EggMoves = ({ moves }) => {
     return (
       <tr className={styles.tableRow} key={rowIndex} {...row.getRowProps()}>
         {row.cells.map((cell) => (
-          <td className={styles.moveCell} key={cell} {...cell.getCellProps()}>
+          <td key={cell} {...cell.getCellProps()}>
             {cell.column.Header === 'Name' && <span>{startCase(cell.value)}</span>}
             {cell.column.Header === 'Type' && <Type type={cell.value} />}
             {cell.column.Header === 'Category' && (

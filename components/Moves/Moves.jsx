@@ -14,11 +14,20 @@ const Moves = ({ moves, machines }) => {
     <Layout>
       <div className="flex justify-center">
         <div className="w-1/2 mx-2">
-          {levelUpMoves.length > 0 && <LevelUpMoves moves={levelUpMoves} />}
+          {levelUpMoves.length > 0 && (
+            <div className="mb-4">
+              <LevelUpMoves moves={levelUpMoves} />
+            </div>
+          )}
           {eggMoves.length > 0 && <EggMoves moves={eggMoves} />}
         </div>
         <div className="w-1/2 mx-2">
-          {machineMoves.length > 0 && <MachineMoves machines={machines} moves={machineMoves} />}
+          {machineMoves.length > 0 && (
+            <div className="mb-4">
+              <MachineMoves machines={machines} moves={machineMoves} />
+            </div>
+          )}
+
           {tutorMoves.length > 0 && <TutorMoves moves={tutorMoves} />}
         </div>
       </div>
