@@ -1,29 +1,33 @@
 import Pokedex from 'pokedex-promise-v2';
 
-const getMoves = async (movesResponse) => {
+const getMoves = async (moves) => {
   const pokedex = new Pokedex();
 
-  const movesFromMostRecentVersion = movesResponse.filter((move) =>
-    move.version_group_details.some((version) => version.version_group.name === 'ultra-sun-ultra-moon' || version.version_group.name === 'sun-moon')
+  console.log(moves);
+
+  const movesFromMostRecentVersion = moves.filter((move) =>
+    move.version_group_details.some((version) => version.version_group.name === 'ultra-sun-ultra-moon')
   );
 
-  const moves = movesFromMostRecentVersion
-    .map(async (move) => {
-      const [latestVersion] = move.version_group_details.slice(-1);
+  const movePromises = movesFromMostRecentVersion.map(async (move) => {
+    const latestVersion = move.version_group_details.slice(-1)[0];
+    const moveResponse = await pokedex.resource(move.move.url);
 
-      const moveResponse = await pokedex.resource(move.move.url);
+    return {
+      category: moveResponse.damage_class.name,
+      learnedAt: latestVersion.level_learned_at,
+      method: latestVersion.move_learn_method.name,
+      name: move.move.name,
+      type: moveResponse.type.name,
+      url: move.move.url,
+    };
+  });
 
-      return {
-        learnedAt: latestVersion.level_learned_at,
-        method: latestVersion.move_learn_method.name,
-        name: move.move.name,
-        type: moveResponse.type.name,
-        url: move.move.url,
-      };
-    })
-    .sort((moveA, moveB) => moveA.learnedAt - moveB.learnedAt);
+  const updatedMoves = await Promise.all(movePromises);
 
-  return Promise.all(moves);
+  const sortedMoves = updatedMoves.sort((moveA, moveB) => moveA.learnedAt - moveB.learnedAt);
+
+  return sortedMoves;
 };
 
 export default getMoves;
