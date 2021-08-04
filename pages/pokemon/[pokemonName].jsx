@@ -23,13 +23,20 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
   const { pokemonName } = context.params;
-  const pokemonDataResponse = await getPokemon(pokemonName);
 
-  return {
-    props: {
-      pokemon: pokemonDataResponse,
-    },
-  };
+  try {
+    const pokemonDataResponse = await getPokemon(pokemonName);
+
+    return {
+      props: {
+        pokemon: pokemonDataResponse,
+      },
+    };
+  } catch (err) {
+    console.log(err);
+  }
+
+  return undefined;
 };
 
 const Pokemon = ({ pokemon }) => {
