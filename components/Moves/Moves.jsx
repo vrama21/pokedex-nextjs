@@ -2,6 +2,7 @@ import { startCase, upperCase } from 'lodash';
 import Layout from '../Layout/Layout';
 import Type from '../Type/Type';
 import LevelUpMoves from './LevelUpMoves/LevelUpMoves';
+import MachineMoves from './MachineMoves.jsx/MachineMoves';
 
 const Moves = ({ moves, machines }) => {
   const getMovesByMethod = (method) =>
@@ -19,14 +20,8 @@ const Moves = ({ moves, machines }) => {
         );
       });
 
-  const machineMoves = machines.map((machine) => (
-    <div className="flex justify-between px-2" key={machine.move.name}>
-      <p className="font-bold text-sm">{startCase(machine.move.name).replace('-', ' ')}</p>
-      <p className="text-sm">{upperCase(machine.item.name).replace('-', ' ')}</p>
-    </div>
-  ));
-
   const levelUpMoves = moves.filter((move) => move.method === 'level-up');
+  const machineMoves = moves.filter((move) => move.method === 'machine');
   const eggMoves = getMovesByMethod('egg');
   const tutorMoves = getMovesByMethod('tutor');
 
@@ -34,8 +29,8 @@ const Moves = ({ moves, machines }) => {
     <Layout>
       <div className="flex justify-center">
         {levelUpMoves.length > 0 && (
-          <div className="w-1/3">
-            <LevelUpMoves levelUpMoves={levelUpMoves} />
+          <div className="w-1/3 mx-2">
+            <LevelUpMoves moves={levelUpMoves} />
           </div>
         )}
         {eggMoves.length > 0 && (
@@ -48,13 +43,8 @@ const Moves = ({ moves, machines }) => {
           </div>
         )}
         {machineMoves.length > 0 && (
-          <div className="w-1/4 p-2 border-gray-300 border-2 rounded-md mx-2 h-full">
-            <h3 className="font-bold text-center">Moves learned by TMs</h3>
-            <div className="flex justify-between px-2 font-bold border-gray-300 border-b-2 my-2">
-              <p>Name</p>
-              <p>Level</p>
-            </div>
-            {machineMoves}
+          <div className="w-1/3 mx-2">
+            <MachineMoves machines={machines} moves={machineMoves} />
           </div>
         )}
         {tutorMoves.length > 0 && (

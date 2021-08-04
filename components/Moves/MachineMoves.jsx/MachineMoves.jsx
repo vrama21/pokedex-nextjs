@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
 import { useTable, useSortBy } from 'react-table';
-import { startCase } from 'lodash';
+import { startCase, upperCase } from 'lodash';
 import Container from 'components/Container/Container';
 import Type from 'components/Type/Type';
 import styles from '../Moves.module.scss';
 
-const LevelUpMoves = ({ moves }) => {
+const MachineMoves = ({ machines, moves }) => {
   const columns = useMemo(
     () => [
       {
@@ -21,8 +21,8 @@ const LevelUpMoves = ({ moves }) => {
         accessor: 'category',
       },
       {
-        Header: 'Lv',
-        accessor: 'learnedAt',
+        Header: 'Tm/Hm',
+        accessor: 'machine',
       },
     ],
     []
@@ -31,9 +31,11 @@ const LevelUpMoves = ({ moves }) => {
   const data = useMemo(
     () =>
       moves.map((move) => {
+        const machineItem = machines.find((machine) => machine.move.name === move.name);
+
         return {
           category: move.category,
-          learnedAt: move.learnedAt,
+          machine: machineItem.item.name,
           name: move.name,
           type: move.type,
         };
@@ -68,7 +70,7 @@ const LevelUpMoves = ({ moves }) => {
             {cell.column.Header === 'Category' && (
               <img className={styles.moveCategory} src={`https://img.pokemondb.net/images/icons/move-${cell.value}.png`} alt={cell.value} />
             )}
-            {cell.column.Header === 'Lv' && <span>{cell.value}</span>}
+            {cell.column.Header === 'Tm/Hm' && <span>{upperCase(cell.value)}</span>}
           </td>
         ))}
       </tr>
@@ -76,7 +78,7 @@ const LevelUpMoves = ({ moves }) => {
   });
   return (
     <Container>
-      <h3 className="font-bold text-center">Moves learned by Level Up</h3>
+      <h3 className="font-bold text-center">Moves learned by Machine</h3>
       <table {...getTableProps}>
         <thead>{tableHeaders}</thead>
         <tbody {...getTableBodyProps}>{tableRows}</tbody>
@@ -85,4 +87,4 @@ const LevelUpMoves = ({ moves }) => {
   );
 };
 
-export default LevelUpMoves;
+export default MachineMoves;
