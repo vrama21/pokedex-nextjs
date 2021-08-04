@@ -19,9 +19,11 @@ const PokedexData = ({ pokemon }) => {
       </div>
       <div className="flex justify-center py-1">
         <p className={styles.pokedexKey}>Type</p>
-        <div className="w-1/2 text-left">
+        <div className="w-1/2 text-left flex">
           {pokemon.types.map((type) => (
-            <Type type={type} key={type} />
+            <div className="mr-2" key={type}>
+              <Type type={type} />
+            </div>
           ))}
         </div>
       </div>

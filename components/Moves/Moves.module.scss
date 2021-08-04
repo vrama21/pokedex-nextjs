@@ -1,0 +1,44 @@
+.tableHeader {
+  th {
+    color: #d1d1d1;
+    font-size: 0.9rem;
+  }
+
+  th:first-child {
+    text-align: left;
+    width: 100%;
+  }
+
+  th:not(:first-child):not(:last-child) {
+    text-align: center;
+    padding: 0.25rem 0.5rem;
+    min-width: 115px;
+  }
+
+  th:last-child {
+    text-align: right;
+    min-width: 50px;
+  }
+}
+
+.tableRow {
+  span {
+    color: #d1d1d1;
+    font-size: 0.875rem;
+    font-weight: normal;
+  }
+
+  td:not(:first-child):not(:last-child) {
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  td:last-child {
+    text-align: right;
+  }
+}
+
+.moveCategory {
+  margin: 0 auto;
+  transform: scale(0.5);
+}

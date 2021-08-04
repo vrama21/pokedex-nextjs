@@ -33,7 +33,11 @@ const Moves = ({ moves, machines }) => {
   return (
     <Layout>
       <div className="flex justify-center">
-        {levelUpMoves.length > 0 && <LevelUpMoves levelUpMoves={levelUpMoves} />}
+        {levelUpMoves.length > 0 && (
+          <div className="w-1/3">
+            <LevelUpMoves levelUpMoves={levelUpMoves} />
+          </div>
+        )}
         {eggMoves.length > 0 && (
           <div className="w-1/4 p-2 border-gray-300 border-2 rounded-md mx-2 h-full">
             <h3 className="font-bold text-center">Moves learned by Breeding</h3>

@@ -1,5 +1,7 @@
 .container {
-  border: 1px solid #d1d1d1;
+  --tw-bg-opacity: 1;
+  background-color: rgba(31, 41, 55, var(--tw-bg-opacity));
+  border: 2px solid #d1d1d1;
   border-radius: 1rem;
   margin: 1rem 0;
   padding: 0 1rem 1rem 1rem;
