@@ -33,10 +33,10 @@ export const getStaticProps = async (context) => {
       },
     };
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 
-  return undefined;
+  return {};
 };
 
 const Pokemon = ({ pokemon }) => {
