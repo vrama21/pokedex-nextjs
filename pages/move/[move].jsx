@@ -1,14 +1,13 @@
-import Layout from 'components/Layout/Layout';
 import { gql } from '@apollo/client';
 import client from 'apollo-client';
 import { listAllMoves } from 'graphql/queries';
+import Layout from 'components/Layout/Layout';
 
 export const getStaticPaths = async () => {
-  const { data } = await client.query({
+  const { data: { pokemon_v2_move: moves } } = await client.query({
     query: gql(listAllMoves)
   });
 
-  const moves = data.pokemon_v2_move
   const paths = moves.map((move) => {
     return {
       params: { move: move.name }

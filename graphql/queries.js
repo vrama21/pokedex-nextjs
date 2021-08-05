@@ -6,6 +6,15 @@ const listAllMoves = /* GraphQL */ `
   }
 `;
 
+const listAllPokemon = /* GraphQL */ `
+  query ListAllPokemon {
+    pokemon_v2_pokemon {
+      name
+    }
+  }
+`;
+
 export {
-  listAllMoves
+  listAllMoves,
+  listAllPokemon,
 }

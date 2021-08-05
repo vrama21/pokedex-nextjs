@@ -1,15 +1,21 @@
 import { useRouter } from 'next/router';
+import { gql } from '@apollo/client';
+import client from 'apollo-client';
+import { listAllPokemon } from 'graphql/queries';
 import Layout from 'components/Layout/Layout';
 import PokedexData from 'components/PokedexData/PokedexData';
 import Moves from 'components/Moves/Moves';
 import Stats from 'components/Stats/Stats';
 import Evolutions from 'components/Evolutions/Evolutions';
 import getPokemon from 'api/getPokemon';
-import PokemonList from 'data/pokemonList.json';
 import Container from 'components/Container/Container';
 
 export const getStaticPaths = async () => {
-  const paths = PokemonList.map((pokemon) => {
+  const { data: { pokemon_v2_pokemon: pokemons } } = await client.query({
+    query: gql(listAllPokemon)
+  })
+
+  const paths = pokemons.map((pokemon) => {
     return {
       params: { pokemon: pokemon.name.toString() },
     };
