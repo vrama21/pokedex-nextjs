@@ -38,7 +38,7 @@ export const getStaticProps = async (context) => {
 
   return {
     props: {
-      pokemon: undefined
+      pokemon: null
     }
   };
 };
