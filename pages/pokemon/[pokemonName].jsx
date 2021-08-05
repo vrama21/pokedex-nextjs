@@ -36,7 +36,11 @@ export const getStaticProps = async (context) => {
     console.log(`Getting data for ${pokemonName} failed...`);
   }
 
-  return {};
+  return {
+    props: {
+      pokemon: undefined
+    }
+  };
 };
 
 const Pokemon = ({ pokemon }) => {
