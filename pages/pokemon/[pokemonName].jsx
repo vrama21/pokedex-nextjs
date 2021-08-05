@@ -33,7 +33,7 @@ export const getStaticProps = async (context) => {
       },
     };
   } catch (err) {
-    console.error(err);
+    console.log(`Getting data for ${pokemonName} failed...`);
   }
 
   return {};
@@ -44,6 +44,10 @@ const Pokemon = ({ pokemon }) => {
 
   if (router.isFallback) {
     return <div>Loading...</div>;
+  }
+
+  if (!pokemon) {
+    return null;
   }
 
   return (
