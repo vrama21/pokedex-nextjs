@@ -11,7 +11,7 @@ import Container from 'components/Container/Container';
 export const getStaticPaths = async () => {
   const paths = PokemonList.map((pokemon) => {
     return {
-      params: { pokemonName: pokemon.name.toString() },
+      params: { pokemon: pokemon.name.toString() },
     };
   });
 
@@ -22,10 +22,10 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async (context) => {
-  const { pokemonName } = context.params;
+  const { pokemon } = context.params;
 
   try {
-    const pokemonDataResponse = await getPokemon(pokemonName);
+    const pokemonDataResponse = await getPokemon(pokemon);
 
     return {
       props: {
@@ -33,7 +33,7 @@ export const getStaticProps = async (context) => {
       },
     };
   } catch (err) {
-    console.error(`Getting data for ${pokemonName} failed...`);
+    console.error(`Getting data for ${pokemon} failed...`);
   }
 
   return {
@@ -51,7 +51,7 @@ const Pokemon = ({ pokemon }) => {
   }
 
   if (!pokemon) {
-    return null;
+    return <p className="text-center">There is no data for this Pokemon</p>;
   }
 
   return (
