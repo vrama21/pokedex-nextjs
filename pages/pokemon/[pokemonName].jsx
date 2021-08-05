@@ -33,7 +33,7 @@ export const getStaticProps = async (context) => {
       },
     };
   } catch (err) {
-    console.log(`Getting data for ${pokemonName} failed...`);
+    console.error(`Getting data for ${pokemonName} failed...`);
   }
 
   return {
