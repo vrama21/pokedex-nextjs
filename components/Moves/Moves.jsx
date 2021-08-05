@@ -27,7 +27,6 @@ const Moves = ({ moves, machines }) => {
               <MachineMoves machines={machines} moves={machineMoves} />
             </div>
           )}
-
           {tutorMoves.length > 0 && <TutorMoves moves={tutorMoves} />}
         </div>
       </div>

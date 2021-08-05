@@ -14,7 +14,7 @@ const getEvolutionsList = async (chainObject, evolutions = []) => {
 
   if (evolutions.length === 0) {
     const evolutionModel = {
-      // evolutionDetails: chainObject.evolution_details.length ? mapEvolutionDetails(chainObject.evolution_details) : [],
+      evolutionDetails: chainObject.evolution_details.length ? mapEvolutionDetails(chainObject.evolution_details) : [],
       name: currentPokemonName,
       sprite: currentPokemonData.sprites.front_default,
     };
@@ -29,12 +29,12 @@ const getEvolutionsList = async (chainObject, evolutions = []) => {
   const evolutionChainPromises = nextEvolutions.map(async (nextEvolution) => {
     const nextEvolutionName = nextEvolution.species.name;
     const nextPokemonData = await pokedex.getPokemonByName(nextEvolutionName);
-    // const nextEvolutionDetails = nextEvolution.evolution_details.length ? mapEvolutionDetails(nextEvolution.evolution_details) : [];
+    const nextEvolutionDetails = nextEvolution.evolution_details.length ? mapEvolutionDetails(nextEvolution.evolution_details) : [];
 
     return {
       name: nextEvolutionName,
       sprite: nextPokemonData.sprites.front_default,
-      // evolutionDetails: nextEvolutionDetails,
+      evolutionDetails: nextEvolutionDetails,
     };
   });
 
@@ -44,3 +44,5 @@ const getEvolutionsList = async (chainObject, evolutions = []) => {
 
   return getEvolutionsList(chainObject.evolves_to[0], evolutions);
 };
+
+export default getEvolutionsList;
