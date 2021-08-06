@@ -12,14 +12,27 @@ const TutorMoves = ({ moves }) => {
       {
         Header: 'Name',
         accessor: 'name',
+        Cell({ cell }) {
+          return (
+            <Link href={`/move/${cell.value}`} replace>
+              {startCase(cell.value)}
+            </Link>
+          );
+        },
       },
       {
         Header: 'Type',
         accessor: 'type',
+        Cell({ cell }) {
+          return <Type type={cell.value} />;
+        },
       },
       {
         Header: 'Category',
         accessor: 'category',
+        Cell({ cell }) {
+          return <img className={styles.moveCategory} src={`https://img.pokemondb.net/images/icons/move-${cell.value}.png`} alt={cell.value} />;
+        },
       },
     ],
     []
@@ -59,15 +72,7 @@ const TutorMoves = ({ moves }) => {
       <tr className={styles.tableRow} key={rowIndex} {...row.getRowProps()}>
         {row.cells.map((cell) => (
           <td key={cell} {...cell.getCellProps()}>
-            {cell.column.Header === 'Name' && (
-              <Link href={`/move/${cell.value}`} replace>
-                {startCase(cell.value)}
-              </Link>
-            )}
-            {cell.column.Header === 'Type' && <Type type={cell.value} />}
-            {cell.column.Header === 'Category' && (
-              <img className={styles.moveCategory} src={`https://img.pokemondb.net/images/icons/move-${cell.value}.png`} alt={cell.value} />
-            )}
+            {cell.render('Cell')}
           </td>
         ))}
       </tr>
