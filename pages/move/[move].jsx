@@ -1,10 +1,12 @@
 import { gql } from '@apollo/client';
 import client from 'apollo-client';
-import { listAllMoves } from 'graphql/queries';
+import { getMove, listAllMoves } from 'graphql/queries';
 import Layout from 'components/Layout/Layout';
 
 export const getStaticPaths = async () => {
-  const { data: { pokemon_v2_move: moves } } = await client.query({
+  const { data:
+    { pokemon_v2_move: moves }
+  } = await client.query({
     query: gql(listAllMoves)
   });
 
@@ -21,16 +23,23 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async (context) => {
-  const { move } = context.params;
+  const { move: moveName } = context.params;
+
+  const { data:
+    { pokemon_v2_move: moveData }
+  } = await client.query({
+    query: gql(getMove, { moveName: 'cut' })
+  });
 
   return {
     props: {
-      move,
+      move: moveData,
     }
   }
 }
 
 const Move = ({ move }) => {
+  console.log(move);
   return (
     <Layout>
       <p>{move}</p>

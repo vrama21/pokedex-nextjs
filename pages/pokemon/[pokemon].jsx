@@ -11,7 +11,9 @@ import getPokemon from 'api/getPokemon';
 import Container from 'components/Container/Container';
 
 export const getStaticPaths = async () => {
-  const { data: { pokemon_v2_pokemon: pokemons } } = await client.query({
+  const { data:
+    { pokemon_v2_pokemon: pokemons }
+  } = await client.query({
     query: gql(listAllPokemon)
   })
 
