@@ -1,7 +1,4 @@
 import { useRouter } from 'next/router';
-import { gql } from '@apollo/client';
-import client from 'apollo-client';
-import { listAllPokemon } from 'graphql/queries';
 import Layout from 'components/Layout/Layout';
 import PokedexData from 'components/PokedexData/PokedexData';
 import Moves from 'components/Moves/Moves';
