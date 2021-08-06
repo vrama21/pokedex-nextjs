@@ -1,8 +1,6 @@
 const getMove = /* GraphQL */ `
-  query GetMove(
-    $moveName: String
-  ) {
-    pokemon_v2_move(where: { name: { _eq: $moveName }}) {
+  query GetMove($moveName: String) {
+    pokemon_v2_move(where: { name: { _eq: $moveName } }) {
       name
       accuracy
       power
@@ -27,8 +25,4 @@ const listAllPokemon = /* GraphQL */ `
   }
 `;
 
-export {
-  getMove,
-  listAllMoves,
-  listAllPokemon,
-}
+export { getMove, listAllMoves, listAllPokemon };

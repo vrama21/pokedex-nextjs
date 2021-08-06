@@ -45,11 +45,14 @@ export const getServerSideProps = async (context) => {
     data: { pokemon_v2_move: moveData },
   } = await client.query({
     query: gql(getMove),
+    variables: {
+      moveName,
+    },
   });
 
   return {
     props: {
-      move: moveData,
+      move: moveData[0],
     },
   };
 };
@@ -58,7 +61,10 @@ const Move = ({ move }) => {
   console.log(move);
   return (
     <Layout>
-      <p>{move}</p>
+      <p>{move.accuracy}</p>
+      <p>{move.name}</p>
+      <p>{move.power}</p>
+      <p>{move.pp}</p>
     </Layout>
   );
 };
