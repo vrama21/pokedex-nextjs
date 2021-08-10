@@ -6,26 +6,26 @@ import TimeOfDayDetail from '../TimeOfDayDetail/TimeOfDayDetail';
 import UseItemDetail from '../UseItemDetail/UseItemDetail';
 import TradeDetail from '../TradeDetail/TradeDetail';
 
-const EvolutionDetail = ({ evolutionDetail }) => {
-  const { trigger, requirements } = evolutionDetail;
+const EvolutionDetail = ({ requirement }) => {
+  const { heldItem, item, minAffection, minBeauty, minHappiness, minLevel, trigger } = requirement;
 
-  const minLevelRequirement = trigger === 'level-up' && requirements.find((requirement) => requirement.min_level);
-  const timeOfDayRequirement = trigger === 'level-up' && requirements.find((requirement) => requirement.time_of_day);
-  const happinessRequirement = trigger === 'level-up' && requirements.find((requirement) => requirement.min_happiness);
-  const knownMoveTypeRequirement = trigger === 'level-up' && requirements.find((requirement) => requirement.known_move_type);
-  const locationRequirement = trigger === 'level-up' && requirements.find((requirement) => requirement.location);
-  const useItemRequirement = trigger === 'use-item' && requirements.find((requirement) => requirement.item);
+  const minLevelRequirement = trigger === 'level-up' && minLevel;
+  const timeOfDayRequirement = trigger === 'level-up' && requirement.time_of_day;
+  const happinessRequirement = trigger === 'level-up' && minHappiness;
+  const knownMoveTypeRequirement = trigger === 'level-up' && requirement.known_move_type;
+  const locationRequirement = trigger === 'level-up' && requirement.location;
+  const useItemRequirement = trigger === 'use-item' && item;
   const tradeRequirement = trigger === 'trade';
 
   return (
     <>
-      {minLevelRequirement && <LevelUpDetail minLevel={minLevelRequirement.min_level} />}
+      {minLevelRequirement && <LevelUpDetail minLevel={minLevel} />}
       {timeOfDayRequirement && <TimeOfDayDetail timeOfDay={timeOfDayRequirement.time_of_day} />}
-      {happinessRequirement && <HappinessDetail minHappiness={happinessRequirement.min_happiness} />}
+      {happinessRequirement && <HappinessDetail minHappiness={minHappiness} />}
       {knownMoveTypeRequirement && <KnownMoveTypeDetail knownMoveType={knownMoveTypeRequirement.known_move_type.name} />}
       {locationRequirement && <LocationDetail location={locationRequirement.location.name} />}
-      {useItemRequirement && <UseItemDetail item={useItemRequirement.item.name} />}
-      {tradeRequirement && <TradeDetail />}
+      {useItemRequirement && <UseItemDetail item={item} />}
+      {tradeRequirement && <TradeDetail heldItem={heldItem} />}
     </>
   );
 };

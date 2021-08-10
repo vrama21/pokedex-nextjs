@@ -6,6 +6,23 @@ const getEvolutionChainByIdQuery = /* GraphQL */ `
         id
         evolves_from_species_id
         name
+        pokemon_v2_pokemonevolutions {
+          min_affection
+          min_beauty
+          min_happiness
+          min_level
+          time_of_day
+          trade_species_id
+          pokemon_v2_evolutiontrigger {
+            name
+          }
+          pokemon_v2_item {
+            name
+          }
+          pokemonV2ItemByHeldItemId {
+            name
+          }
+        }
       }
     }
   }
