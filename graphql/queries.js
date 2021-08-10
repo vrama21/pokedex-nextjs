@@ -22,6 +22,9 @@ const getEvolutionChainByIdQuery = /* GraphQL */ `
           pokemonV2ItemByHeldItemId {
             name
           }
+          pokemon_v2_move {
+            name
+          }
         }
       }
     }

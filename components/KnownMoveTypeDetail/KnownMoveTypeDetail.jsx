@@ -1,8 +1,8 @@
-import { capitalize } from 'lodash';
+import { startCase } from 'lodash';
 
 const KnownMoveTypeDetail = ({ knownMoveType }) => (
   <div className="text-xs text-center">
-    <p>{`Lv with a ${capitalize(knownMoveType)} type move`}</p>
+    <p>{`Lv knowning ${startCase(knownMoveType)}`}</p>
   </div>
 );
 export default KnownMoveTypeDetail;

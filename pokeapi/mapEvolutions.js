@@ -5,11 +5,13 @@ const mapEvolutions = (evolutionChain) => {
         return {
           heldItem: requirement.pokemonV2ItemByHeldItemId ? requirement.pokemonV2ItemByHeldItemId.name : null,
           item: requirement.pokemon_v2_item ? requirement.pokemon_v2_item.name : null,
+          knownMoveType: requirement.pokemon_v2_move ? requirement.pokemon_v2_move.name : null,
           minAffection: requirement.min_affection,
           minBeauty: requirement.min_beauty,
           minHappiness: requirement.min_happiness,
           minLevel: requirement.min_level,
           location: requirement.pokemon_v2_location ? requirement.pokemon_v2_location.name : null,
+          timeOfDay: requirement.time_of_day,
           trigger: requirement.pokemon_v2_evolutiontrigger.name,
         };
       });

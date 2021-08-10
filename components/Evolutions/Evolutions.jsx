@@ -9,14 +9,14 @@ const Evolutions = ({ evolutions }) => {
     <Layout>
       <h2 className="text-center font-bold">Evolutions</h2>
       <div className="flex justify-center mx-auto">
-        {evolutions.length > 0
+        {evolutions.length > 1
           ? evolutions.map((evolution) => {
               const { requirements, name } = evolution;
 
               return (
                 <div className="flex justify-between" key={name}>
                   {requirements.length > 0 && (
-                    <div className="min-w-max my-auto">
+                    <div className="min-w-min my-auto">
                       <RightArrow className="h-12 mx-auto" />
                       {requirements.map((requirement) => (
                         <EvolutionDetail key={requirement} requirement={requirement} />
