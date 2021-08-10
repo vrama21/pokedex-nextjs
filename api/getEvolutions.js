@@ -1,48 +1,24 @@
-import Pokedex from 'pokedex-promise-v2';
-import mapEvolutionDetails from './mapEvolutionDetails';
+import { gql } from '@apollo/client';
+import client from 'apollo-client';
+import { getEvolutionChainByIdQuery } from 'graphql/queries';
 
-const getEvolutionsList = async (chainObject, evolutions = []) => {
-  const pokedex = new Pokedex();
-  const currentPokemonName = chainObject.species.name;
-  const currentPokemonData = await pokedex.getPokemonByName(currentPokemonName);
+const getEvolutions = async ({ evolutionChainId }) => {
+  try {
+    const { data } = await client.query({
+      query: gql(getEvolutionChainByIdQuery),
+      variables: {
+        evolutionChainId,
+      },
+    });
 
-  const nextEvolutions = chainObject.evolves_to;
+    const evolutionChainData = data.pokemon_v2_evolutionchain_by_pk.pokemon_v2_pokemonspecies;
 
-  if (nextEvolutions.length === 0) {
-    return evolutions;
+    return evolutionChainData;
+  } catch (err) {
+    console.error(`Error getting evolution chain data for evolutionChainId: ${evolutionChainId}...`);
+
+    return null;
   }
-
-  if (evolutions.length === 0) {
-    const evolutionModel = {
-      evolutionDetails: chainObject.evolution_details.length ? mapEvolutionDetails(chainObject.evolution_details) : [],
-      name: currentPokemonName,
-      sprite: currentPokemonData.sprites.front_default,
-    };
-
-    evolutions.push(evolutionModel);
-  }
-
-  // const nextEvolution = nextEvolutions.map(async (evolutionChain) => getEvolutionsList(evolutionChain, evolutions));
-
-  // console.log({ nextEvolution });
-
-  const evolutionChainPromises = nextEvolutions.map(async (nextEvolution) => {
-    const nextEvolutionName = nextEvolution.species.name;
-    const nextPokemonData = await pokedex.getPokemonByName(nextEvolutionName);
-    const nextEvolutionDetails = nextEvolution.evolution_details.length ? mapEvolutionDetails(nextEvolution.evolution_details) : [];
-
-    return {
-      name: nextEvolutionName,
-      sprite: nextPokemonData.sprites.front_default,
-      evolutionDetails: nextEvolutionDetails,
-    };
-  });
-
-  const evolutionChain = await Promise.all(evolutionChainPromises);
-
-  evolutions.push(...evolutionChain);
-
-  return getEvolutionsList(chainObject.evolves_to[0], evolutions);
 };
 
-export default getEvolutionsList;
+export default getEvolutions;

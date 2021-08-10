@@ -1,4 +1,4 @@
-import sut from './getEvolutions';
+import sut from './old/getEvolutions';
 import { eevee, lugia, squirtle } from './data/evolutionChains';
 
 describe('getEvolutionsList test', () => {

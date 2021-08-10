@@ -1,18 +1,18 @@
-import getEvolutionsList from './getEvolutions';
+// import getEvolutionsList from './old/getEvolutions';
 import getMachines from './getMachines';
 import getPokemonGraphql from './getPokemonGraphql';
 import getPokemonSpeciesGraphql from './getPokemonSpeciesGraphql';
 import getMoves from './getMoves';
+import getEvolutions from './getEvolutions';
+import mapEvolutions from './mapEvolutions';
 
 const getPokemon = async (pokemonName) => {
   const pokemonResponse = await getPokemonGraphql({ pokemon: pokemonName, versionGroupId: 18 });
   const species = await getPokemonSpeciesGraphql({ speciesId: pokemonResponse.pokemon_species_id });
   const moves = getMoves(pokemonResponse.pokemon_v2_pokemonmoves);
   const machines = await getMachines({ versionGroupId: 18 });
-
-  // const evolutionsResponse = await pokedex.resource(speciesResponse.evolution_chain.url);
-
-  // const evolutions = evolutionsResponse.chain.evolves_to.length > 0 ? await getEvolutionsList(evolutionsResponse.chain) : [];
+  const evolutionChainResponse = await getEvolutions({ evolutionChainId: species.evolution_chain_id });
+  const evolutions = mapEvolutions(evolutionChainResponse);
 
   const data = {
     id: pokemonResponse.id,
@@ -30,8 +30,7 @@ const getPokemon = async (pokemonName) => {
     speciesId: pokemonResponse.pokemon_species_id,
     height: pokemonResponse.height,
     weight: pokemonResponse.weight,
-    // evolutions,
-    // evolutionChain: evolutionsResponse.chain,
+    evolutions,
     moves,
     machines,
   };

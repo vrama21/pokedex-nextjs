@@ -14,14 +14,14 @@ const Evolutions = ({ evolutions }) => {
 
               return (
                 <div className="flex justify-between" key={name}>
-                  {evolutionDetails.length > 0 && (
+                  {/* {evolutionDetails.length > 0 && (
                     <div className="min-w-max my-auto">
                       <RightArrow className="h-12 mx-auto" />
                       {evolutionDetails.map((evolutionDetail) => (
                         <EvolutionDetail key={evolutionDetail} evolutionDetail={evolutionDetail} />
                       ))}
                     </div>
-                  )}
+                  )} */}
                   <Evolution evolutionName={evolution.name} evolutionSprite={evolution.sprite} />
                 </div>
               );
