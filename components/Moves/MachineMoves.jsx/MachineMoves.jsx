@@ -48,11 +48,11 @@ const MachineMoves = ({ machines, moves }) => {
   const data = useMemo(
     () =>
       moves.map((move) => {
-        const machineItem = machines.find((machine) => machine.move.name === move.name);
+        const machineItem = machines.find((machine) => machine.name === move.name);
 
         return {
           category: move.category,
-          machine: machineItem.item.name,
+          machine: machineItem.item,
           name: move.name,
           type: move.type,
         };

@@ -22,7 +22,7 @@ const Moves = ({ moves, machines }) => {
           {eggMoves.length > 0 && <EggMoves moves={eggMoves} />}
         </div>
         <div className="w-1/2 mx-2">
-          {machineMoves.length > 0 && (
+          {machines.length > 0 && (
             <div className="mb-4">
               <MachineMoves machines={machines} moves={machineMoves} />
             </div>

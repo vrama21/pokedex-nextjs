@@ -1,10 +1,74 @@
+const getMachinesByVersionGroupIdQuery = /* GraphQL */ `
+  query getMachinesByVersionGroupId($versionGroupId: Int!) {
+    pokemon_v2_versiongroup_by_pk(id: $versionGroupId) {
+      pokemon_v2_machines {
+        pokemon_v2_move {
+          name
+        }
+        pokemon_v2_item {
+          name
+        }
+      }
+    }
+  }
+`;
+
 const getMove = /* GraphQL */ `
-  query GetMove($moveName: String) {
+  query GetMove($moveName: String!) {
     pokemon_v2_move(where: { name: { _eq: $moveName } }) {
       name
       accuracy
       power
       pp
+    }
+  }
+`;
+
+const getPokemonByName = /* GraphQL */ `
+  query GetPokemonByName($pokemonName: String!, $versionGroupId: Int) {
+    pokemon_v2_pokemon(where: { name: { _eq: $pokemonName } }) {
+      id
+      height
+      name
+      weight
+      pokemon_species_id
+      pokemon_v2_pokemonmoves(where: { version_group_id: { _eq: $versionGroupId } }) {
+        id
+        version_group_id
+        level
+        pokemon_v2_move {
+          accuracy
+          power
+          pp
+          name
+          pokemon_v2_movedamageclass {
+            name
+          }
+          pokemon_v2_type {
+            name
+          }
+        }
+        pokemon_v2_movelearnmethod {
+          name
+        }
+      }
+      pokemon_v2_pokemonstats {
+        base_stat
+      }
+      pokemon_v2_pokemontypes {
+        pokemon_v2_type {
+          name
+        }
+      }
+    }
+  }
+`;
+
+const getPokemonSpeciesById = /* GraphQL */ `
+  query GetPokemonSpeciesById($speciesId: Int!) {
+    pokemon_v2_pokemonspecies_by_pk(id: $speciesId) {
+      name
+      evolution_chain_id
     }
   }
 `;
@@ -25,4 +89,4 @@ const listAllPokemon = /* GraphQL */ `
   }
 `;
 
-export { getMove, listAllMoves, listAllPokemon };
+export { getMachinesByVersionGroupIdQuery, getMove, getPokemonByName, getPokemonSpeciesById, listAllMoves, listAllPokemon };

@@ -58,7 +58,6 @@ export const getServerSideProps = async (context) => {
 };
 
 const Move = ({ move }) => {
-  console.log(move);
   return (
     <Layout>
       <p>{move.accuracy}</p>

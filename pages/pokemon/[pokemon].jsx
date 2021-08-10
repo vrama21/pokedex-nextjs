@@ -7,71 +7,14 @@ import Evolutions from 'components/Evolutions/Evolutions';
 import getPokemon from 'api/getPokemon';
 import Container from 'components/Container/Container';
 
-// export const getStaticPaths = async () => {
-//   const { data:
-//     { pokemon_v2_pokemon: pokemons }
-//   } = await client.query({
-//     query: gql(listAllPokemon)
-//   })
-
-//   const paths = pokemons.map((pokemon) => {
-//     return {
-//       params: { pokemon: pokemon.name.toString() },
-//     };
-//   });
-// export const getStaticPaths = async () => {
-//   const paths = PokemonList.map((pokemon) => {
-//     return {
-//       params: { pokemonName: pokemon.name.toString() },
-//     };
-//   });
-
-//   return {
-//     paths,
-//     fallback: true,
-//   };
-// };
-
-// export const getStaticProps = async (context) => {
-//   const { pokemonName } = context.params;
-
-//   try {
-//     const pokemonDataResponse = await getPokemon(pokemonName);
-
-//     return {
-//       props: {
-//         pokemon: pokemonDataResponse,
-//       },
-//     };
-//   } catch (err) {
-//     console.error(`Getting data for ${pokemonName} failed...`);
-//   }
-
-//   return {
-//     props: {
-//       pokemon: null
-//     }
-//   };
-// };
-
 export const getServerSideProps = async (context) => {
   const { pokemon } = context.params;
 
-  try {
-    const pokemonDataResponse = await getPokemon(pokemon);
-
-    return {
-      props: {
-        pokemon: pokemonDataResponse,
-      },
-    };
-  } catch (err) {
-    console.error(`Error getting pokemon data for ${pokemon}...`);
-  }
+  const pokemonData = await getPokemon(pokemon);
 
   return {
     props: {
-      pokemon: null,
+      pokemon: pokemonData,
     },
   };
 };
@@ -106,7 +49,7 @@ const Pokemon = ({ pokemon }) => {
           </div>
         </div>
       </Layout>
-      <Evolutions evolutions={pokemon.evolutions} evolutionChain />
+      {/* <Evolutions evolutions={pokemon.evolutions} evolutionChain /> */}
       <Moves moves={pokemon.moves} machines={pokemon.machines} />
     </>
   );

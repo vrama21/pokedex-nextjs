@@ -36,7 +36,7 @@ const LevelUpMoves = ({ moves }) => {
       },
       {
         Header: 'Lv',
-        accessor: 'learnedAt',
+        accessor: 'level',
         Cell({ cell }) {
           return <span>{cell.value}</span>;
         },
@@ -50,7 +50,7 @@ const LevelUpMoves = ({ moves }) => {
       moves.map((move) => {
         return {
           category: move.category,
-          learnedAt: move.learnedAt,
+          level: move.level,
           name: move.name,
           type: move.type,
         };
