@@ -4,7 +4,6 @@ import EvolutionDetail from '../EvolutionDetails/EvolutionDetails';
 import RightArrow from '../../assets/right-arrow.svg';
 
 const Evolutions = ({ evolutions }) => {
-  console.log(evolutions);
   return (
     <Layout>
       <h2 className="text-center font-bold">Evolutions</h2>
