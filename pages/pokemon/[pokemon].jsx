@@ -4,7 +4,7 @@ import PokedexData from 'components/PokedexData/PokedexData';
 import Moves from 'components/Moves/Moves';
 import Stats from 'components/Stats/Stats';
 import Evolutions from 'components/Evolutions/Evolutions';
-import getPokemon from 'api/getPokemon';
+import getPokemon from 'pokeapi/getPokemon';
 import Container from 'components/Container/Container';
 
 export const getServerSideProps = async (context) => {
