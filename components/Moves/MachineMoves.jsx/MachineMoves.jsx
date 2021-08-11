@@ -35,6 +35,20 @@ const MachineMoves = ({ machines, moves }) => {
         },
       },
       {
+        Header: 'Power',
+        accessor: 'power',
+        Cell({ cell }) {
+          return cell.value ? <span>{cell.value}</span> : <span>&mdash;</span>;
+        },
+      },
+      {
+        Header: 'Accuracy',
+        accessor: 'accuracy',
+        Cell({ cell }) {
+          return cell.value ? <span>{cell.value}</span> : <span>&mdash;</span>;
+        },
+      },
+      {
         Header: 'Tm/Hm',
         accessor: 'machine',
         Cell({ cell }) {
@@ -51,9 +65,11 @@ const MachineMoves = ({ machines, moves }) => {
         const machineItem = machines.find((machine) => machine.name === move.name);
 
         return {
+          accuracy: move.accuracy,
           category: move.category,
           machine: machineItem.item,
           name: move.name,
+          power: move.power,
           type: move.type,
         };
       }),
@@ -89,8 +105,8 @@ const MachineMoves = ({ machines, moves }) => {
     );
   });
   return (
-    <Container>
-      <h3 className="font-bold text-center">Moves learned by Machine</h3>
+    <Container className="m-4 p-0 text-sm">
+      <h3 className="font-bold text-center py-4">Moves learned by Machine</h3>
       <table {...getTableProps}>
         <thead>{tableHeaders}</thead>
         <tbody {...getTableBodyProps}>{tableRows}</tbody>

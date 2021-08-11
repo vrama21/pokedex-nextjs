@@ -35,6 +35,20 @@ const EggMoves = ({ moves }) => {
         },
       },
       {
+        Header: 'Power',
+        accessor: 'power',
+        Cell({ cell }) {
+          return cell.value ? <span>{cell.value}</span> : <span>&mdash;</span>;
+        },
+      },
+      {
+        Header: 'Accuracy',
+        accessor: 'accuracy',
+        Cell({ cell }) {
+          return cell.value ? <span>{cell.value}</span> : <span>&mdash;</span>;
+        },
+      },
+      {
         Header: 'Lv',
         accessor: 'level',
         Cell({ cell }) {
@@ -49,9 +63,11 @@ const EggMoves = ({ moves }) => {
     () =>
       moves.map((move) => {
         return {
+          accuracy: move.accuracy,
           category: move.category,
           level: move.level === 0 ? 1 : move.level,
           name: move.name,
+          power: move.power,
           type: move.type,
         };
       }),
@@ -87,8 +103,8 @@ const EggMoves = ({ moves }) => {
     );
   });
   return (
-    <Container>
-      <h3 className="font-bold text-center">Moves learned by Breeding</h3>
+    <Container className="m-4 p-0 text-sm">
+      <h3 className="font-bold text-center py-4">Moves learned by Breeding</h3>
       <table {...getTableProps}>
         <thead>{tableHeaders}</thead>
         <tbody {...getTableBodyProps}>{tableRows}</tbody>

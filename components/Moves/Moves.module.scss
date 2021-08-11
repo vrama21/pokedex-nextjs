@@ -4,7 +4,7 @@
 
   th {
     color: #d1d1d1;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
 
     &:hover {
       background-color: rgb(74, 52, 83);
@@ -12,29 +12,34 @@
   }
 
   th:first-child {
+    border-right: 1px #d1d1d1 solid;
+    padding-left: 1rem;
     text-align: left;
     width: 100%;
-    border-right: 1px #d1d1d1 solid;
   }
 
   th:not(:first-child):not(:last-child) {
     text-align: center;
     padding: 0.25rem 0.5rem;
-    min-width: 115px;
+    min-width: 105px;
     border-right: 1px #d1d1d1 solid;
   }
 
   th:last-child {
-    text-align: right;
-    min-width: 90px;
+    min-width: 60px;
   }
 }
 
 .tableRow {
   border-bottom: 1px #d1d1d1 solid;
 
+  &:last-child {
+    border-bottom: none;
+  }
+
   &:hover {
     background-color: rgb(74, 52, 83);
+    border-radius: 1rem;
   }
 
   span {
@@ -43,13 +48,20 @@
     font-weight: normal;
   }
 
+  td:first-child {
+    padding-left: 1rem;
+  }
+
   td:not(:first-child):not(:last-child) {
     text-align: center;
     margin: 0 auto;
   }
 
   td:last-child {
+    padding-right: 0.5rem;
+    overflow: hidden;
     text-align: right;
+    white-space: nowrap;
   }
 }
 

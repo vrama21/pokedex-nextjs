@@ -35,6 +35,20 @@ const LevelUpMoves = ({ moves }) => {
         },
       },
       {
+        Header: 'Power',
+        accessor: 'power',
+        Cell({ cell }) {
+          return cell.value ? <span>{cell.value}</span> : <span>&mdash;</span>;
+        },
+      },
+      {
+        Header: 'Accuracy',
+        accessor: 'accuracy',
+        Cell({ cell }) {
+          return cell.value ? <span>{cell.value}</span> : <span>&mdash;</span>;
+        },
+      },
+      {
         Header: 'Lv',
         accessor: 'level',
         Cell({ cell }) {
@@ -49,9 +63,11 @@ const LevelUpMoves = ({ moves }) => {
     () =>
       moves.map((move) => {
         return {
+          accuracy: move.accuracy,
           category: move.category,
           level: move.level,
           name: move.name,
+          power: move.power,
           type: move.type,
         };
       }),
@@ -66,7 +82,7 @@ const LevelUpMoves = ({ moves }) => {
         {headerGroup.headers.map((column) => (
           <th key={column} className="no-select" {...column.getHeaderProps(column.getSortByToggleProps())}>
             {column.render('Header')}
-            {column.isSorted && <span>{column.isSortedDesc ? ' 🔽' : ' 🔼'}</span>}
+            {column.isSorted && <span>{column.isSortedDesc ? '🔽' : '🔼'}</span>}
           </th>
         ))}
       </tr>
@@ -86,9 +102,10 @@ const LevelUpMoves = ({ moves }) => {
       </tr>
     );
   });
+
   return (
-    <Container>
-      <h3 className="font-bold text-center">Moves learned by Level Up</h3>
+    <Container className="m-4 p-0 text-sm">
+      <h3 className="font-bold text-center py-4">Moves learned by Level Up</h3>
       <table {...getTableProps}>
         <thead>{tableHeaders}</thead>
         <tbody {...getTableBodyProps}>{tableRows}</tbody>
