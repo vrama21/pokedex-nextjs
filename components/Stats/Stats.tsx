@@ -1,9 +1,11 @@
+import { PokemonStats } from 'types/pokemonStats';
 import Container from '../Container/Container';
 import Statbar from '../Statbar/Statbar';
 
-const Stats = ({ stats }) => {
+const Stats = ({ stats }: { stats: PokemonStats }) => {
   // const calculateMaxHp = stats.hp * 2 + 204;
   // const calculateMaxStat = (baseStat) => (baseStat * 2 + 99) * 1.1;
+  console.log(stats)
 
   const baseHpMax = 255;
   const baseAttackMax = 180;
@@ -12,12 +14,12 @@ const Stats = ({ stats }) => {
   const baseSpecialDefenseMax = 230;
   const baseSpeedMax = 180;
 
-  const hpPercentage = (stats.hp / baseHpMax).toFixed(2) * 100;
-  const attackPercentage = (stats.attack / baseAttackMax).toFixed(2) * 100;
-  const defensePercentage = (stats.defense / baseDefenseMax).toFixed(2) * 100;
-  const specialAttackPercentage = (stats.specialAttack / baseSpecialAttackMax).toFixed(2) * 100;
-  const specialDefensePercentage = (stats.specialDefense / baseSpecialDefenseMax).toFixed(2) * 100;
-  const speedPercentage = (stats.speed / baseSpeedMax).toFixed(2) * 100;
+  const hpPercentage = ((stats.hp / baseHpMax) * 100).toFixed(2);
+  const attackPercentage = ((stats.attack / baseAttackMax) * 100).toFixed(2);
+  const defensePercentage = ((stats.defense / baseDefenseMax) * 100).toFixed(2);
+  const specialAttackPercentage = ((stats.specialAttack / baseSpecialAttackMax) * 100).toFixed(2);
+  const specialDefensePercentage = ((stats.specialDefense / baseSpecialDefenseMax) * 100).toFixed(2);
+  const speedPercentage = ((stats.speed / baseSpeedMax) * 100).toFixed(2);
 
   return (
     <Container>

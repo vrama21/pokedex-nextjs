@@ -1,5 +1,5 @@
 import Layout from '../Layout/Layout';
-import Evolution from '../Evolution/Evolution';
+import { Evolution } from '../Evolution';
 import EvolutionDetail from '../EvolutionDetails/EvolutionDetails';
 
 const Evolutions = ({ evolutions }) => {
