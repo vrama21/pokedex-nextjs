@@ -1,6 +1,7 @@
-import { Container } from 'layouts';
+import { Container, SectionLayout } from 'layouts';
 import { Evolution, EvolutionDetail } from 'components';
 import { PokemonEvolution } from 'types';
+import { ReactElement } from 'react';
 
 const Evolutions = ({ evolutions }: { evolutions: PokemonEvolution[] }) => {
   const hasEvolutions = evolutions.length > 1;
@@ -19,7 +20,7 @@ const Evolutions = ({ evolutions }: { evolutions: PokemonEvolution[] }) => {
     });
 
   return (
-    <Container>
+    <Container className="mx-2 mt-8">
       <h2 className="text-center font-bold">Evolutions</h2>
       <div className="flex justify-center mx-auto">
         {hasEvolutions && renderEvolutions}

@@ -1,7 +1,14 @@
 import styles from './StatBar.module.scss';
 
-const Statbar = ({ baseStat, baseStatMaxValue, statName, statPercentage }) => {
-  const getStatPercentageColor = (percentage) => {
+interface StatBarProps {
+  baseStat: number;
+  baseStatMaxValue: number;
+  statName: string;
+  statPercentage: number;
+}
+
+const StatBar = ({ baseStat, baseStatMaxValue, statName, statPercentage }: StatBarProps) => {
+  const getStatPercentageColor = (percentage: number) => {
     if (percentage > 90) return styles.statBar6;
     if (percentage <= 90 && percentage >= 70) return styles.statBar5;
     if (percentage <= 70 && percentage >= 50) return styles.statBar4;
@@ -22,4 +29,4 @@ const Statbar = ({ baseStat, baseStatMaxValue, statName, statPercentage }) => {
   );
 };
 
-export default Statbar;
+export default StatBar;

@@ -12,5 +12,5 @@ module.exports = {
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
-  images: { disableStaticImages: true, domains: ['raw.githubusercontent.com'] },
+  images: { disableStaticImages: true, domains: ['raw.githubusercontent.com', 'img.pokemondb.net'] },
 };

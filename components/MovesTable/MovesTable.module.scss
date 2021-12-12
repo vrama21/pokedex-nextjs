@@ -26,7 +26,7 @@
   }
 
   th:last-child {
-    min-width: 60px;
+    min-width: 95px;
   }
 }
 
@@ -46,6 +46,10 @@
     color: #d1d1d1;
     font-size: 0.875rem;
     font-weight: normal;
+  }
+
+  td {
+    line-height: 10px
   }
 
   td:first-child {

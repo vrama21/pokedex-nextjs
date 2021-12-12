@@ -10,9 +10,8 @@
   .statBar {
     align-self: center;
     animation-duration: 1s;
-    animation-name: slidein;
-    border-radius: 4px;
-    border: 1px solid #d1d1d1;
+    animation-name: slideIn;
+    box-shadow: 0.2rem 0.2rem 1rem rgba(0, 0, 0, 0.2);
     height: 0.75rem;
     width: 65%;
   }
@@ -38,7 +37,7 @@
   }
 }
 
-@keyframes slidein {
+@keyframes slideIn {
   from {
     width: 0%;
   }

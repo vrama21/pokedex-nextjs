@@ -1,4 +1,4 @@
 import Container from './Container/Container';
-import PageLayout from './Layout/PageLayout';
+import PageLayout from './PageLayout/PageLayout';
 
 export { Container, PageLayout };

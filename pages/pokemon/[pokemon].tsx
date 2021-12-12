@@ -29,9 +29,9 @@ const Pokemon = ({ pokemon }: PokemonProps) => {
 
   return (
     <div>
-      <div className="flex justify-evenly">
+      <div className="flex justify-evenly m-2">
         <Container className="w-1/2 mr-2 m-auto">
-          <Image className="w-full" src={pokemon.image} alt="logo" width={1024} height={1024} priority={true} />
+          <Image className="w-full" src={pokemon.image} alt="logo" width={525} height={525} priority={true} />
         </Container>
         <div className="flex flex-col justify-between w-1/2">
           <PokedexData pokemon={pokemon} />

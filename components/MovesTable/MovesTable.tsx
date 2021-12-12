@@ -1,12 +1,13 @@
 /* eslint-disable react/jsx-key */
-import Link from 'next/link';
 import { useMemo } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 import { useTable, useSortBy, Column } from 'react-table';
 import { startCase } from 'lodash';
 import { Type } from 'components';
 import { Container } from 'layouts';
-import styles from './MovesTable.module.scss';
 import { PokemonMove } from 'types';
+import styles from './MovesTable.module.scss';
 
 const MovesTable: React.FC<{ moves: PokemonMove[] }> = ({ moves }) => {
   const columns = useMemo(
@@ -34,7 +35,15 @@ const MovesTable: React.FC<{ moves: PokemonMove[] }> = ({ moves }) => {
           Header: 'Category',
           accessor: 'category',
           Cell({ cell }) {
-            return <img className={styles.moveCategory} src={`https://img.pokemondb.net/images/icons/move-${cell.value}.png`} alt={cell.value} />;
+            return (
+              <Image
+                className={styles.moveCategory}
+                src={`https://img.pokemondb.net/images/icons/move-${cell.value}.png`}
+                alt={cell.value}
+                width={48}
+                height={48}
+              />
+            );
           },
         },
         {
@@ -72,7 +81,7 @@ const MovesTable: React.FC<{ moves: PokemonMove[] }> = ({ moves }) => {
     );
   });
 
-  const tableRows = rows.map((row, rowIndex) => {
+  const tableRows = rows.map((row) => {
     prepareRow(row);
 
     return (
@@ -83,12 +92,13 @@ const MovesTable: React.FC<{ moves: PokemonMove[] }> = ({ moves }) => {
       </tr>
     );
   });
+
   return (
-    <Container className="m-4 p-0 text-sm">
+    <Container className="my-4 p-0 text-sm">
       <h3 className="font-bold text-center py-4">Moves learned by Tutor</h3>
-      <table {...getTableProps}>
+      <table {...getTableProps()}>
         <thead>{tableHeaders}</thead>
-        <tbody {...getTableBodyProps}>{tableRows}</tbody>
+        <tbody {...getTableBodyProps()}>{tableRows}</tbody>
       </table>
     </Container>
   );

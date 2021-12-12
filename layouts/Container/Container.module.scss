@@ -1,9 +1,9 @@
 .container {
   --tw-bg-opacity: 1;
-  background-color: rgba(31, 41, 55, var(--tw-bg-opacity));
-  border: 2px solid #d1d1d1;
-  border-radius: .25rem;
+  // background-color: rgba(31, 41, 55, var(--tw-bg-opacity));
+  background-color: #2A384B;
+  border-radius: 0.25rem;
   height: fit-content;
   padding: 1rem;
-  margin: 2rem 0;
+  box-shadow: 0.2rem 0.2rem rgba(0, 0, 0, 0.2);
 }
