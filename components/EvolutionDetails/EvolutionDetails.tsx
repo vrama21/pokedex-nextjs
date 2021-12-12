@@ -1,6 +1,6 @@
-import { ReactComponent as RightArrow } from 'assets/right-arrow.svg';
 import { PokemonTypeRequirement } from 'types';
 import { capitalize, startCase } from 'lodash';
+import RightArrow from '../RightArrow/RightArrow';
 
 const EvolutionDetail = ({ requirement }: { requirement: PokemonTypeRequirement }) => {
   const evolutionDetailValue = () => {
@@ -43,7 +43,7 @@ const EvolutionDetail = ({ requirement }: { requirement: PokemonTypeRequirement 
 
   return (
     <div className="min-w-max my-auto">
-      {/* <RightArrow className="h-12 mx-auto" /> */}
+      <RightArrow color={'orange'} />
       <div className="text-xs text-center">
         <span>{evolutionDetailValue()}</span>
       </div>
