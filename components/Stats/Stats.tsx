@@ -1,10 +1,10 @@
-import { PokemonStats } from 'types/pokemonStats';
-import Container from '../Container/Container';
-import Statbar from '../StatBar/StatBar';
+import { Statbar } from 'components';
+import { Container } from 'layouts';
+import { PokemonStats } from 'types';
 
 const Stats = ({ stats }: { stats: PokemonStats }) => {
-  // const calculateMaxHp = stats.hp * 2 + 204;
-  // const calculateMaxStat = (baseStat) => (baseStat * 2 + 99) * 1.1;
+  const calculateMaxHp = stats.hp * 2 + 204;
+  const calculateMaxStat = (baseStat) => (baseStat * 2 + 99) * 1.1;
 
   const baseHpMax = 255;
   const baseAttackMax = 180;
