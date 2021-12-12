@@ -1,27 +1,26 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/interactive-supports-focus */
 import { useRouter } from 'next/router';
-import { ReactChildren, useState } from 'react';
+import { ChangeEvent, MouseEvent, ReactChildren, useState } from 'react';
 import { capitalize } from 'lodash';
-import PokemonList from '../../data/pokemonList.json';
-import { Layout } from 'layouts';
+import PokemonList from 'data/pokemonList.json';
+import { PageLayout } from 'layouts';
 import styles from './SearchBar.module.scss';
 
 const SearchBar = () => {
   const [errorMessage, setErrorMessage] = useState(undefined);
-  const [pokemonSearchSuggestions, setPokemonSearchSuggestions] = useState(undefined);
+  const [pokemonSearchSuggestions, setPokemonSearchSuggestions] = useState<string[]>([]);
   const [searchBarValue, setSearchBarValue] = useState('');
   const router = useRouter();
 
-  const onPokemonNameChange = (event) => {
-    const { value } = event.target;
+  const onPokemonNameChange = (event: ChangeEvent) => {
+    const target = event.target as HTMLInputElement;
+    const { value } = target;
 
     setErrorMessage(undefined);
-    setPokemonSearchSuggestions(undefined);
+    setPokemonSearchSuggestions([]);
 
     if (value.length >= 2) {
       const filteredList = PokemonList.map((p) => p.name).filter((pokemon) => pokemon.substring(0, value.length) === value.toLowerCase());
-      const suggestionList = filteredList.length > 0 ? filteredList : undefined;
+      const suggestionList = filteredList.length > 0 ? filteredList : [];
 
       setPokemonSearchSuggestions(suggestionList);
     }
@@ -29,12 +28,13 @@ const SearchBar = () => {
     setSearchBarValue(value);
   };
 
-  const onSuggestionClick = (event, pokemon) => {
+  const onSuggestionClick = (event: MouseEvent, pokemon: string) => {
     event.preventDefault();
 
-    const value = event.target.innerText;
+    const target = event.target as HTMLInputElement;
+    const { value } = target;
 
-    setPokemonSearchSuggestions(undefined);
+    setPokemonSearchSuggestions([]);
     setSearchBarValue(value);
 
     const redirectPath = router.pathname.includes('pokemon') ? pokemon : `pokemon/${pokemon}`;
@@ -42,8 +42,8 @@ const SearchBar = () => {
   };
 
   return (
-    <div>
-      <div className="flex justify-center mt-4">
+    <div className="flex justify-center flex-col w-2/5 mx-auto my-4 relative">
+      <div>
         <input
           className={styles.searchBar}
           name="pokemon"
@@ -52,18 +52,18 @@ const SearchBar = () => {
           type="text"
           value={searchBarValue}
         />
-        {pokemonSearchSuggestions && (
-          <ul className={styles.autoCompleteDropdown}>
-            {pokemonSearchSuggestions.map((pokemon) => (
-              <li key={pokemon}>
-                <a onClick={(event) => onSuggestionClick(event, pokemon)} role="button">
-                  {capitalize(pokemon)}
-                </a>
-              </li>
-            ))}
-          </ul>
-        )}
       </div>
+      {pokemonSearchSuggestions.length > 0 && (
+        <ul className={styles.autoCompleteDropdown}>
+          {pokemonSearchSuggestions.map((pokemon) => (
+            <li key={pokemon}>
+              <a onClick={(event) => onSuggestionClick(event, pokemon)} role="button">
+                {capitalize(pokemon)}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
       {errorMessage && (
         <div className="text-center error-message">
           <span className="mx-auto error">{errorMessage}</span>
@@ -74,7 +74,7 @@ const SearchBar = () => {
 };
 
 SearchBar.getLayout = function getLayout(page: ReactChildren) {
-  return <Layout>{page}</Layout>;
+  return <PageLayout>{page}</PageLayout>;
 };
 
 export default SearchBar;

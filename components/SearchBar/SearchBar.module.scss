@@ -1,11 +1,12 @@
 .searchBar {
   color: black;
   padding: 0.5rem;
-  width: 400px;
+  // width: 400px;
+  width: 100%;
   height: 50px;
-  border-radius: 0.75rem;
+  border-radius: 0.25rem;
   outline: none;
-  border: 0.15rem solid orange;
+  border: 0.2rem solid silver;
   position: relative;
 }
 
@@ -32,16 +33,14 @@
 
 .autoCompleteDropdown {
   animation: dropDown 300ms ease-in-out forwards;
-  border: 0.06rem solid #c8ccd4;
+  border: 0.1rem solid #c8ccd4;
   background-color: white;
   border-radius: 4px;
-  display: block;
-  position: absolute;
   text-align: center;
-  width: 385px;
-  top: 140px;
-  flex-grow: 1;
-  transform-origin: top center;
+  position: absolute;
+  width: 95%;
+  left: 2.5%;
+  top: 100%;
 
   li {
     &:hover {

@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import { GetServerSideProps } from 'next';
 import { getMove } from 'api';
-import { Layout } from 'layouts';
+import { PageLayout } from 'layouts';
 import { PokemonMove } from 'types';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -34,7 +34,7 @@ const Move = ({ move }: MoveProps) => {
 };
 
 Move.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
+  return <PageLayout>{page}</PageLayout>;
 };
 
 export default Move;

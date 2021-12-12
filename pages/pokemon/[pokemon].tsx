@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import { GetServerSideProps } from 'next';
 import Image from 'next/image';
-import { Container, Layout } from 'layouts';
+import { Container, PageLayout } from 'layouts';
 import { Evolutions, PokedexData, Moves, Stats } from 'components';
 import { getPokemonData } from 'api';
 import { PokemonResponse } from 'types';
@@ -49,7 +49,7 @@ const Pokemon = ({ pokemon }: PokemonProps) => {
 };
 
 Pokemon.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
+  return <PageLayout>{page}</PageLayout>;
 };
 
 export default Pokemon;

@@ -1,4 +1,4 @@
-import Container from 'components/Container/Container';
-import Layout from './Layout/Layout';
+import Container from './Container/Container';
+import PageLayout from './Layout/PageLayout';
 
-export { Container, Layout };
+export { Container, PageLayout };

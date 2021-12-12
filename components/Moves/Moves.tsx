@@ -1,5 +1,5 @@
 import { MovesTable } from 'components';
-import { Layout } from 'layouts';
+import { Container } from 'layouts';
 import { PokemonMove } from 'types';
 
 interface MovesProps {
@@ -13,7 +13,7 @@ const Moves: React.FC<MovesProps> = ({ moves }) => {
   const tutorMoves = moves.filter((move) => move.method === 'tutor');
 
   return (
-    <Layout>
+    <Container>
       <div className="flex">
         <div className="w-1/2">
           {levelUpMoves.length > 0 && <MovesTable moves={levelUpMoves} />}
@@ -24,7 +24,7 @@ const Moves: React.FC<MovesProps> = ({ moves }) => {
           {tutorMoves.length > 0 && <MovesTable moves={tutorMoves} />}
         </div>
       </div>
-    </Layout>
+    </Container>
   );
 };
 

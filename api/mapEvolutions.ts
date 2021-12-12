@@ -1,4 +1,6 @@
-const mapEvolutions = (evolutionChain) => {
+import { PokemonEvolution } from 'types';
+
+const mapEvolutions = (evolutionChain: any): PokemonEvolution[] => {
   const evolutions = evolutionChain
     .map((species) => {
       const requirements = species.pokemon_v2_pokemonevolutions.map((requirement) => {

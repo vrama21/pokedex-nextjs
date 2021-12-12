@@ -1,8 +1,10 @@
+import { PokemonEvolution } from './PokemonEvolution';
 import { PokemonMove } from './PokemonMove';
-import { PokemonStats } from './pokemonStats';
+import { PokemonStats } from './PokemonStats';
 import { PokemonType } from './PokemonType';
 
 export interface PokemonResponse {
+  evolutions: PokemonEvolution[];
   height: number;
   id: string;
   image: string;
