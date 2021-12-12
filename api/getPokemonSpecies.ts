@@ -1,9 +1,10 @@
 import { gql } from '@apollo/client';
 import { getPokemonSpeciesById } from 'gql/queries';
-import { PokemonSpecies } from 'pokedex-promise-v2';
 import { client } from '../apollo-client';
+import { PokemonSpecies } from 'types';
 
 export const getPokemonSpecies = async ({ speciesId }: { speciesId: number }) => {
+  console.log(speciesId)
   try {
     const { data } = await client.query({
       query: gql(getPokemonSpeciesById),
@@ -12,7 +13,8 @@ export const getPokemonSpecies = async ({ speciesId }: { speciesId: number }) =>
       },
     });
 
-    const species = data.pokemon_v2_pokemonspecies_by_pk as PokemonSpecies;
+    const species = data.pokemonspecies_by_pk as PokemonSpecies;
+    console.log(species)
 
     return species;
   } catch (err) {

@@ -3,13 +3,13 @@ import { PokemonMove } from 'types';
 export const mapMove = (pokemonMove: any): PokemonMove => {
   return {
     id: pokemonMove.id,
-    accuracy: pokemonMove.pokemon_v2_move.accuracy,
-    category: pokemonMove.pokemon_v2_move.pokemon_v2_movedamageclass.name,
+    accuracy: pokemonMove.move.accuracy,
+    category: pokemonMove.move.damageclass.name,
     level: pokemonMove.level,
-    method: pokemonMove.pokemon_v2_movelearnmethod.name,
-    name: pokemonMove.pokemon_v2_move.name,
-    power: pokemonMove.pokemon_v2_move.power,
-    pp: pokemonMove.pokemon_v2_move.pp,
-    type: pokemonMove.pokemon_v2_move.pokemon_v2_type.name,
+    method: pokemonMove.learnmethod.name,
+    name: pokemonMove.move.name,
+    power: pokemonMove.move.power,
+    pp: pokemonMove.move.pp,
+    type: pokemonMove.move.type.name,
   };
 };

@@ -1,28 +1,28 @@
 export const getEvolutionChainByIdQuery = /* GraphQL */ `
   query GetEvolutionChainById($evolutionChainId: Int!) {
-    pokemon_v2_evolutionchain_by_pk(id: $evolutionChainId) {
+    evolutionchain_by_pk: pokemon_v2_evolutionchain_by_pk(id: $evolutionChainId) {
       id
-      pokemon_v2_pokemonspecies(order_by: { id: asc }) {
+      species: pokemon_v2_pokemonspecies(order_by: { id: asc }) {
         id
         evolves_from_species_id
         name
-        pokemon_v2_pokemonevolutions {
+        evolutions: pokemon_v2_pokemonevolutions {
           min_affection
           min_beauty
           min_happiness
           min_level
           time_of_day
           trade_species_id
-          pokemon_v2_evolutiontrigger {
+          evolution_trigger: pokemon_v2_evolutiontrigger {
             name
           }
-          pokemon_v2_item {
+          item: pokemon_v2_item {
             name
           }
-          pokemonV2ItemByHeldItemId {
+          itemByHeldItemId: pokemonV2ItemByHeldItemId {
             name
           }
-          pokemon_v2_move {
+          move: pokemon_v2_move {
             name
           }
         }
@@ -33,12 +33,12 @@ export const getEvolutionChainByIdQuery = /* GraphQL */ `
 
 export const getMachinesByVersionGroupIdQuery = /* GraphQL */ `
   query GetMachinesByVersionGroupId($versionGroupId: Int!) {
-    pokemon_v2_versiongroup_by_pk(id: $versionGroupId) {
-      pokemon_v2_machines {
-        pokemon_v2_move {
+    versiongroup_by_pk: pokemon_v2_versiongroup_by_pk(id: $versionGroupId) {
+      machines: pokemon_v2_machines {
+        move: pokemon_v2_move {
           name
         }
-        pokemon_v2_item {
+        item: pokemon_v2_item {
           name
         }
       }
@@ -48,7 +48,7 @@ export const getMachinesByVersionGroupIdQuery = /* GraphQL */ `
 
 export const getMove = /* GraphQL */ `
   query GetMove($moveName: String!) {
-    pokemon_v2_move(where: { name: { _eq: $moveName } }) {
+    move: pokemon_v2_move(where: { name: { _eq: $moveName } }) {
       name
       accuracy
       power
@@ -59,37 +59,37 @@ export const getMove = /* GraphQL */ `
 
 export const getPokemonByName = /* GraphQL */ `
   query GetPokemonByName($pokemonName: String!, $versionGroupId: Int) {
-    pokemon_v2_pokemon(where: { name: { _eq: $pokemonName } }) {
+    pokemon: pokemon_v2_pokemon(where: { name: { _eq: $pokemonName } }) {
       id
       height
       name
       weight
       pokemon_species_id
-      pokemon_v2_pokemonmoves(where: { version_group_id: { _eq: $versionGroupId } }) {
+      moves: pokemon_v2_pokemonmoves(where: { version_group_id: { _eq: $versionGroupId } }) {
         id
         version_group_id
         level
-        pokemon_v2_move {
+        move: pokemon_v2_move {
           accuracy
           power
           pp
           name
-          pokemon_v2_movedamageclass {
+          damageclass: pokemon_v2_movedamageclass {
             name
           }
-          pokemon_v2_type {
+          type: pokemon_v2_type {
             name
           }
         }
-        pokemon_v2_movelearnmethod {
+        learnmethod: pokemon_v2_movelearnmethod {
           name
         }
       }
-      pokemon_v2_pokemonstats {
+      stats: pokemon_v2_pokemonstats {
         base_stat
       }
-      pokemon_v2_pokemontypes {
-        pokemon_v2_type {
+      types: pokemon_v2_pokemontypes {
+        type: pokemon_v2_type {
           name
         }
       }
@@ -99,7 +99,7 @@ export const getPokemonByName = /* GraphQL */ `
 
 export const getPokemonSpeciesById = /* GraphQL */ `
   query GetPokemonSpeciesById($speciesId: Int!) {
-    pokemon_v2_pokemonspecies_by_pk(id: $speciesId) {
+    pokemonspecies_by_pk: pokemon_v2_pokemonspecies_by_pk(id: $speciesId) {
       name
       evolution_chain_id
     }
@@ -108,7 +108,7 @@ export const getPokemonSpeciesById = /* GraphQL */ `
 
 export const listAllMoves = /* GraphQL */ `
   query ListAllMoves {
-    pokemon_v2_move {
+    move: pokemon_v2_move {
       name
     }
   }
@@ -116,7 +116,7 @@ export const listAllMoves = /* GraphQL */ `
 
 export const listAllPokemon = /* GraphQL */ `
   query ListAllPokemon {
-    pokemon_v2_pokemon {
+    pokemon: pokemon_v2_pokemon {
       name
     }
   }

@@ -13,7 +13,7 @@ export const getEvolutions = async ({ evolutionChainId }: { evolutionChainId: nu
       },
     });
 
-    const evolutionChainData = data.pokemon_v2_evolutionchain_by_pk.pokemon_v2_pokemonspecies as EvolutionChain;
+    const evolutionChainData = data.evolutionchain_by_pk.species as EvolutionChain;
 
     const evolutions = mapEvolutions(evolutionChainData);
 

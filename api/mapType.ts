@@ -1,9 +1,6 @@
+import PokeAPI from 'pokedex-promise-v2';
 import { PokemonType } from 'types';
 
-interface TypeResponse {
-  pokemon_v2_type: { name: PokemonType };
-}
-
-export const mapType = (type: TypeResponse): PokemonType => {
-  return type.pokemon_v2_type.name;
+export const mapType = (type: PokeAPI.PokemonType): PokemonType => {
+  return type.type.name as PokemonType;
 };

@@ -4,8 +4,8 @@ export const getMachines = async ({ versionGroupId }: { versionGroupId: number }
   const machinesResponse = await getMachinesByVersionGroupId({ versionGroupId });
 
   const machines = machinesResponse.map((machine) => ({
-    name: machine.pokemon_v2_move.name,
-    item: machine.pokemon_v2_item.name,
+    name: machine.move.name,
+    item: machine.item.name,
   }));
 
   return machines;

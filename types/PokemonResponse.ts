@@ -6,7 +6,7 @@ import { PokemonType } from './PokemonType';
 export interface PokemonResponse {
   evolutions: PokemonEvolution[];
   height: number;
-  id: string;
+  id: number;
   image: string;
   name: string;
   moves: PokemonMove[];

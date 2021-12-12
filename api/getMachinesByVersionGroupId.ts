@@ -12,7 +12,7 @@ const getMachinesByVersionGroupId = async ({ versionGroupId }: { versionGroupId:
       },
     });
 
-    const machines = data.pokemon_v2_versiongroup_by_pk.pokemon_v2_machines;
+    const machines = data.versiongroup_by_pk.pokemon_v2_machines;
 
     return machines as Machine[];
   } catch (error) {

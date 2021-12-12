@@ -12,7 +12,7 @@ export const getMove = async (moveName: string) => {
       },
     });
 
-    const moveResponse = data.pokemon_v2_move[0] as Move;
+    const moveResponse = data.move[0] as Move;
 
     return moveResponse;
   } catch (error) {

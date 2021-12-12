@@ -1,7 +1,7 @@
 import { getPokemonByName } from 'gql/queries';
 import { gql } from '@apollo/client';
 import { client } from 'apollo-client';
-import { Pokemon } from 'pokedex-promise-v2';
+import { Pokemon } from 'types';
 
 export const getPokemon = async (pokemon: string, versionGroupId: number) => {
   try {
@@ -13,7 +13,7 @@ export const getPokemon = async (pokemon: string, versionGroupId: number) => {
       },
     });
 
-    const pokemonResponse = data.pokemon_v2_pokemon[0] as Pokemon;
+    const pokemonResponse = data.pokemon[0] as Pokemon;
 
     return pokemonResponse;
   } catch (err) {
