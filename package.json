@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "jest --forceExit"
+    "test": "jest --forceExit",
+    "install": "npm install --registry=https://registry.npmjs.org/"
   },
   "dependencies": {
     "@apollo/client": "3.4.5",
@@ -31,6 +32,7 @@
     "@types/lodash": "^4.14.177",
     "@types/pokedex-promise-v2": "github:mudkipme/pokeapi-v2-typescript",
     "@types/react": "^17.0.37",
+    "@types/react-table": "^7.7.9",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "autoprefixer": "9.8.6",

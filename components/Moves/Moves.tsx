@@ -1,10 +1,7 @@
 import Layout from '../Layout/Layout';
-import LevelUpMoves from './LevelUpMoves/LevelUpMoves';
-import MachineMoves from './MachineMoves.jsx/MachineMoves';
-import EggMoves from './EggMoves/EggMoves';
-import TutorMoves from './TutorMoves/TutorMoves';
 import { Machine } from 'pokedex-promise-v2';
 import { PokemonMove } from 'types';
+import MovesTable from 'components/MovesTable/MovesTable';
 
 interface MovesProps {
   moves: PokemonMove[];
@@ -21,12 +18,12 @@ const Moves: React.FC<MovesProps> = ({ moves, machines }) => {
     <Layout>
       <div className="flex">
         <div className="w-1/2">
-          {levelUpMoves.length > 0 && <LevelUpMoves moves={levelUpMoves} />}
-          {eggMoves.length > 0 && <EggMoves moves={eggMoves} />}
+          {levelUpMoves.length > 0 && <MovesTable moves={levelUpMoves} />}
+          {eggMoves.length > 0 && <MovesTable moves={eggMoves} />}
         </div>
         <div className="w-1/2">
-          {machines.length > 0 && <MachineMoves machines={machines} moves={machineMoves} />}
-          {tutorMoves.length > 0 && <TutorMoves moves={tutorMoves} />}
+          {machines.length > 0 && <MovesTable machines={machines} moves={machineMoves} />}
+          {tutorMoves.length > 0 && <MovesTable moves={tutorMoves} />}
         </div>
       </div>
     </Layout>
