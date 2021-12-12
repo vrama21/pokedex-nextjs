@@ -25,7 +25,8 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "allowJs": true,
-    "module": "esnext"
+    "module": "esnext",
+    "typeRoots": ["types"]
   },
   "exclude": ["node_modules"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]

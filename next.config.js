@@ -1,4 +1,6 @@
-module.exports = {
+const withImages = require('next-images');
+
+module.exports = withImages({
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
@@ -13,4 +15,4 @@ module.exports = {
     ignoreDuringBuilds: true,
   },
   images: { disableStaticImages: true, domains: ['raw.githubusercontent.com', 'img.pokemondb.net'] },
-};
+});

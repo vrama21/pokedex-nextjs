@@ -1,13 +1,10 @@
-import { Container, SectionLayout } from 'layouts';
+import { Container } from 'layouts';
 import { Evolution, EvolutionDetail } from 'components';
 import { PokemonEvolution } from 'types';
-import { ReactElement } from 'react';
 
-const Evolutions = ({ evolutions }: { evolutions: PokemonEvolution[] }) => {
-  const hasEvolutions = evolutions.length > 1;
-
+const EvolutionChain = ({ evolutions }: { evolutions: PokemonEvolution[] }) => {
   const renderEvolutions =
-    hasEvolutions &&
+    evolutions.length > 1 &&
     evolutions.map((evolution) => {
       const { requirements, name } = evolution;
 
@@ -23,11 +20,11 @@ const Evolutions = ({ evolutions }: { evolutions: PokemonEvolution[] }) => {
     <Container className="mx-2 mt-8">
       <h2 className="text-center font-bold">Evolutions</h2>
       <div className="flex justify-center mx-auto">
-        {hasEvolutions && renderEvolutions}
-        {!hasEvolutions && <p>There are no evolutions for this Pokemon</p>}
+        {evolutions.length > 1 && renderEvolutions}
+        {evolutions.length === 0 && <p>There are no evolutions for this Pokemon</p>}
       </div>
     </Container>
   );
 };
 
-export default Evolutions;
+export default EvolutionChain;
