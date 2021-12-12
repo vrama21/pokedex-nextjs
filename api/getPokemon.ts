@@ -13,10 +13,10 @@ export const getPokemon = async (pokemon: string, versionGroupId: number) => {
       },
     });
 
-    const response = data.pokemon_v2_pokemon[0] as Pokemon;
+    const pokemonResponse = data.pokemon_v2_pokemon[0] as Pokemon;
 
-    return response;
+    return pokemonResponse;
   } catch (err) {
-    throw new Error(`Error getting pokemon data for ${pokemon}...`);
+    throw new Error(`Error getting pokemon data for pokemon: ${pokemon}...`);
   }
 };

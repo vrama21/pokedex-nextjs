@@ -1,4 +1,6 @@
-export const mapMove = (pokemonMove: any) => {
+import { PokemonMove } from 'types';
+
+export const mapMove = (pokemonMove: any): PokemonMove => {
   return {
     id: pokemonMove.id,
     accuracy: pokemonMove.pokemon_v2_move.accuracy,

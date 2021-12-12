@@ -1,15 +1,17 @@
-import { mapMove, mapType } from 'api';
-import { PokemonResponse } from 'types';
+import { PokemonMove, PokemonResponse } from 'types';
 import { getMachines } from './getMachines';
 import { getPokemon } from './getPokemon';
 import { getPokemonSpecies } from './getPokemonSpecies';
 import { getEvolutions } from './getEvolutions';
+import { mapMove } from './mapMove';
+import { mapType } from './mapType';
 
 export const getPokemonData = async (pokemonName: string) => {
   const pokemonResponse = await getPokemon(pokemonName, 18);
   const species = await getPokemonSpecies({ speciesId: pokemonResponse.pokemon_species_id });
 
   const machines = await getMachines({ versionGroupId: 18 });
+  const moves: PokemonMove[] = pokemonResponse.pokemon_v2_pokemonmoves.map(mapMove);
   const evolutions = await getEvolutions({ evolutionChainId: species.evolution_chain_id });
 
   const pokemonData = {
@@ -18,7 +20,7 @@ export const getPokemonData = async (pokemonName: string) => {
     id: pokemonResponse.id,
     image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonResponse.id}.png`,
     machines,
-    moves: pokemonResponse.pokemon_v2_pokemonmoves.map(mapMove),
+    moves,
     name: pokemonResponse.name,
     speciesId: pokemonResponse.pokemon_species_id,
     stats: {
