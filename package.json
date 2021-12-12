@@ -7,7 +7,6 @@
     "build": "next build",
     "start": "next start",
     "test": "jest --forceExit",
-    "install": "npm install --registry=https://registry.npmjs.org/"
   },
   "dependencies": {
     "@apollo/client": "3.4.5",
