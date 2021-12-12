@@ -56,7 +56,7 @@ const MachineMoves = ({ machines, moves }) => {
         },
       },
     ],
-    []
+    [],
   );
 
   const data = useMemo(
@@ -73,7 +73,7 @@ const MachineMoves = ({ machines, moves }) => {
           type: move.type,
         };
       }),
-    [moves]
+    [moves],
   );
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data }, useSortBy);

@@ -1,4 +1,4 @@
-import { mapMove, mapType } from 'pokeapi';
+import { mapMove, mapType } from 'api';
 import { PokemonResponse } from 'types';
 import { getMachines } from './getMachines';
 import { getPokemon } from './getPokemon';

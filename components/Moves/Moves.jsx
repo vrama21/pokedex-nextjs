@@ -10,6 +10,8 @@ const Moves = ({ moves, machines }) => {
   const eggMoves = moves.filter((move) => move.method === 'egg');
   const tutorMoves = moves.filter((move) => move.method === 'tutor');
 
+  
+
   return (
     <Layout>
       <div className="flex">
