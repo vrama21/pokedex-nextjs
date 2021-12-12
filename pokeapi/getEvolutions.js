@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 import client from 'apollo-client';
-import { getEvolutionChainByIdQuery } from 'graphql/queries';
+import { getEvolutionChainByIdQuery } from 'gql/queries';
 
 const getEvolutions = async ({ evolutionChainId }) => {
   try {

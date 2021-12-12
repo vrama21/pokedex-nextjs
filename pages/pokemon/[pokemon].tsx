@@ -1,14 +1,16 @@
+import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
-import Layout from 'components/Layout/Layout';
+import { Layout } from 'components/Layout';
 import PokedexData from 'components/PokedexData/PokedexData';
 import Moves from 'components/Moves/Moves';
 import Stats from 'components/Stats/Stats';
-import Evolutions from 'components/Evolutions/Evolutions';
-import getPokemon from 'pokeapi/getPokemon';
+// import Evolutions from 'components/Evolutions/Evolutions';
+import { getPokemon } from 'pokeapi';
 import Container from 'components/Container/Container';
+import { PokemonResponse } from 'types';
 
-export const getServerSideProps = async (context) => {
-  const { pokemon } = context.params;
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { pokemon } = context.params as unknown as { [key: string]: string };
 
   const pokemonData = await getPokemon(pokemon);
 
@@ -19,7 +21,7 @@ export const getServerSideProps = async (context) => {
   };
 };
 
-const Pokemon = ({ pokemon }) => {
+const Pokemon = ({ pokemon }: { pokemon: PokemonResponse }) => {
   const router = useRouter();
 
   if (router.isFallback) {
@@ -49,7 +51,7 @@ const Pokemon = ({ pokemon }) => {
           </div>
         </div>
       </Layout>
-      <Evolutions evolutions={pokemon.evolutions} />
+      {/* <Evolutions evolutions={pokemon.evolutions} /> */}
       <Moves moves={pokemon.moves} machines={pokemon.machines} />
     </>
   );

@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 import client from 'apollo-client';
-import { getPokemonSpeciesById } from 'graphql/queries';
+import { getPokemonSpeciesById } from 'gql/queries';
 
 const getPokemonSpeciesGraphql = async ({ speciesId }) => {
   try {

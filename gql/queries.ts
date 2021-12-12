@@ -1,4 +1,4 @@
-const getEvolutionChainByIdQuery = /* GraphQL */ `
+export const getEvolutionChainByIdQuery = /* GraphQL */ `
   query GetEvolutionChainById($evolutionChainId: Int!) {
     pokemon_v2_evolutionchain_by_pk(id: $evolutionChainId) {
       id
@@ -31,7 +31,7 @@ const getEvolutionChainByIdQuery = /* GraphQL */ `
   }
 `;
 
-const getMachinesByVersionGroupIdQuery = /* GraphQL */ `
+export const getMachinesByVersionGroupIdQuery = /* GraphQL */ `
   query GetMachinesByVersionGroupId($versionGroupId: Int!) {
     pokemon_v2_versiongroup_by_pk(id: $versionGroupId) {
       pokemon_v2_machines {
@@ -46,7 +46,7 @@ const getMachinesByVersionGroupIdQuery = /* GraphQL */ `
   }
 `;
 
-const getMove = /* GraphQL */ `
+export const getMove = /* GraphQL */ `
   query GetMove($moveName: String!) {
     pokemon_v2_move(where: { name: { _eq: $moveName } }) {
       name
@@ -57,7 +57,7 @@ const getMove = /* GraphQL */ `
   }
 `;
 
-const getPokemonByName = /* GraphQL */ `
+export const getPokemonByName = /* GraphQL */ `
   query GetPokemonByName($pokemonName: String!, $versionGroupId: Int) {
     pokemon_v2_pokemon(where: { name: { _eq: $pokemonName } }) {
       id
@@ -97,7 +97,7 @@ const getPokemonByName = /* GraphQL */ `
   }
 `;
 
-const getPokemonSpeciesById = /* GraphQL */ `
+export const getPokemonSpeciesById = /* GraphQL */ `
   query GetPokemonSpeciesById($speciesId: Int!) {
     pokemon_v2_pokemonspecies_by_pk(id: $speciesId) {
       name
@@ -106,7 +106,7 @@ const getPokemonSpeciesById = /* GraphQL */ `
   }
 `;
 
-const listAllMoves = /* GraphQL */ `
+export const listAllMoves = /* GraphQL */ `
   query ListAllMoves {
     pokemon_v2_move {
       name
@@ -114,20 +114,10 @@ const listAllMoves = /* GraphQL */ `
   }
 `;
 
-const listAllPokemon = /* GraphQL */ `
+export const listAllPokemon = /* GraphQL */ `
   query ListAllPokemon {
     pokemon_v2_pokemon {
       name
     }
   }
 `;
-
-export {
-  getEvolutionChainByIdQuery,
-  getMachinesByVersionGroupIdQuery,
-  getMove,
-  getPokemonByName,
-  getPokemonSpeciesById,
-  listAllMoves,
-  listAllPokemon,
-};
