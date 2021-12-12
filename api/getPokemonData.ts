@@ -10,7 +10,6 @@ export const getPokemonData = async (pokemonName: string) => {
   const pokemonResponse = await getPokemon(pokemonName, 18);
   const species = await getPokemonSpecies({ speciesId: pokemonResponse.pokemon_species_id });
 
-  const machines = await getMachines({ versionGroupId: 18 });
   const moves: PokemonMove[] = pokemonResponse.pokemon_v2_pokemonmoves.map(mapMove);
   const evolutions = await getEvolutions({ evolutionChainId: species.evolution_chain_id });
 
@@ -19,7 +18,6 @@ export const getPokemonData = async (pokemonName: string) => {
     height: pokemonResponse.height,
     id: pokemonResponse.id,
     image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonResponse.id}.png`,
-    machines,
     moves,
     name: pokemonResponse.name,
     speciesId: pokemonResponse.pokemon_species_id,

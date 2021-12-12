@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { ReactChildren, useState } from 'react';
 import { capitalize } from 'lodash';
 import PokemonList from '../../data/pokemonList.json';
-import Layout from '../Layout/Layout';
+import { Layout } from 'layouts';
 import styles from './SearchBar.module.scss';
 
-export default function SearchBar() {
+const SearchBar = () => {
   const [errorMessage, setErrorMessage] = useState(undefined);
   const [pokemonSearchSuggestions, setPokemonSearchSuggestions] = useState(undefined);
   const [searchBarValue, setSearchBarValue] = useState('');
@@ -42,7 +42,7 @@ export default function SearchBar() {
   };
 
   return (
-    <Layout>
+    <div>
       <div className="flex justify-center mt-4">
         <input
           className={styles.searchBar}
@@ -69,6 +69,12 @@ export default function SearchBar() {
           <span className="mx-auto error">{errorMessage}</span>
         </div>
       )}
-    </Layout>
+    </div>
   );
-}
+};
+
+SearchBar.getLayout = function getLayout(page: ReactChildren) {
+  return <Layout>{page}</Layout>;
+};
+
+export default SearchBar;

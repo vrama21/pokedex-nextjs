@@ -1,6 +1,8 @@
-import { getMove } from 'api';
-import Layout from 'components/Layout/Layout';
+import { ReactElement } from 'react';
 import { GetServerSideProps } from 'next';
+import { getMove } from 'api';
+import { Layout } from 'layouts';
+import { PokemonMove } from 'types';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const contextParams = context.params as { move: string };
@@ -8,7 +10,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { move: moveName } = contextParams;
 
   const move = await getMove(moveName);
-  console.log(move)
 
   return {
     props: {
@@ -17,15 +18,23 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 };
 
-const Move: React.FC = ({ move }) => {
+interface MoveProps {
+  move: PokemonMove;
+}
+
+const Move = ({ move }: MoveProps) => {
   return (
-    <Layout>
+    <div>
       <p>{move.accuracy}</p>
       <p>{move.name}</p>
       <p>{move.power}</p>
       <p>{move.pp}</p>
-    </Layout>
+    </div>
   );
+};
+
+Move.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>;
 };
 
 export default Move;

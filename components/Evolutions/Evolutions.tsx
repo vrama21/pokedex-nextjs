@@ -1,8 +1,8 @@
-import Layout from '../Layout/Layout';
+import Layout from '../../layouts/Layout/Layout';
 import { Evolution } from '../Evolution';
 import EvolutionDetail from '../EvolutionDetails/EvolutionDetails';
 
-const Evolutions = ({ evolutions }) => {
+const Evolutions: React.FC<{ evolutions: Evolution[] }> = ({ evolutions }) => {
   const hasEvolutions = evolutions.length > 1;
 
   const renderEvolutions =

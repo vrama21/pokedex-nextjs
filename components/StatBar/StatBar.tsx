@@ -1,4 +1,4 @@
-import styles from './statbar.module.scss';
+import styles from './StatBar.module.scss';
 
 const Statbar = ({ baseStat, baseStatMaxValue, statName, statPercentage }) => {
   const getStatPercentageColor = (percentage) => {

@@ -1,9 +1,10 @@
 import { capitalize } from 'lodash';
+import { PokemonResponse } from 'types';
 import Container from '../Container/Container';
 import Type from '../Type/Type';
 import styles from './PokedexData.module.scss';
 
-const PokedexData = ({ pokemon }) => {
+const PokedexData = ({ pokemon }: { pokemon: PokemonResponse }) => {
   const nationalDexNumber = `00${pokemon.id}`.slice(-3);
 
   return (

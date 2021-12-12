@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { useMemo } from 'react';
 import { useTable, useSortBy, Column } from 'react-table';
 import { startCase } from 'lodash';
-import Container from 'components/Container/Container';
-import Type from 'components/Type/Type';
+import { Type } from 'components';
+import { Container } from 'layouts';
 import styles from './MovesTable.module.scss';
 import { PokemonMove } from 'types';
 

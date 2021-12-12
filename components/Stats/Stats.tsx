@@ -1,6 +1,6 @@
 import { PokemonStats } from 'types/pokemonStats';
 import Container from '../Container/Container';
-import Statbar from '../Statbar/Statbar';
+import Statbar from '../StatBar/StatBar';
 
 const Stats = ({ stats }: { stats: PokemonStats }) => {
   // const calculateMaxHp = stats.hp * 2 + 204;

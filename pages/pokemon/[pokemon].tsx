@@ -1,13 +1,9 @@
+import { ReactElement } from 'react';
 import { GetServerSideProps } from 'next';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { Layout } from 'components/Layout';
-import PokedexData from 'components/PokedexData/PokedexData';
-import Moves from 'components/Moves/Moves';
-import Stats from 'components/Stats/Stats';
-// import Evolutions from 'components/Evolutions/Evolutions';
+import { Container, Layout } from 'layouts';
+import { Evolutions, PokedexData, Moves, Stats } from 'components';
 import { getPokemonData } from 'api';
-import Container from 'components/Container/Container';
 import { PokemonResponse } from 'types';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -22,40 +18,38 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 };
 
-const Pokemon = ({ pokemon }: { pokemon: PokemonResponse }) => {
-  const router = useRouter();
+interface PokemonProps {
+  pokemon: PokemonResponse;
+}
 
-  if (router.isFallback) {
-    return <div>Loading...</div>;
-  }
-
+const Pokemon = ({ pokemon }: PokemonProps) => {
   if (!pokemon) {
     return <p className="text-center">There is no data for this Pokemon</p>;
   }
 
   return (
-    <>
-      <Layout>
-        <div>
-          <div className="flex justify-evenly">
-            <Container className="w-1/2 mr-2 px-4 py-2 m-auto">
-              <Image className="w-full" src={pokemon.image} alt="logo" width={1024} height={1024} />
-            </Container>
-            <div className="flex flex-col justify-between w-1/2">
-              <div className="w-full">
-                <PokedexData pokemon={pokemon} />
-              </div>
-              <div className="w-full">
-                <Stats stats={pokemon.stats} />
-              </div>
-            </div>
+    <div>
+      <div className="flex justify-evenly">
+        <Container className="w-1/2 mr-2 px-4 py-2 m-auto">
+          <Image className="w-full" src={pokemon.image} alt="logo" width={1024} height={1024} />
+        </Container>
+        <div className="flex flex-col justify-between w-1/2">
+          <div className="w-full">
+            <PokedexData pokemon={pokemon} />
+          </div>
+          <div className="w-full">
+            <Stats stats={pokemon.stats} />
           </div>
         </div>
-      </Layout>
-      {/* <Evolutions evolutions={pokemon.evolutions} /> */}
-      <Moves moves={pokemon.moves} machines={pokemon.machines} />
-    </>
+      </div>
+      <Evolutions evolutions={pokemon.evolutions} />
+      <Moves moves={pokemon.moves} />
+    </div>
   );
+};
+
+Pokemon.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>;
 };
 
 export default Pokemon;

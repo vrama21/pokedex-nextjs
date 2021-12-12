@@ -1,4 +1,5 @@
 import { startCase } from 'lodash';
+import Image from 'next/image';
 import Link from 'next/link';
 
 interface EvolutionProps {
@@ -6,10 +7,10 @@ interface EvolutionProps {
   evolutionSprite: string;
 }
 
-const Evolution = ({ evolutionName, evolutionSprite }: EvolutionProps) => {
+const Evolution: React.FC<EvolutionProps> = ({ evolutionName, evolutionSprite }) => {
   return (
     <div className="text-center w-32">
-      <img className="mx-auto" src={evolutionSprite} alt={evolutionName} />
+      <Image className="mx-auto" src={evolutionSprite} alt={evolutionName} width={1024} height={1024} />
       <Link href={{ pathname: `${evolutionName}` }} scroll={false}>
         <a>{startCase(evolutionName)}</a>
       </Link>
