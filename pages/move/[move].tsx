@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import { GetServerSideProps } from 'next';
-import { getMove } from 'api';
+import { getMove } from 'api/getMove';
 import { PageLayout } from 'layouts';
 import { PokemonMove } from 'types';
 

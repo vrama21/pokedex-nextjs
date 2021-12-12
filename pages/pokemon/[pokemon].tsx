@@ -3,7 +3,7 @@ import { GetServerSideProps } from 'next';
 import Image from 'next/image';
 import { Container, PageLayout } from 'layouts';
 import { Evolutions, PokedexData, Moves, Stats } from 'components';
-import { getPokemonData } from 'api';
+import { getPokemonData } from 'api/getPokemonData';
 import { PokemonResponse } from 'types';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {

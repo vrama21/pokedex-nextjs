@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 import { client } from 'apollo-client';
 import { getEvolutionChainByIdQuery } from 'gql/queries';
 import { EvolutionChain } from 'pokedex-promise-v2';
-import mapEvolutions from './mapEvolutions';
+import mapEvolutions from '../helpers/mapEvolutions';
 
 export const getEvolutions = async ({ evolutionChainId }: { evolutionChainId: number }) => {
   try {

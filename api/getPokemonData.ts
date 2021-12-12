@@ -2,8 +2,7 @@ import { PokemonResponse } from 'types';
 import { getPokemon } from './getPokemon';
 import { getPokemonSpecies } from './getPokemonSpecies';
 import { getEvolutions } from './getEvolutions';
-import { mapMove } from './mapMove';
-import { mapType } from './mapType';
+import { mapMove, mapType } from 'helpers';
 
 export const getPokemonData = async (pokemonName: string) => {
   const pokemonResponse = await getPokemon(pokemonName, 18);
