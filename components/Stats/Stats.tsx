@@ -5,7 +5,6 @@ import Statbar from '../Statbar/Statbar';
 const Stats = ({ stats }: { stats: PokemonStats }) => {
   // const calculateMaxHp = stats.hp * 2 + 204;
   // const calculateMaxStat = (baseStat) => (baseStat * 2 + 99) * 1.1;
-  console.log(stats)
 
   const baseHpMax = 255;
   const baseAttackMax = 180;

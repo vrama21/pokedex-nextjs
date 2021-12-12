@@ -5,14 +5,14 @@ import PokedexData from 'components/PokedexData/PokedexData';
 import Moves from 'components/Moves/Moves';
 import Stats from 'components/Stats/Stats';
 // import Evolutions from 'components/Evolutions/Evolutions';
-import { getPokemon } from 'pokeapi';
+import { getPokemonData } from 'pokeapi';
 import Container from 'components/Container/Container';
 import { PokemonResponse } from 'types';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { pokemon } = context.params as unknown as { [key: string]: string };
 
-  const pokemonData = await getPokemon(pokemon);
+  const pokemonData = await getPokemonData(pokemon);
 
   return {
     props: {

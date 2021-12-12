@@ -1,6 +1,6 @@
 import getMachinesByVersionGroupId from './getMachinesByVersionGroupId';
 
-const getMachines = async ({ versionGroupId }) => {
+export const getMachines = async ({ versionGroupId }: { versionGroupId: number }) => {
   const machinesResponse = await getMachinesByVersionGroupId({ versionGroupId });
 
   const machines = machinesResponse.map((machine) => ({
@@ -10,5 +10,3 @@ const getMachines = async ({ versionGroupId }) => {
 
   return machines;
 };
-
-export default getMachines;
