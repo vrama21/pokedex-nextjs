@@ -5,6 +5,7 @@ import Router from 'next/router';
 import 'tailwindcss/tailwind.css';
 import '../styles/global.scss';
 import '../styles/types.scss';
+import { Loading } from 'components';
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -25,7 +26,7 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
   }, []);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return getLayout(<Component {...pageProps} />);
