@@ -1,4 +1,4 @@
-import { Statbar } from 'components';
+import { StatBar } from 'components';
 import { Container } from 'layouts';
 import { PokemonStats } from 'types';
 
@@ -23,22 +23,22 @@ const Stats = ({ stats }: { stats: PokemonStats }) => {
   return (
     <Container>
       <h2 className="font-bold text-center">Stats</h2>
-      <Statbar baseStat={stats.hp} baseStatMaxValue={baseHpMax} statName="HP" statPercentage={hpPercentage} />
-      <Statbar baseStat={stats.attack} baseStatMaxValue={baseAttackMax} statName="Attack" statPercentage={attackPercentage} />
-      <Statbar baseStat={stats.defense} baseStatMaxValue={baseDefenseMax} statName="Defense" statPercentage={defensePercentage} />
-      <Statbar
+      <StatBar baseStat={stats.hp} baseStatMaxValue={baseHpMax} statName="HP" statPercentage={hpPercentage} />
+      <StatBar baseStat={stats.attack} baseStatMaxValue={baseAttackMax} statName="Attack" statPercentage={attackPercentage} />
+      <StatBar baseStat={stats.defense} baseStatMaxValue={baseDefenseMax} statName="Defense" statPercentage={defensePercentage} />
+      <StatBar
         baseStat={stats.specialAttack}
         baseStatMaxValue={baseSpecialAttackMax}
         statName="Sp. Attack"
         statPercentage={specialAttackPercentage}
       />
-      <Statbar
+      <StatBar
         baseStat={stats.specialDefense}
         baseStatMaxValue={baseSpecialDefenseMax}
         statName="Sp. Defense"
         statPercentage={specialDefensePercentage}
       />
-      <Statbar baseStat={stats.speed} baseStatMaxValue={baseSpeedMax} statName="Speed" statPercentage={speedPercentage} />
+      <StatBar baseStat={stats.speed} baseStatMaxValue={baseSpeedMax} statName="Speed" statPercentage={speedPercentage} />
     </Container>
   );
 };

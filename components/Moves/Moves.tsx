@@ -1,4 +1,4 @@
-import { MovesTable } from 'components';
+import { LevelUpMovesTable } from 'components';
 import { Container } from 'layouts';
 import { PokemonMove } from 'types';
 
@@ -17,12 +17,12 @@ const Moves = ({ moves }: MovesProps) => {
       <h2 className="text-center font-bold">Moves</h2>
       <div className="flex">
         <div className="w-1/2">
-          {levelUpMoves.length > 0 && <MovesTable moves={levelUpMoves} />}
-          {eggMoves.length > 0 && <MovesTable moves={eggMoves} />}
+          {levelUpMoves.length > 0 && <LevelUpMovesTable moves={levelUpMoves} moveType="Level Up" />}
+          {/* {eggMoves.length > 0 && <MovesTable moves={eggMoves} moveType="Breeding" />} */}
         </div>
         <div className="w-1/2">
-          {machineMoves.length > 0 && <MovesTable moves={machineMoves} />}
-          {tutorMoves.length > 0 && <MovesTable moves={tutorMoves} />}
+          {/* {machineMoves.length > 0 && <MovesTable moves={machineMoves} moveType="TM/HM" />}
+          {tutorMoves.length > 0 && <MovesTable moves={tutorMoves} moveType="Tutor" />} */}
         </div>
       </div>
     </Container>

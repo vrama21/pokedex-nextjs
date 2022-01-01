@@ -3,6 +3,7 @@
   border-bottom: 1px #d1d1d1 solid;
 
   th {
+    background-color: #617ca3;
     color: #d1d1d1;
     font-size: 0.8rem;
 
@@ -26,7 +27,7 @@
   }
 
   th:last-child {
-    min-width: 95px;
+    min-width: 45px;
   }
 }
 

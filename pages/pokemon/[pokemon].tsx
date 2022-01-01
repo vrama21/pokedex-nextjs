@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 import { GetServerSideProps } from 'next';
 import Image from 'next/image';
 import { Container, PageLayout } from 'layouts';
-import { Evolutions, PokedexData, Moves, Stats } from 'components';
+import { EvolutionChain, PokedexData, Moves, Stats } from 'components';
 import { getPokemonData } from 'api/getPokemonData';
 import { PokemonResponse } from 'types';
 
@@ -38,7 +38,7 @@ const Pokemon = ({ pokemon }: PokemonProps) => {
           <Stats stats={pokemon.stats} />
         </div>
       </div>
-      <Evolutions evolutions={pokemon.evolutions} />
+      <EvolutionChain evolutions={pokemon.evolutions} />
       <Moves moves={pokemon.moves} />
     </div>
   );

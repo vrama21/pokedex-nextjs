@@ -1,15 +1,20 @@
-/* eslint-disable react/jsx-key */
-import { useMemo } from 'react';
+import { ReactElement, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useTable, useSortBy, Column } from 'react-table';
+import { Column } from 'react-table';
 import { startCase } from 'lodash';
-import { Type } from 'components';
-import { Container } from 'layouts';
+import { BaseTable, Type } from 'components';
+import { MovesTableLayout } from 'layouts';
 import { PokemonMove } from 'types';
-import styles from './MovesTable.module.scss';
+import baseTableStyles from '../BaseTable/BaseTable.module.scss';
 
-const MovesTable: React.FC<{ moves: PokemonMove[] }> = ({ moves }) => {
+interface MovesTableProps {
+  moves: PokemonMove[];
+  moveType: string;
+  showLevelColumn: boolean;
+}
+
+const LevelUpMovesTable = ({ moves, moveType, showLevelColumn = true }: MovesTableProps) => {
   const columns = useMemo(
     () =>
       [
@@ -18,9 +23,11 @@ const MovesTable: React.FC<{ moves: PokemonMove[] }> = ({ moves }) => {
           accessor: 'name',
           Cell({ cell }) {
             return (
-              <Link href={`/move/${cell.value}`} replace>
-                {startCase(cell.value)}
-              </Link>
+              <span>
+                <Link href={`/move/${cell.value}`} replace>
+                  {startCase(cell.value)}
+                </Link>
+              </span>
             );
           },
         },
@@ -37,7 +44,7 @@ const MovesTable: React.FC<{ moves: PokemonMove[] }> = ({ moves }) => {
           Cell({ cell }) {
             return (
               <Image
-                className={styles.moveCategory}
+                className={baseTableStyles.moveCategory}
                 src={`https://img.pokemondb.net/images/icons/move-${cell.value}.png`}
                 alt={cell.value}
                 width={48}
@@ -60,48 +67,29 @@ const MovesTable: React.FC<{ moves: PokemonMove[] }> = ({ moves }) => {
             return cell.value ? <span>{cell.value}</span> : <span>&mdash;</span>;
           },
         },
+        showLevelColumn && {
+          Header: 'Lv',
+          accessor: 'level',
+          Cell({ cell }) {
+            return <span>{cell.value}</span>;
+          },
+        },
       ] as Column<PokemonMove>[],
-    [],
+    [showLevelColumn],
   );
 
   const data = useMemo(() => moves, [moves]);
 
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data }, useSortBy);
-
-  const tableHeaders = headerGroups.map((headerGroup) => {
-    return (
-      <tr className={styles.tableHeader} {...headerGroup.getHeaderGroupProps()}>
-        {headerGroup.headers.map((column) => (
-          <th className="no-select" {...column.getHeaderProps(column.getSortByToggleProps())}>
-            {column.render('Header')}
-            {column.isSorted && <span>{column.isSortedDesc ? ' 🔽' : ' 🔼'}</span>}
-          </th>
-        ))}
-      </tr>
-    );
-  });
-
-  const tableRows = rows.map((row) => {
-    prepareRow(row);
-
-    return (
-      <tr className={styles.tableRow} {...row.getRowProps()}>
-        {row.cells.map((cell) => (
-          <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-        ))}
-      </tr>
-    );
-  });
-
   return (
-    <Container className="my-4 p-0 text-sm">
-      <h3 className="font-bold text-center py-4">Moves learned by Tutor</h3>
-      <table {...getTableProps()}>
-        <thead>{tableHeaders}</thead>
-        <tbody {...getTableBodyProps()}>{tableRows}</tbody>
-      </table>
-    </Container>
+    <MovesTableLayout>
+      <h3 className="font-bold text-center py-4">Moves learned by {moveType}</h3>
+      <BaseTable columns={columns} data={data} />
+    </MovesTableLayout>
   );
 };
 
-export default MovesTable;
+LevelUpMovesTable.getLayout = function getLayout(page: ReactElement) {
+  return <MovesTableLayout>{page}</MovesTableLayout>;
+};
+
+export default LevelUpMovesTable;
