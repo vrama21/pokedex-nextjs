@@ -1,12 +1,20 @@
+@import 'theme.scss';
+@import 'fonts.scss';
+
 html,
 body {
   color: white;
   padding: 0;
   margin: 0;
-  font-family: 'Fira Sans', 'Trebuchet MS', Ubuntu, Helvetica, Arial, sans-serif;
-  line-height: 1.6;
+  font-family: 'Russo One';
+  font-weight: 100;
+  line-height: 1.25;
+  font-weight: 500;
   font-size: 18px;
-  background-color: #1B2330;
+  background-color: #1b2330;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 * {
@@ -28,10 +36,13 @@ img {
 
 h2 {
   font-size: 2rem;
+  letter-spacing: 0.15rem;
 }
 
 h3 {
   font-size: 1.2rem;
+  letter-spacing: 0.05rem;
+  font-weight: lighter;
 }
 
 .error-message {
@@ -58,4 +69,18 @@ h3 {
   -moz-user-select: none; /* Old versions of Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+
+.react-tabs__tab {
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+  color: whitesmoke;
+  background-color: $secondary;
+  border: 1px solid white;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+
+.react-tabs__tab--selected {
+  background-color: #9181d8;
 }

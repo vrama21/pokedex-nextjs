@@ -9,7 +9,7 @@ const PokedexData = ({ pokemon }: { pokemon: PokemonResponse }) => {
 
   return (
     <Container>
-      <h2 className="font-bold text-center mb-2">Pokedex Data</h2>
+      <h2 className="text-center mb-2">Pokedex Data</h2>
       <div className="flex justify-center py-1">
         <p className={styles.pokedexKey}>Name</p>
         <p className="w-1/2 text-left text-sm">{capitalize(pokemon.name)}</p>

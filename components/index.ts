@@ -4,11 +4,11 @@ import EvolutionDetail from './EvolutionDetails/EvolutionDetails';
 import EvolutionChain from './EvolutionChain/EvolutionChain';
 import Loading from './Loading/Loading';
 import Moves from './Moves/Moves';
-import LevelUpMovesTable from './MovesTable/MovesTable';
+import MovesTable from './MovesTable/MovesTable';
 import PokedexData from './PokedexData/PokedexData';
 import SearchBar from './SearchBar/SearchBar';
 import StatBar from './StatBar/StatBar';
 import Stats from './Stats/Stats';
 import Type from './Type/Type';
 
-export { BaseTable, Evolution, EvolutionDetail, EvolutionChain, Loading, Moves, LevelUpMovesTable, PokedexData, SearchBar, StatBar, Stats, Type };
+export { BaseTable, Evolution, EvolutionDetail, EvolutionChain, Loading, Moves, MovesTable, PokedexData, SearchBar, StatBar, Stats, Type };

@@ -11,10 +11,10 @@ import baseTableStyles from '../BaseTable/BaseTable.module.scss';
 interface MovesTableProps {
   moves: PokemonMove[];
   moveType: string;
-  showLevelColumn: boolean;
+  hideLevelColumn?: boolean;
 }
 
-const LevelUpMovesTable = ({ moves, moveType, showLevelColumn = true }: MovesTableProps) => {
+const MovesTable = ({ moves, moveType, hideLevelColumn = false }: MovesTableProps) => {
   const columns = useMemo(
     () =>
       [
@@ -57,7 +57,7 @@ const LevelUpMovesTable = ({ moves, moveType, showLevelColumn = true }: MovesTab
           Header: 'Power',
           accessor: 'power',
           Cell({ cell }) {
-            return cell.value ? <span>{cell.value}</span> : <span>&mdash;</span>;
+            return cell.value ? <span className="font-light">{cell.value}</span> : <span>&mdash;</span>;
           },
         },
         {
@@ -67,29 +67,32 @@ const LevelUpMovesTable = ({ moves, moveType, showLevelColumn = true }: MovesTab
             return cell.value ? <span>{cell.value}</span> : <span>&mdash;</span>;
           },
         },
-        showLevelColumn && {
-          Header: 'Lv',
+        {
+          Header: 'Level',
           accessor: 'level',
+          show: hideLevelColumn,
           Cell({ cell }) {
             return <span>{cell.value}</span>;
           },
         },
       ] as Column<PokemonMove>[],
-    [showLevelColumn],
+    [hideLevelColumn],
   );
 
   const data = useMemo(() => moves, [moves]);
 
+  const _initialState = hideLevelColumn ? { hiddenColumns: ['level'] } : {};
+
   return (
     <MovesTableLayout>
       <h3 className="font-bold text-center py-4">Moves learned by {moveType}</h3>
-      <BaseTable columns={columns} data={data} />
+      <BaseTable columns={columns} data={data} initialState={_initialState} />
     </MovesTableLayout>
   );
 };
 
-LevelUpMovesTable.getLayout = function getLayout(page: ReactElement) {
+MovesTable.getLayout = function getLayout(page: ReactElement) {
   return <MovesTableLayout>{page}</MovesTableLayout>;
 };
 
-export default LevelUpMovesTable;
+export default MovesTable;

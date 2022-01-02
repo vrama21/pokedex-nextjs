@@ -1,11 +1,15 @@
-.tableHeader {
+.tableHeader, .no-select {
   border-top: 1px #d1d1d1 solid;
   border-bottom: 1px #d1d1d1 solid;
 
   th {
     background-color: #617ca3;
-    color: #d1d1d1;
+    color: whitesmoke;
     font-size: 0.8rem;
+    font-weight: lighter;
+    min-width: 120px;
+    padding: 0.5rem 0.5rem;
+    letter-spacing: 0.05rem;
 
     &:hover {
       background-color: rgb(61, 109, 131);
@@ -21,18 +25,24 @@
 
   th:not(:first-child):not(:last-child) {
     text-align: center;
-    padding: 0.25rem 0.5rem;
-    min-width: 105px;
     border-right: 1px #d1d1d1 solid;
   }
 
   th:last-child {
-    min-width: 45px;
+    min-width: 100px;
   }
 }
 
+.tableHeaderSelected {
+  background-color: #9181d8 !important;
+}
+
+.sortArrow {
+  mix-blend-mode: luminosity;
+}
+
 .tableRow {
-  border-bottom: 1px #d1d1d1 solid;
+  border-bottom: 1px solid;
 
   &:last-child {
     border-bottom: none;
@@ -50,7 +60,7 @@
   }
 
   td {
-    line-height: 10px
+    line-height: 10px;
   }
 
   td:first-child {
