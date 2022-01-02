@@ -1,13 +1,12 @@
-import { ReactElement } from 'react';
 import { GetServerSideProps } from 'next';
 import Image from 'next/image';
-import { Container, PageLayout } from 'layouts';
+import { PageLayout, SectionLayout } from 'layouts';
 import { EvolutionChain, PokedexData, Moves, Stats } from 'components';
 import { getPokemonData } from 'api/getPokemonData';
 import { PokemonResponse } from 'types';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { pokemon } = context.params as unknown as { [key: string]: string };
+  const { pokemon } = context.params as { pokemon: string };
 
   const pokemonData = await getPokemonData(pokemon);
 
@@ -28,24 +27,24 @@ const Pokemon = ({ pokemon }: PokemonProps) => {
   }
 
   return (
-    <div>
-      <div className="flex justify-evenly m-2">
-        <Container className="w-1/2 mr-2 m-auto">
-          <Image className="w-full" src={pokemon.image} alt="logo" width={525} height={525} priority={true} />
-        </Container>
+    <PageLayout>
+      <SectionLayout backgroundColor="#2A384B">
+        <div className="w-1/2">
+          <Image src={pokemon.image} alt="logo" width={525} height={525} priority={true} />
+        </div>
         <div className="flex flex-col justify-between w-1/2">
           <PokedexData pokemon={pokemon} />
           <Stats stats={pokemon.stats} />
         </div>
-      </div>
-      <EvolutionChain evolutions={pokemon.evolutions} />
-      <Moves moves={pokemon.moves} />
-    </div>
+      </SectionLayout>
+      <SectionLayout backgroundColor="#1B2330">
+        <EvolutionChain evolutions={pokemon.evolutions} />
+      </SectionLayout>
+      <SectionLayout backgroundColor="#2A384B">
+        <Moves moves={pokemon.moves} />
+      </SectionLayout>
+    </PageLayout>
   );
-};
-
-Pokemon.getLayout = function getLayout(page: ReactElement) {
-  return <PageLayout>{page}</PageLayout>;
 };
 
 export default Pokemon;

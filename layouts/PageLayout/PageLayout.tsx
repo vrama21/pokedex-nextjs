@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './PageLayout.module.scss';
 import { SearchBar } from 'components';
 
-const PageLayout = ({ children }: { children: React.ReactNode }) => {
+const PageLayout: React.FC = ({ children }) => {
   return (
     <div className={styles.container}>
       <SearchBar />

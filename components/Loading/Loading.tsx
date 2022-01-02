@@ -3,7 +3,7 @@ import { Squares, Triangles, Wedges } from 'components/Spinners';
 
 const loadingAnimations = [Squares, Triangles, Wedges];
 
-const Loading = () => {
+const Loading: React.FC = () => {
   const [randomInt, setRandomInt] = useState<number | undefined>(undefined);
 
   useEffect(() => {

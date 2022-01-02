@@ -1,8 +1,11 @@
-import { Container } from 'layouts';
 import { Evolution, EvolutionDetail } from 'components';
 import { PokemonEvolution } from 'types';
 
-const EvolutionChain = ({ evolutions }: { evolutions: PokemonEvolution[] }) => {
+interface EvolutionChainProps {
+  evolutions: PokemonEvolution[];
+}
+
+const EvolutionChain: React.FC<EvolutionChainProps> = ({ evolutions }) => {
   const renderEvolutions =
     evolutions.length > 1 &&
     evolutions.map((evolution) => {
@@ -17,13 +20,13 @@ const EvolutionChain = ({ evolutions }: { evolutions: PokemonEvolution[] }) => {
     });
 
   return (
-    <Container className="mx-2 mt-8">
+    <div>
       <h2 className="text-center font-bold">Evolutions</h2>
       <div className="flex justify-center mx-auto">
         {evolutions.length > 1 && renderEvolutions}
         {evolutions.length === 0 && <p>There are no evolutions for this Pokemon</p>}
       </div>
-    </Container>
+    </div>
   );
 };
 

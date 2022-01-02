@@ -14,7 +14,7 @@ interface MovesTableProps {
   hideLevelColumn?: boolean;
 }
 
-const MovesTable = ({ moves, moveType, hideLevelColumn = false }: MovesTableProps) => {
+const MovesTable: React.FC<MovesTableProps> = ({ moves, moveType, hideLevelColumn = false }) => {
   const columns = useMemo(
     () =>
       [
@@ -89,10 +89,6 @@ const MovesTable = ({ moves, moveType, hideLevelColumn = false }: MovesTableProp
       <BaseTable columns={columns} data={data} initialState={_initialState} />
     </MovesTableLayout>
   );
-};
-
-MovesTable.getLayout = function getLayout(page: ReactElement) {
-  return <MovesTableLayout>{page}</MovesTableLayout>;
 };
 
 export default MovesTable;

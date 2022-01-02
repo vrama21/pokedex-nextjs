@@ -1,6 +1,6 @@
 import styles from './MovesTableLayout.module.scss';
 
-const MovesTableLayout = ({ children }: { children: React.ReactNode }) => {
+const MovesTableLayout: React.FC = ({ children }) => {
   return <div className={styles.container}>{children}</div>;
 };
 

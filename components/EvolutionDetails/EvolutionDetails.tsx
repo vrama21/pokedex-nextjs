@@ -2,7 +2,11 @@ import { PokemonTypeRequirement } from 'types';
 import { capitalize, startCase } from 'lodash';
 import RightArrow from '../RightArrow/RightArrow';
 
-const EvolutionDetail = ({ requirement }: { requirement: PokemonTypeRequirement }) => {
+interface EvolutionDetailProps {
+  requirement: PokemonTypeRequirement;
+}
+
+const EvolutionDetail: React.FC<EvolutionDetailProps> = ({ requirement }) => {
   const evolutionDetailValue = () => {
     switch (requirement.trigger) {
       case 'level-up':

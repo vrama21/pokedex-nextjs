@@ -2,7 +2,7 @@ interface RightArrowProps {
   color?: string;
 }
 
-const RightArrow = ({ color = '#4FBA6F' }: RightArrowProps) => {
+const RightArrow: React.FC<RightArrowProps> = ({ color = '#4FBA6F' }) => {
   return (
     <div className="w-12">
       <svg version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512">

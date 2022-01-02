@@ -1,7 +1,10 @@
-import { ReactNode } from 'react';
 import styles from './Container.module.scss';
 
-const Container = ({ className, children }: { className?: string; children: ReactNode }) => {
+interface ContainerProps {
+  className: string;
+}
+
+const Container: React.FC<ContainerProps> = ({ className, children }) => {
   return className ? (
     <div className={className}>
       <div className={styles.container}>{children}</div>

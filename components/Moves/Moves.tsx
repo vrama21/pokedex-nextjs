@@ -1,5 +1,4 @@
 import { MovesTable } from 'components';
-import { Container } from 'layouts';
 import { PokemonMove } from 'types';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
@@ -7,14 +6,14 @@ interface MovesProps {
   moves: PokemonMove[];
 }
 
-const Moves = ({ moves }: MovesProps) => {
+const Moves: React.FC<MovesProps> = ({ moves }) => {
   const levelUpMoves = moves.filter((move) => move.method === 'level-up');
   const machineMoves = moves.filter((move) => move.method === 'machine');
   const eggMoves = moves.filter((move) => move.method === 'egg');
   const tutorMoves = moves.filter((move) => move.method === 'tutor');
 
   return (
-    <Container className="mx-2 mt-8">
+    <div className="my-4">
       <h2 className="text-center font-bold mb-4">Moves</h2>
       <Tabs>
         <TabList className="flex">
@@ -44,7 +43,7 @@ const Moves = ({ moves }: MovesProps) => {
           </TabPanel>
         )}
       </Tabs>
-    </Container>
+    </div>
   );
 };
 

@@ -1,11 +1,10 @@
 import { useRouter } from 'next/router';
-import { ChangeEvent, MouseEvent, ReactChildren, useState } from 'react';
+import { ChangeEvent, MouseEvent, useState } from 'react';
 import { capitalize } from 'lodash';
 import PokemonList from 'data/pokemonList.json';
-import { PageLayout } from 'layouts';
 import styles from './SearchBar.module.scss';
 
-const SearchBar = () => {
+const SearchBar: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState(undefined);
   const [pokemonSearchSuggestions, setPokemonSearchSuggestions] = useState<string[]>([]);
   const [searchBarValue, setSearchBarValue] = useState('');
@@ -42,17 +41,15 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="flex justify-center flex-col w-2/5 mx-auto my-4 relative">
-      <div>
-        <input
-          className={styles.searchBar}
-          name="pokemon"
-          onChange={onPokemonNameChange}
-          placeholder="Enter Pokemon Name"
-          type="text"
-          value={searchBarValue}
-        />
-      </div>
+    <div className="flex justify-center flex-col w-2/5 mx-auto my-12 relative">
+      <input
+        className={styles.searchBar}
+        name="pokemon"
+        onChange={onPokemonNameChange}
+        placeholder="Enter Pokemon Name"
+        type="text"
+        value={searchBarValue}
+      />
       {pokemonSearchSuggestions.length > 0 && (
         <ul className={styles.autoCompleteDropdown}>
           {pokemonSearchSuggestions.map((pokemon) => (
@@ -71,10 +68,6 @@ const SearchBar = () => {
       )}
     </div>
   );
-};
-
-SearchBar.getLayout = function getLayout(page: ReactChildren) {
-  return <PageLayout>{page}</PageLayout>;
 };
 
 export default SearchBar;

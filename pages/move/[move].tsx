@@ -1,7 +1,5 @@
-import { ReactElement } from 'react';
 import { GetServerSideProps } from 'next';
 import { getMove } from 'api/getMove';
-import { PageLayout } from 'layouts';
 import { PokemonMove } from 'types';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -22,7 +20,7 @@ interface MoveProps {
   move: PokemonMove;
 }
 
-const Move = ({ move }: MoveProps) => {
+const Move: React.FC<MoveProps> = ({ move }) => {
   return (
     <div>
       <p>{move.accuracy}</p>
@@ -31,10 +29,6 @@ const Move = ({ move }: MoveProps) => {
       <p>{move.pp}</p>
     </div>
   );
-};
-
-Move.getLayout = function getLayout(page: ReactElement) {
-  return <PageLayout>{page}</PageLayout>;
 };
 
 export default Move;

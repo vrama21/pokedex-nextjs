@@ -1,8 +1,12 @@
 import { StatBar } from 'components';
-import { Container } from 'layouts';
 import { PokemonStats } from 'types';
+import styles from './Stats.module.scss';
 
-const Stats = ({ stats }: { stats: PokemonStats }) => {
+interface StatsProps {
+  stats: PokemonStats;
+}
+
+const Stats: React.FC<StatsProps> = ({ stats }) => {
   // const calculateMaxHp = stats.hp * 2 + 204;
   // const calculateMaxStat = (baseStat) => (baseStat * 2 + 99) * 1.1;
 
@@ -13,16 +17,16 @@ const Stats = ({ stats }: { stats: PokemonStats }) => {
   const baseSpecialDefenseMax = 230;
   const baseSpeedMax = 180;
 
-  const hpPercentage = ((stats.hp / baseHpMax) * 100);
-  const attackPercentage = ((stats.attack / baseAttackMax) * 100);
-  const defensePercentage = ((stats.defense / baseDefenseMax) * 100);
-  const specialAttackPercentage = ((stats.specialAttack / baseSpecialAttackMax) * 100);
-  const specialDefensePercentage = ((stats.specialDefense / baseSpecialDefenseMax) * 100);
-  const speedPercentage = ((stats.speed / baseSpeedMax) * 100);
+  const hpPercentage = (stats.hp / baseHpMax) * 100;
+  const attackPercentage = (stats.attack / baseAttackMax) * 100;
+  const defensePercentage = (stats.defense / baseDefenseMax) * 100;
+  const specialAttackPercentage = (stats.specialAttack / baseSpecialAttackMax) * 100;
+  const specialDefensePercentage = (stats.specialDefense / baseSpecialDefenseMax) * 100;
+  const speedPercentage = (stats.speed / baseSpeedMax) * 100;
 
   return (
-    <Container>
-      <h2 className="font-bold text-center">Stats</h2>
+    <div className={styles.container}>
+      <h2 className="text-center mb-4">Stats</h2>
       <StatBar baseStat={stats.hp} baseStatMaxValue={baseHpMax} statName="HP" statPercentage={hpPercentage} />
       <StatBar baseStat={stats.attack} baseStatMaxValue={baseAttackMax} statName="Attack" statPercentage={attackPercentage} />
       <StatBar baseStat={stats.defense} baseStatMaxValue={baseDefenseMax} statName="Defense" statPercentage={defensePercentage} />
@@ -39,7 +43,7 @@ const Stats = ({ stats }: { stats: PokemonStats }) => {
         statPercentage={specialDefensePercentage}
       />
       <StatBar baseStat={stats.speed} baseStatMaxValue={baseSpeedMax} statName="Speed" statPercentage={speedPercentage} />
-    </Container>
+    </div>
   );
 };
 

@@ -7,7 +7,7 @@ interface StatBarProps {
   statPercentage: number;
 }
 
-const StatBar = ({ baseStat, baseStatMaxValue, statName, statPercentage }: StatBarProps) => {
+const StatBar: React.FC<StatBarProps> = ({ baseStat, baseStatMaxValue, statName, statPercentage }) => {
   const getStatPercentageColor = (percentage: number) => {
     if (percentage > 90) return styles.statBar6;
     if (percentage <= 90 && percentage >= 70) return styles.statBar5;

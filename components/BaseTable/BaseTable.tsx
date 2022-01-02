@@ -11,7 +11,7 @@ interface BaseTableProps {
   initialState?: {};
 }
 
-export default function BaseTable({ columns, data, initialState }: BaseTableProps) {
+const BaseTable: React.FC<BaseTableProps> = ({ columns, data, initialState }) => {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data, initialState }, useSortBy);
 
   const tableHeaders = headerGroups.map((headerGroup) => {
@@ -51,4 +51,6 @@ export default function BaseTable({ columns, data, initialState }: BaseTableProp
       </table>
     </div>
   );
-}
+};
+
+export default BaseTable;
