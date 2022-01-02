@@ -11,9 +11,15 @@
     align-self: center;
     animation-duration: 1s;
     animation-name: slideIn;
+    background-color: rgba(0, 0, 0, 0.5);
     box-shadow: 0.2rem 0.2rem 1rem rgba(0, 0, 0, 0.2);
     height: 0.75rem;
-    width: 65%;
+    margin: 0 .5rem;
+    width: 60%;
+
+    div {
+      height: inherit;
+    }
   }
 
   .statName {

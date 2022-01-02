@@ -21,8 +21,8 @@ const StatBar: React.FC<StatBarProps> = ({ baseStat, baseStatMaxValue, statName,
     <div className={styles.statBarContainer}>
       <p className={styles.statName}>{statName}</p>
       <p className={styles.baseStat}>{baseStat}</p>
-      <div className="flex w-2/3 mx-2">
-        <div className={`${styles.statBar} ${getStatPercentageColor(statPercentage)}`} style={{ width: `${statPercentage}%` }} />
+      <div className={styles.statBar}>
+        <div className={getStatPercentageColor(statPercentage)} style={{ width: `${statPercentage}%` }} />
       </div>
       <p className={styles.maxStat}>{baseStatMaxValue}</p>
     </div>

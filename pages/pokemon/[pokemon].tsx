@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next';
-import Image from 'next/image';
 import { PageLayout, SectionLayout } from 'layouts';
-import { EvolutionChain, PokedexData, Moves, Stats } from 'components';
+import { EvolutionChain, Moves } from 'components';
+import { EvolutionsSection, PokemonSection } from 'components/Sections';
 import { getPokemonData } from 'api/getPokemonData';
 import { PokemonResponse } from 'types';
 
@@ -28,18 +28,8 @@ const Pokemon = ({ pokemon }: PokemonProps) => {
 
   return (
     <PageLayout>
-      <SectionLayout backgroundColor="#2A384B">
-        <div className="w-1/2">
-          <Image src={pokemon.image} alt="logo" width={525} height={525} priority={true} />
-        </div>
-        <div className="flex flex-col justify-between w-1/2">
-          <PokedexData pokemon={pokemon} />
-          <Stats stats={pokemon.stats} />
-        </div>
-      </SectionLayout>
-      <SectionLayout backgroundColor="#1B2330">
-        <EvolutionChain evolutions={pokemon.evolutions} />
-      </SectionLayout>
+      <PokemonSection pokemon={pokemon} />
+      <EvolutionsSection evolutions={pokemon.evolutions} />
       <SectionLayout backgroundColor="#2A384B">
         <Moves moves={pokemon.moves} />
       </SectionLayout>

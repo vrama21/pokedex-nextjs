@@ -1,5 +1,6 @@
 @import 'theme.scss';
 @import 'fonts.scss';
+@import 'animations.scss';
 
 html,
 body {
@@ -37,12 +38,14 @@ img {
 h2 {
   font-size: 2rem;
   letter-spacing: 0.15rem;
+  text-shadow: .25rem .25rem 1rem rgb(0, 0, 0, 75%);
 }
 
 h3 {
   font-size: 1.2rem;
   letter-spacing: 0.05rem;
   font-weight: lighter;
+  text-shadow: .25rem .25rem 1rem rgb(0, 0, 0, 75%);
 }
 
 .error-message {

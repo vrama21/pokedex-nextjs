@@ -1,5 +1,7 @@
+import { PageLayout } from 'layouts';
+
 const App = () => {
-  return <div></div>;
+  return <PageLayout></PageLayout>;
 };
 
 export default App;

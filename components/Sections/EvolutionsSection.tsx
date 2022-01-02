@@ -1,11 +1,12 @@
 import { Evolution, EvolutionDetail } from 'components';
+import { SectionLayout } from 'layouts';
 import { PokemonEvolution } from 'types';
 
-interface EvolutionChainProps {
+interface EvolutionsSectionProps {
   evolutions: PokemonEvolution[];
 }
 
-const EvolutionChain: React.FC<EvolutionChainProps> = ({ evolutions }) => {
+const EvolutionsSection: React.FC<EvolutionsSectionProps> = ({ evolutions }) => {
   const renderEvolutions =
     evolutions.length > 1 &&
     evolutions.map((evolution) => {
@@ -20,14 +21,16 @@ const EvolutionChain: React.FC<EvolutionChainProps> = ({ evolutions }) => {
     });
 
   return (
-    <div>
-      <h2 className="text-center font-bold">Evolutions</h2>
-      <div className="flex justify-center mx-auto">
-        {evolutions.length > 1 && renderEvolutions}
-        {evolutions.length === 0 && <p>There are no evolutions for this Pokemon</p>}
+    <SectionLayout backgroundColor="#1B2330">
+      <div>
+        <h2 className="text-center font-bold">Evolutions</h2>
+        <div className="flex justify-center mx-auto">
+          {evolutions.length > 1 && renderEvolutions}
+          {evolutions.length === 0 && <p>There are no evolutions for this Pokemon</p>}
+        </div>
       </div>
-    </div>
+    </SectionLayout>
   );
 };
 
-export default EvolutionChain;
+export default EvolutionsSection;

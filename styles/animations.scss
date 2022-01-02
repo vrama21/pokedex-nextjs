@@ -1,0 +1,14 @@
+@keyframes slidein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 100;
+  }
+}
+
+.slide-in {
+  animation-duration: 0.25s;
+  animation-name: slidein;
+}
