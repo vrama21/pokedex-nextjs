@@ -7,18 +7,16 @@ interface EvolutionsSectionProps {
 }
 
 const EvolutionsSection: React.FC<EvolutionsSectionProps> = ({ evolutions }) => {
-  const renderEvolutions =
-    evolutions.length > 1 &&
-    evolutions.map((evolution) => {
-      const { requirements, name } = evolution;
+  const renderEvolutions = evolutions.map((evolution) => {
+    const { requirements, name } = evolution;
 
-      return (
-        <div className="flex justify-between" key={name}>
-          {requirements.length > 0 && requirements.map((requirement, index) => <EvolutionDetail key={index} requirement={requirement} />)}
-          <Evolution evolutionName={evolution.name} evolutionSprite={evolution.sprite} />
-        </div>
-      );
-    });
+    return (
+      <div className="flex justify-between" key={name}>
+        {requirements.length > 0 && requirements.map((requirement, index) => <EvolutionDetail key={index} requirement={requirement} />)}
+        <Evolution evolutionName={evolution.name} evolutionSprite={evolution.sprite} />
+      </div>
+    );
+  });
 
   return (
     <SectionLayout backgroundColor="#1B2330">

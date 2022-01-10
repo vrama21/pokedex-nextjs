@@ -48,7 +48,7 @@ const EvolutionDetail: React.FC<EvolutionDetailProps> = ({ requirement }) => {
   return (
     <div className="min-w-max my-auto">
       <RightArrow color={'orange'} />
-      <div className="text-xs text-center">
+      <div className="text-xs text-center" style={{ height: '40px' }}>
         <span>{evolutionDetailValue()}</span>
       </div>
     </div>

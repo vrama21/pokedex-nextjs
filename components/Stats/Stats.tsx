@@ -7,8 +7,8 @@ interface StatsProps {
 }
 
 const Stats: React.FC<StatsProps> = ({ stats }) => {
-  // const calculateMaxHp = stats.hp * 2 + 204;
-  // const calculateMaxStat = (baseStat) => (baseStat * 2 + 99) * 1.1;
+  const calculateMaxHp = Math.round(stats.hp * 2 + 204);
+  const calculateMaxStat = (baseStat: number) => Math.round((baseStat * 2 + 99) * 1.1);
 
   const baseHpMax = 255;
   const baseAttackMax = 180;
@@ -27,22 +27,22 @@ const Stats: React.FC<StatsProps> = ({ stats }) => {
   return (
     <div className={styles.container}>
       <h2 className="text-center mb-4">Stats</h2>
-      <StatBar baseStat={stats.hp} baseStatMaxValue={baseHpMax} statName="HP" statPercentage={hpPercentage} />
-      <StatBar baseStat={stats.attack} baseStatMaxValue={baseAttackMax} statName="Attack" statPercentage={attackPercentage} />
-      <StatBar baseStat={stats.defense} baseStatMaxValue={baseDefenseMax} statName="Defense" statPercentage={defensePercentage} />
+      <StatBar baseStat={stats.hp} baseStatMaxValue={calculateMaxHp} statName="HP" statPercentage={hpPercentage} />
+      <StatBar baseStat={stats.attack} baseStatMaxValue={calculateMaxStat(stats.attack)} statName="Attack" statPercentage={attackPercentage} />
+      <StatBar baseStat={stats.defense} baseStatMaxValue={calculateMaxStat(stats.defense)} statName="Defense" statPercentage={defensePercentage} />
       <StatBar
         baseStat={stats.specialAttack}
-        baseStatMaxValue={baseSpecialAttackMax}
+        baseStatMaxValue={calculateMaxStat(stats.specialAttack)}
         statName="Sp. Attack"
         statPercentage={specialAttackPercentage}
       />
       <StatBar
         baseStat={stats.specialDefense}
-        baseStatMaxValue={baseSpecialDefenseMax}
+        baseStatMaxValue={calculateMaxStat(stats.specialDefense)}
         statName="Sp. Defense"
         statPercentage={specialDefensePercentage}
       />
-      <StatBar baseStat={stats.speed} baseStatMaxValue={baseSpeedMax} statName="Speed" statPercentage={speedPercentage} />
+      <StatBar baseStat={stats.speed} baseStatMaxValue={calculateMaxStat(stats.speed)} statName="Speed" statPercentage={speedPercentage} />
     </div>
   );
 };

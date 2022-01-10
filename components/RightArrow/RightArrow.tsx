@@ -4,7 +4,7 @@ interface RightArrowProps {
 
 const RightArrow: React.FC<RightArrowProps> = ({ color = '#4FBA6F' }) => {
   return (
-    <div className="w-12">
+    <div className="w-12 mx-auto" style={{ width: '100px' }}>
       <svg version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512">
         <g>
           <polygon

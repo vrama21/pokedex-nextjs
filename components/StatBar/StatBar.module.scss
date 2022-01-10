@@ -12,6 +12,7 @@
     animation-duration: 1s;
     animation-name: slideIn;
     background-color: rgba(0, 0, 0, 0.5);
+    border-radius: .25rem;
     box-shadow: 0.2rem 0.2rem 1rem rgba(0, 0, 0, 0.2);
     height: 0.75rem;
     margin: 0 .5rem;
@@ -19,6 +20,7 @@
 
     div {
       height: inherit;
+      border-radius: inherit;
     }
   }
 
