@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { AppProps } from 'next/app';
 import Router from 'next/router';
+import 'styles/global.scss';
+import 'styles/types.scss';
 import 'tailwindcss/tailwind.css';
-import '../styles/global.scss';
-import '../styles/types.scss';
 import { Loading } from 'components';
 
 const App = ({ Component, pageProps }: AppProps) => {
