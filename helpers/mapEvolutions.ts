@@ -20,6 +20,7 @@ const mapEvolutions = (evolutionChain: any): PokemonEvolution[] => {
 
       return {
         id: species.id,
+        evolutionChainId: species.evolution_chain_id,
         evolvesFromSpeciesId: species.evolves_from_species_id,
         name: species.name,
         requirements,

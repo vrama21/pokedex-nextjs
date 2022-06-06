@@ -4,6 +4,7 @@ export const getEvolutionChainByIdQuery = /* GraphQL */ `
       id
       species: pokemon_v2_pokemonspecies(order_by: { id: asc }) {
         id
+        evolution_chain_id
         evolves_from_species_id
         name
         evolutions: pokemon_v2_pokemonevolutions {

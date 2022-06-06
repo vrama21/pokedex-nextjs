@@ -9,7 +9,6 @@ export const getPokemonData = async (pokemonName: string) => {
   const species = await getPokemonSpecies({ speciesId: pokemonResponse.pokemon_species_id });
   const moves = pokemonResponse.moves.map(mapMove);
   const evolutions = species.evolution_chain_id ? await getEvolutions({ evolutionChainId: species.evolution_chain_id }) : [];
-  console.log(evolutions)
 
   const pokemonData = {
     evolutions,
