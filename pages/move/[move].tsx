@@ -1,5 +1,5 @@
 import { GetServerSideProps } from 'next';
-import { getMove } from 'api/getMove';
+import { getMove } from 'pokeapi/getMove';
 import { PokemonMove } from 'types';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {

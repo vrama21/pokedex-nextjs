@@ -6,3 +6,4 @@ export * from './PokemonSpecies';
 export * from './PokemonStats';
 export * from './PokemonType';
 export * from './PokemonTypeRequirement';
+export * from './Responses';

@@ -1,5 +1,6 @@
-import PokeAPI from 'pokedex-promise-v2';
-
-export interface PokemonSpecies extends PokeAPI.PokemonSpecies {
-  evolution_chain_id: number;
+export interface PokemonSpecies {
+  evolutions: [];
+  evolves_from_species_id: null;
+  id: number;
+  name: string;
 }

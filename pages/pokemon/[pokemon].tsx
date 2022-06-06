@@ -2,7 +2,7 @@ import { GetServerSideProps } from 'next';
 import { PageLayout, SectionLayout } from 'layouts';
 import { EvolutionChain, Moves } from 'components';
 import { EvolutionsSection, PokemonSection } from 'components/Sections';
-import { getPokemonData } from 'api/getPokemonData';
+import { getPokemonData } from 'pokeapi/getPokemonData';
 import { PokemonResponse } from 'types';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
